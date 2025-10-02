@@ -1,0 +1,23 @@
+- company: "Sodexo"
+  person_name: "Kevin Albrand"
+  person_initials: "KA"
+  person_image: "testimonials/ka.jpeg"
+  person_job_title: "Head of data - Excellence opérationnelle"
+  message:
+    - paragraph: "I worked with Gary on an data and analytics product, aiming at helping users to take better decisions to manage the profitability. As a product manager, Gary created a very valuable relationship both with the team and his business sponsors, listening to the needs and ensuring that the product was driven to provide as much value as possible to the organization. His dual skills technical / product helped him to navigate between user discovery, hypothesis checks, and impact driving. I would recommended Gary for any data analytics oriented products."
+- company: "Henkel"
+  person_name: "Dr. Arman Nassirtoussi"
+  person_image: "testimonials/an.jpeg"
+  person_job_title: "Head of Product (AI, Data, Analytics | Personalisation)"
+  message: 
+    - paragraph: "Gary is super structured and diligent, he deep-dived in many new topics and worked on shaping a cohesive strategy for the business cluster, we were shaping analytics standards and ways-of-working for. He is very collaborative and pursues what he has at hand carefully. He has been in the space of data driven product development for many years now and can definitely bring a strong perspective and a lot of experience to his future projects, and accelerate success."
+- company: "Zalando"
+  person_name: "Rob Manzano"
+  person_initials: "RM"
+  person_image: "testimonials/rm.jpeg"
+  person_job_title: "Director, Product Insights"
+  message:
+    - paragraph: "Gary rapidly proved himself a trusted ally on whom I could depend. His resolve was unyielding throughout, and I can testify to his composed, pragmatic approach and resilience."
+    - paragraph: "Possessing thorough knowledge in his field, Gary also comprehends its strategic role within the broader organisation. His ability to express himself, articulate his ideas clearly, and propel the team with his solutions was highly commendable."
+    - paragraph: "Gary is someone who persistently sets the standard, displays empathy, and shows respect. He welcomes feedback, self-reflects, and evolves."
+    - paragraph: "I unreservedly endorse Gary, confident that he will continue to excel in his career. I recommend him wholeheartedly for any opportunities that come his way."

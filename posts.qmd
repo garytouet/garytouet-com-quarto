@@ -1,0 +1,19 @@
+---
+title: "Posts"
+pagetitle: "Posts"
+listing: 
+  contents: post
+  template: posts-listing.ejs
+  sort: "date desc"
+  date-format: iso
+  categories: true
+  #sort-ui: [date]
+  filter-ui: false
+  page-size: 20
+  template-params: 
+    seeAllPosts: false
+  feed:
+    type: full
+    items: 100
+    language: en
+---

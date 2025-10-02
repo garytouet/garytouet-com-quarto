@@ -1,0 +1,452 @@
+/*-- scss:defaults --*/
+
+/*
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+*/
+
+$white:    #fff;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black:    #000;
+
+$blue:      #0063dc !default; //my old blog's blue
+$purple:    #7c3aed !default;
+
+$primary:   #2E8B8B !default;
+$secondary: $blue !default;
+$tertiary:  $purple !default;
+
+$success:       #0d9c6c !default;
+$info:          #3B82F6 !default;
+$warning:       #F59E0B !default;
+$danger:        #EF4444 !default;
+$light:         #F8FAFC !default;
+$dark:          #2f3848 !default;
+
+// Base document colors
+$link-color: $blue;
+$progress-bg: $gray-200;
+$code-annotation-higlight-bg: $gray-100;
+$code-annotation-higlight-color: $gray-300;
+
+$body-color:                $gray-700 !default;
+$body-secondary:            theme-dim($body-color, 25%) !default;
+$headings-color:            $gray-900 !default;
+
+
+$callout-color-note:       $info;
+$callout-color-tip:        $success;
+//$callout-color-caution:    $orange;
+$callout-color-warning:    $warning;
+$callout-color-important:  $danger;
+
+// Fonts
+@import url(https://fonts.bunny.net/css?family=inter:300,400,500,700|jetbrains-mono:400|roboto-mono:400|source-code-pro:400);
+$font-family-sans-serif:     -apple-system, BlinkMacSystemFont, "Apple Color Emoji", Inter, Roboto, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif !default;
+//$font-family-serif:           'Source Serif 4', Georgia, Cambria, "Times New Roman", Times, serif !default;
+$font-family-monospace:      SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-size-root: 16px !default;
+
+// Fonts sizes
+// $font-size-root affects the value of `rem`, which is used for as well font sizes, paddings, and margins
+// $font-size-base affects the font size of the body text
+$font-size-root:              null !default;
+$font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
+$font-size-lg:                $font-size-base * 1.25 !default;
+
+// Font weights
+$font-weight-lighter:         lighter !default;
+$font-weight-light:           400 !default;
+$font-weight-normal:          500 !default;
+$font-weight-medium:          600 !default;
+$font-weight-semibold:        700 !default;
+$font-weight-bold:            800 !default;
+$font-weight-bolder:          bolder !default;
+
+$font-weight-base:           $font-weight-normal !default;
+
+// Titles
+$h1-font-size:                $font-size-base * 1.75 !default;
+$h2-font-size:                $font-size-base * 1.6 !default;
+$h3-font-size:                $font-size-base * 1.45 !default;
+$h4-font-size:                $font-size-base * 1.3 !default;
+$h5-font-size:                $font-size-base * 1.15 !default;
+$h6-font-size:                $font-size-base !default;
+
+// Line heights
+$line-height-base:            1.5 !default;
+$line-height-sm:              1.25 !default;
+$line-height-lg:              2 !default;
+
+// Layout dimensions
+//$grid-body-width: 650px !default;
+$content-padding-top: 6rem !default;
+
+// Navbar
+$navbar-bg: $white !default;
+$navbar-fg: $dark !default;
+$navbar-brand-font-size: 1.5rem !default;
+
+
+/*-- scss:rules --*/
+
+body {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, .level2 h2, h3, h4, h5, h6,
+main.content > section:first-of-type > h2:nth-child(1) {
+  margin: 3rem 0 1rem 0;
+}
+
+
+.subtitle {
+  font-weight: $font-weight-light;
+  color: $gray-600;
+}
+
+//Navbar
+.navbar {
+  border-bottom: solid 2px $gray-100;
+} 
+.navbar-title {
+  font-weight: 700;
+  letter-spacing: -0.025rem;
+  padding: .25rem .75rem;
+}
+.nav-item a, .aa-DetachedSearchButton svg {
+  color: $gray-500;
+  fill: $gray-500;
+}
+
+.nav-item > a:hover {
+  color: $dark;
+  -webkit-transition: color .25s ease-in;
+  -moz-transition: color .25s ease-in;
+  transition: color .25s ease-in;
+}
+
+.aa-DetachedSearchButton svg:hover {
+  fill: $dark;
+  -webkit-transition: fill 0.25s ease-in;
+  -moz-transition: fill 0.25s ease-in;
+  transition: fill 0.25s ease-in;
+}
+ 
+.navbar-brand:hover {
+  color: inherit;  
+}
+.navbar .nav-link.active {
+  color: $dark;
+}
+
+.navbar #quarto-search {
+    margin-left: .5rem;
+}
+.navbar #quarto-search {
+  order: 999;
+}
+
+// Layout
+
+@include media-breakpoint-down(lg) {
+  #quarto-content {
+    padding-top: calc($content-padding-top/2);
+  }
+}
+
+
+//// Header and content with same width at small screen sizes
+footer.footer .nav-footer,
+#quarto-header > nav {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+@include media-breakpoint-down(md) {
+  /*footer.footer .nav-footer,*/
+  #quarto-header > nav {
+    padding-left: 0em;
+    padding-right: 0em;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  #quarto-content .subtitle {
+    padding: 0;
+  }
+}
+
+
+// Creating a larger font size utility class
+.font-size-lg {
+  font-size: $font-size-lg;
+}
+
+// Images
+img {
+  border-radius: $border-radius;
+}
+
+// Availability status badge
+.availability-status {
+  display: inline-block;
+  padding: .5rem .75rem;
+  margin: -1rem 0;
+  line-height: $font-size-lg;
+  border-radius: 1rem;
+}
+.status-dot {
+  border-radius: 40px;
+  width: .5rem;
+  height: .5rem;
+  vertical-align: middle;
+  display: inline-flex;
+  margin-right: .6rem;
+}
+
+.availability-status.available {
+  color: $success;
+  background: tint-color($green, 90%);
+}
+.availability-status.available .status-dot {
+  background: $success;
+}
+.availability-status.not-available {
+  background: $gray-200;
+}
+.availability-status.not-available .status-dot {
+  background: $gray-500;
+}
+
+/* Animated glow version */
+.availability-status.animated .status-dot {
+    animation: glow 2.5s infinite;
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 0 .5rem rgba(16, 185, 129, 0);
+    }
+}
+
+ // Styling testimonials on homepage
+.testimonials-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-inline-start: 0;
+    padding-top: 1.5rem;
+}
+
+.testimonial-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 85%;
+}
+
+/* Odd items (1st, 3rd, 5th...) align left */
+.testimonial-item:nth-child(odd) {
+    align-self: flex-start;
+    flex-direction: row;
+}
+
+/* Even items (2nd, 4th, 6th...) align right */
+.testimonial-item:nth-child(even) {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.profile-pic, .profile-pic > img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: $gray-300;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: $white;
+    font-size: 0.9rem;
+}
+
+.message-content {
+    flex: 1;
+    font-size: 0.9rem;
+}
+
+.message-bubble {
+    background: $gray-100;
+    padding: 10px 20px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.message-text > p:last-child {
+  margin-bottom: 0px;
+}
+
+/* Left bubbles (odd items) */
+.testimonial-item:nth-child(odd) .message-bubble {
+    margin-left: 0;
+}
+
+.testimonial-item:nth-child(odd) .message-bubble::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    top: 12px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-right-color: $gray-100;
+    border-left: 0;
+    border-bottom: 0;
+}
+
+/* Right bubbles (even items) */
+.testimonial-item:nth-child(even) .message-bubble {
+    margin-right: 0;
+}
+
+.testimonial-item:nth-child(even) .message-bubble::before {
+    content: '';
+    position: absolute;
+    right: -8px;
+    top: 12px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-left-color: $gray-100;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.message-meta {
+    font-size: 0.85rem;
+    color: $body-secondary;
+    margin-top: 5px;
+}
+
+.testimonial-item:nth-child(odd) .message-meta {
+    text-align: left;
+}
+
+.testimonial-item:nth-child(even) .message-meta {
+    text-align: right;
+}
+
+.person-name {
+    font-weight: 600;
+    color: shade-color($body-color, 10%);
+}
+
+.job-title {
+    font-style: italic;
+}
+
+.company {
+    color: $tertiary;
+}
+
+// Tables
+// Monospace font used in code output HTML tables
+ .cell-output-display > table {
+    font-family: $font-family-monospace;
+ }
+ // Removing some styling from all tables
+ .table {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-top: none;
+ }
+
+
+// Posts page
+/// Taking care of the custom listing table for my posts page
+/* Override colgroup */
+.listing-posts .listing-title {
+    font-size: $font-size-base;
+}
+.listing-posts a{
+  text-decoration: none;
+}
+.listing-posts col {
+    width: auto !important;
+}
+
+.listing-posts col:last-child {
+    width: 15% !important;
+}
+
+/* Add white-space: nowrap to date column cells */
+.listing-posts td:last-child,
+.listing-posts th:last-child {
+    white-space: nowrap;
+}
+
+.listing-posts col:first-child {
+    width: 85% !important;
+}
+
+
+/// Pills for categories
+.pill {
+  display: inline-block;
+}
+.pill {
+  background-color: $gray-200;
+}
+.pill, .category {
+    padding: .1rem .4rem;
+    border-radius: 3rem;
+    font-size: 0.8em;
+    margin: .1rem .1rem .1rem 0;
+}
+.quarto-listing-category {
+  display: flex;
+  flex-direction: column; /* Stacks items vertically */
+  gap: 4px; /* Adds spacing between pills */
+}
+.quarto-listing-category .category {
+  display: inline-flex; /* or inline-block */
+  width: fit-content; /* Ensures width is determined by content */
+}
+.quarto-listing-category .category {
+  color: $blue;
+  background-color: tint-color($blue, 92.5%);
+  border: 1px solid tint-color($blue, 75%);
+}
+.quarto-listing-category .category.active {
+    background-color: $blue;
+    color: white;
+    border: 1px solid shade-color($blue, 10%);
+}
+.quarto-listing-category .quarto-category-count {
+  margin-left: .2rem; /* Adds space between the category name and the count */
+}

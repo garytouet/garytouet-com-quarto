@@ -1,0 +1,18 @@
+---
+title: "404 error – Page not found"
+toc: false
+listing:
+    contents: post
+    template: posts-listing.ejs
+    sort: "date desc"
+    date-format: iso
+    max-items: 5
+    template-params: 
+        seeAllPosts: true
+---
+
+
+Sorry, but the URL you were trying to reach does not exist. Perhaps searching will help.
+
+Or, here are my most recent posts:
+

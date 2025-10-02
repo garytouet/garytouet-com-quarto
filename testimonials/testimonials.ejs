@@ -1,0 +1,28 @@
+```{=html}
+
+<ul class="testimonials-list">
+<% for (const item of items) { %>  
+    <li class="testimonial-item">
+    <% if (item.person_image) { %>
+        <div class="profile-pic"><img src="<%- item.person_image %>"></div>
+    <% } else { %>
+        <div class="profile-pic"><%- item.person_initials %></div>
+    <% } %>
+        <div class="message-content">
+            <div class="message-bubble">
+                <div class="message-text">
+                    <% item.message.forEach(function(msgObj, index) { %>
+                        <p><%= msgObj.paragraph %></p>
+                    <% }); %>
+                </div>
+            </div>
+            <div class="message-meta">
+                <span class="person-name"><%- item.person_name %></span> • 
+                <span class="job-title"><%- item.person_job_title %></span> • 
+                <span class="company"><%- item.company %></span>
+            </div>
+        </div>
+    </li>
+<% } %>
+</ul>
+```
