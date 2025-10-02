@@ -53,6 +53,8 @@ I am currently <span class="availability-status available animated"><span class=
 
 ## About me
 
+Born in France, based in Berlin, Germany since 2015.
+
 I combine hands-on know-how and leadership experience in analytics and product development. In other words, I’m an analyst with product development experience or a product manager with strong analytical skills.
 
 I can lead projects or teams to deliver work that moves the needle. I can also directly contribute thanks to years of experience as a product analyst:
