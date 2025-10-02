@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.33">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -34,14 +34,15 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ea385d0e468b0dd5ea5bf0780b1290d9.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-344780a34a4ae99286c2447efef7fe90.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-996eb6bc0ef105e9834e8a6b9bad1c40.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -146,7 +147,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -171,6 +172,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Gary Touet</span>
     </a>
@@ -222,6 +225,7 @@ window.Quarto = {
 <div class="grid">
 <div class="g-col-9 g-col-md-8">
 <div class="font-size-lg">
+<p>Testing</p>
 <p>I’m a freelance analytics lead and product manager with 10 years of experience.</p>
 <p>This is the corner of the internet where I share my thoughts, my projects and what I learn.</p>
 <p>You can read more about me and the services I offer below.</p>
@@ -365,7 +369,7 @@ window.Quarto = {
 <section id="latest-posts" class="level2">
 <h2 class="anchored" data-anchor-id="latest-posts">Latest posts</h2>
 <div id="listing-latest-posts" class="quarto-listing quarto-listing-container-custom">
-<table class="listing-posts caption-top table" data-quarto-postprocess="true">
+<table class="listing-posts caption-top table">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
@@ -377,7 +381,7 @@ window.Quarto = {
 </tr>
 </thead>
 <tbody class="list">
-<tr class="odd" data-index="0" data-categories="UiUyQ3dlYnNpdGU=" data-listing-date-sort="1758751200000" data-listing-file-modified-sort="1759422751864" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1155">
+<tr class="odd" data-index="0" data-categories="UiUyQ3dlYnNpdGU=" data-listing-date-sort="1758758400000" data-listing-file-modified-sort="1759424393748" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1155">
 <td><p><a href="./post/2025/create-favicon-with-ggplot2/index.html" class="listing-title post">Creating the favicon for this website with `ggplot2`</a></p>
 <p>We will use the package to create an image and export it in several sizes. It is not as straightforward as I thought.</p>
 <span class="listing-posts-category pill">R</span><wbr><span class="listing-posts-category pill">website</span></td>
@@ -447,13 +451,14 @@ window.Quarto = {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
