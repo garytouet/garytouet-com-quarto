@@ -30,6 +30,8 @@ print(years_of_experience)
 
 ::: {.font-size-lg}
 
+Testing 
+
 I’m a freelance analytics lead and product manager with `r years_of_experience ` years of experience.
 
 This is the corner of the internet where I share my thoughts, my projects and what I learn.
