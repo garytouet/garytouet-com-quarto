@@ -1,1 +1,1 @@
-Sitemap: https://garytouet.github.io/garytouet-com-quarto/sitemap.xml
+Sitemap: https://garytouet.com/sitemap.xml
