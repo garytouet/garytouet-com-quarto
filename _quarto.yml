@@ -8,7 +8,7 @@ project:
 website:
   title: "Gary Touet"
   description: "Freelance Lead Data Analyst & Product Manager"
-  site-url: "https://garytouet.github.io/garytouet-com-quarto/"
+  site-url: "https://garytouet.com"
   navbar:
     collapse: false
     search: true
