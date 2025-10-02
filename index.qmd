@@ -26,7 +26,7 @@ print(years_of_experience)
 
 ::: {.grid}
 
-::: {.g-col-9 .g-col-md-8}
+::: {.g-col-12 .g-col-sm-8}
 
 ::: {.font-size-lg}
 
@@ -44,7 +44,7 @@ I am currently <span class="availability-status available animated"><span class=
 
 :::
 
-::: {.g-col-3 .g-col-md-4}
+::: {.g-col-12 .g-col-sm-4}
 ![C'est moi](/profile-photo-square.jpg)
 :::
 
