@@ -6,15 +6,15 @@
       version="2.0">
 <channel>
 <title>Gary Touet</title>
-<link>https://garytouet.github.io/garytouet-com-quarto/posts.html</link>
-<atom:link href="https://garytouet.github.io/garytouet-com-quarto/posts.xml" rel="self" type="application/rss+xml"/>
+<link>https://garytouet.com/posts.html</link>
+<atom:link href="https://garytouet.com/posts.xml" rel="self" type="application/rss+xml"/>
 <description>Freelance Lead Data Analyst &amp; Product Manager</description>
 <language>en</language>
 <generator>quarto-1.8.25</generator>
 <lastBuildDate>Thu, 25 Sep 2025 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Creating the favicon for this website with ggplot2</title>
-  <link>https://garytouet.github.io/garytouet-com-quarto/post/2025/create-favicon-with-ggplot2/</link>
+  <link>https://garytouet.com/post/2025/create-favicon-with-ggplot2/</link>
   <description><![CDATA[ 
 
 
@@ -124,7 +124,7 @@ font-style: inherit;">fill =</span> my_blue</span>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://garytouet.github.io/garytouet-com-quarto/post/2025/create-favicon-with-ggplot2/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="480"></p>
+<p><img src="https://garytouet.com/post/2025/create-favicon-with-ggplot2/index_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
@@ -198,7 +198,7 @@ font-style: inherit;">theme_void</span>())</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://garytouet.github.io/garytouet-com-quarto/post/2025/create-favicon-with-ggplot2/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="480"></p>
+<p><img src="https://garytouet.com/post/2025/create-favicon-with-ggplot2/index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
@@ -262,7 +262,7 @@ background-color: null;
 font-style: inherit;">'px'</span></span>
 <span id="cb5-8">)</span></code></pre></div></div>
 </div>
-<p><img src="https://garytouet.github.io/garytouet-com-quarto/post/2025/create-favicon-with-ggplot2/icons/favicon_problem.png" class="img-fluid"></p>
+<p><img src="https://garytouet.com/post/2025/create-favicon-with-ggplot2/icons/favicon_problem.png" class="img-fluid"></p>
 <p>… that the dimensions are good, but the proportions are not. With <code>ggsave</code> I can easily define the size in pixels, but this doesn’t change the font size in the plot.</p>
 <p>Christophe Nicault’s article <a href="https://www.christophenicault.com/post/understand_size_dimension_ggplot2/">Understanding text size and resolution in ggplot2</a> explains very well what happens. They recommend to use a package called <code>ragg</code> and the <code>scaling</code> option.</p>
 <p>I tried, but simply installing <code>ragg</code> created a big error<sup>2</sup> in Quarto and completely destroyed my ability to preview my post. I also played around with the <code>scale</code> option in <code>ggsave()</code>, to no avail.</p>
@@ -455,7 +455,7 @@ font-style: inherit;">dpi =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">320</span>)</span></code></pre></div></div>
 </div>
-<p><img src="https://garytouet.github.io/garytouet-com-quarto/post/2025/create-favicon-with-ggplot2/icons/favicon_32x32.png" class="img-fluid"></p>
+<p><img src="https://garytouet.com/post/2025/create-favicon-with-ggplot2/icons/favicon_32x32.png" class="img-fluid"></p>
 <p>It works! I can now generate the different sizes that I need.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1">sizes <span class="ot" style="color: #003B4F;
@@ -507,7 +507,7 @@ font-style: inherit;">320</span>)</span>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="https://garytouet.github.io/garytouet-com-quarto/post/2025/create-favicon-with-ggplot2/icons/favicon_32x32.png" class="img-fluid figure-img"></p>
+<p><img src="https://garytouet.com/post/2025/create-favicon-with-ggplot2/icons/favicon_32x32.png" class="img-fluid figure-img"></p>
 <figcaption>favicon_32x32.png</figcaption>
 </figure>
 </div>
@@ -515,7 +515,7 @@ font-style: inherit;">320</span>)</span>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="https://garytouet.github.io/garytouet-com-quarto/post/2025/create-favicon-with-ggplot2/icons/favicon_96x96.png" class="img-fluid figure-img"></p>
+<p><img src="https://garytouet.com/post/2025/create-favicon-with-ggplot2/icons/favicon_96x96.png" class="img-fluid figure-img"></p>
 <figcaption>favicon_96x96.png</figcaption>
 </figure>
 </div>
@@ -523,7 +523,7 @@ font-style: inherit;">320</span>)</span>
 <div class="quarto-layout-cell" style="flex-basis: 33.3%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="https://garytouet.github.io/garytouet-com-quarto/post/2025/create-favicon-with-ggplot2/icons/favicon_180x180.png" class="img-fluid figure-img"></p>
+<p><img src="https://garytouet.com/post/2025/create-favicon-with-ggplot2/icons/favicon_180x180.png" class="img-fluid figure-img"></p>
 <figcaption>favicon_180x180.png</figcaption>
 </figure>
 </div>
@@ -563,7 +563,7 @@ font-style: inherit;">dev.off</span>())</span></code></pre></div></div>
 </div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
-<p><img src="https://garytouet.github.io/garytouet-com-quarto/post/2025/create-favicon-with-ggplot2/icons/favicon.svg" class="img-fluid figure-img"></p>
+<p><img src="https://garytouet.com/post/2025/create-favicon-with-ggplot2/icons/favicon.svg" class="img-fluid figure-img"></p>
 <figcaption>favicon.svg</figcaption>
 </figure>
 </div>
@@ -582,7 +582,7 @@ font-style: inherit;">dev.off</span>())</span></code></pre></div></div>
 </section></div> ]]></description>
   <category>R</category>
   <category>website</category>
-  <guid>https://garytouet.github.io/garytouet-com-quarto/post/2025/create-favicon-with-ggplot2/</guid>
+  <guid>https://garytouet.com/post/2025/create-favicon-with-ggplot2/</guid>
   <pubDate>Thu, 25 Sep 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
