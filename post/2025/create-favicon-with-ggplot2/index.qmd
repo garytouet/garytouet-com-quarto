@@ -84,7 +84,8 @@ Now, I will 1) add the text, position it, and then 2) remove all plot elements l
     size = square_size / 2,
     size.unit = 'in'
   ) +
-  theme_void())
+  theme_void()
+)
 ```
 
 Voilà!
@@ -124,7 +125,8 @@ ggsave(
   dpi = 'retina', #retina = 320, according to documentation
   width = 96,
   height = 96,
-  units = 'px'
+  units = 'px',
+  bg = "transparent"
 )
 ```
 
@@ -191,7 +193,8 @@ create_and_save_icon <- function(filename, size_pixels, dpi = 320) {
     dpi = dpi,
     width = size_pixels,
     height = size_pixels,
-    units = 'px'
+    units = 'px',
+    bg = "transparent"
   )
 }
 ```
