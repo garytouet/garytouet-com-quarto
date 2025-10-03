@@ -170,7 +170,7 @@ create_icon <- function(square_size_inches) {
       aes(
         x = 0,
         y = -square_size_inches / 5,
-        label = "G",
+        label = "T",
         family = "Inter",
         fontface = "bold"
       ),
@@ -181,7 +181,8 @@ create_icon <- function(square_size_inches) {
     theme_void() +
     theme(
       plot.background = element_rect(fill="transparent", colour = NA),
-      panel.background = element_rect(fill="transparent", colour = NA)
+      panel.background = element_rect(fill="transparent", colour = NA),
+      plot.margin = margin(0, 0, 0, 0)
     )
 
     return(p)
