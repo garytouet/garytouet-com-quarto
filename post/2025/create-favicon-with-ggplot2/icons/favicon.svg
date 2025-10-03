@@ -11,6 +11,8 @@
 </g>
 </defs>
 <rect x="-7.2" y="-7.2" width="86.4" height="86.4" fill="rgb(100%, 100%, 100%)" fill-opacity="1"/>
+<rect x="-7.2" y="-7.2" width="86.4" height="86.4" fill="rgb(0%, 38.823529%, 86.27451%)" fill-opacity="1"/>
+<rect x="-7.2" y="-7.2" width="86.4" height="86.4" fill="rgb(0%, 38.823529%, 86.27451%)" fill-opacity="1"/>
 <path fill-rule="nonzero" fill="rgb(0%, 38.823529%, 86.27451%)" fill-opacity="1" d="M 3.273438 68.726562 L 68.726562 68.726562 L 68.726562 3.273438 L 3.273438 3.273438 Z M 3.273438 68.726562 "/>
 <g fill="rgb(100%, 100%, 100%)" fill-opacity="1">
 <use xlink:href="#glyph-0-1" x="24" y="61.594727"/>

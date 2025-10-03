@@ -180,9 +180,8 @@ create_icon <- function(square_size_inches) {
     ) +
     theme_void() +
     theme(
-      plot.background = element_rect(fill="transparent", colour = NA),
-      panel.background = element_rect(fill="transparent", colour = NA),
-      plot.margin = margin(0, 0, 0, 0)
+      plot.background = element_rect(fill=my_blue, colour = NA),
+      panel.background = element_rect(fill=my_blue, colour = NA),
     )
 
     return(p)
