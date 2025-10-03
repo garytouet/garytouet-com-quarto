@@ -194,21 +194,8 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb4-14">  <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">theme</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">rect =</span> <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">element_rect</span>(<span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">fill =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"transparent"</span>)) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb4-15">  <span class="fu" style="color: #4758AB;
-background-color: null;
 font-style: inherit;">theme_void</span>()</span>
-<span id="cb4-16">)</span></code></pre></div></div>
+<span id="cb4-15">)</span></code></pre></div></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -273,13 +260,8 @@ font-style: inherit;">96</span>,</span>
 background-color: null;
 font-style: inherit;">units =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'px'</span>,</span>
-<span id="cb5-8">  <span class="at" style="color: #657422;
-background-color: null;
-font-style: inherit;">bg =</span> <span class="st" style="color: #20794D;
-background-color: null;
-font-style: inherit;">"transparent"</span></span>
-<span id="cb5-9">)</span></code></pre></div></div>
+font-style: inherit;">'px'</span></span>
+<span id="cb5-8">)</span></code></pre></div></div>
 </div>
 <p><img src="https://garytouet.com/post/2025/create-favicon-with-ggplot2/icons/favicon_problem.png" class="img-fluid"></p>
 <p>… that the dimensions are good, but the proportions are not. With <code>ggsave</code> I can easily define the size in pixels, but this doesn’t change the font size in the plot.</p>
@@ -457,7 +439,7 @@ font-style: inherit;">'px'</span>,</span>
 background-color: null;
 font-style: inherit;">bg =</span> my_blue <span class="co" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">#fills in any outline in the output png</span></span>
+font-style: inherit;">#otherwise white outline in png</span></span>
 <span id="cb6-43">  )</span>
 <span id="cb6-44">}</span></code></pre></div></div>
 </div>
