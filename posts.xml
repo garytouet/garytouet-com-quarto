@@ -399,32 +399,17 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb6-25">    <span class="fu" style="color: #4758AB;
 background-color: null;
-font-style: inherit;">theme_void</span>() </span>
-<span id="cb6-26">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#+</span></span>
-<span id="cb6-27">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#theme(</span></span>
-<span id="cb6-28">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#  plot.background = element_rect(fill=my_blue, #colour = NA),</span></span>
-<span id="cb6-29">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#  panel.background = element_rect(fill=my_blue, #colour = NA),</span></span>
-<span id="cb6-30">    <span class="co" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">#)</span></span>
-<span id="cb6-31"></span>
-<span id="cb6-32">    <span class="fu" style="color: #4758AB;
+font-style: inherit;">theme_void</span>()</span>
+<span id="cb6-26"></span>
+<span id="cb6-27">    <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">return</span>(p)</span>
-<span id="cb6-33">  }</span>
-<span id="cb6-34"></span>
-<span id="cb6-35"><span class="co" style="color: #5E5E5E;
+<span id="cb6-28">  }</span>
+<span id="cb6-29"></span>
+<span id="cb6-30"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Function that uses a size in pixels and a dpi to convert it into inches, create the icon and save it to disk</span></span>
-<span id="cb6-36">create_and_save_icon <span class="ot" style="color: #003B4F;
+<span id="cb6-31">create_and_save_icon <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="cf" style="color: #003B4F;
 background-color: null;
@@ -434,45 +419,47 @@ background-color: null;
 font-style: inherit;">dpi =</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">320</span>) {</span>
-<span id="cb6-37">  square_size_inches <span class="ot" style="color: #003B4F;
+<span id="cb6-32">  square_size_inches <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> size_pixels <span class="sc" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">/</span> dpi</span>
-<span id="cb6-38">  icon <span class="ot" style="color: #003B4F;
+<span id="cb6-33">  icon <span class="ot" style="color: #003B4F;
 background-color: null;
 font-style: inherit;">&lt;-</span> <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">create_icon</span>(square_size_inches)</span>
-<span id="cb6-39"></span>
-<span id="cb6-40">  <span class="fu" style="color: #4758AB;
+<span id="cb6-34"></span>
+<span id="cb6-35">  <span class="fu" style="color: #4758AB;
 background-color: null;
 font-style: inherit;">ggsave</span>(</span>
-<span id="cb6-41">    <span class="at" style="color: #657422;
+<span id="cb6-36">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">plot =</span> icon,</span>
-<span id="cb6-42">    <span class="at" style="color: #657422;
+<span id="cb6-37">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">filename =</span> filename,</span>
-<span id="cb6-43">    <span class="at" style="color: #657422;
+<span id="cb6-38">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">dpi =</span> dpi,</span>
-<span id="cb6-44">    <span class="at" style="color: #657422;
+<span id="cb6-39">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">width =</span> size_pixels,</span>
-<span id="cb6-45">    <span class="at" style="color: #657422;
+<span id="cb6-40">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">height =</span> size_pixels,</span>
-<span id="cb6-46">    <span class="at" style="color: #657422;
+<span id="cb6-41">    <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">units =</span> <span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">'px'</span>,</span>
-<span id="cb6-47">    <span class="at" style="color: #657422;
+<span id="cb6-42">    <span class="at" style="color: #657422;
 background-color: null;
-font-style: inherit;">bg =</span> my_blue</span>
-<span id="cb6-48">  )</span>
-<span id="cb6-49">}</span></code></pre></div></div>
+font-style: inherit;">bg =</span> my_blue <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">#fills in any outline in the output png</span></span>
+<span id="cb6-43">  )</span>
+<span id="cb6-44">}</span></code></pre></div></div>
 </div>
 <p>Let’s try it out!</p>
 <div class="cell">
