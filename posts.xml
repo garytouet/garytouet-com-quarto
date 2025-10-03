@@ -365,7 +365,7 @@ font-style: inherit;">5</span>,</span>
 background-color: null;
 font-style: inherit;">label =</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">"GT"</span>,</span>
+font-style: inherit;">"G"</span>,</span>
 <span id="cb6-18">        <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">family =</span> <span class="st" style="color: #20794D;
@@ -386,7 +386,7 @@ font-style: inherit;">"white"</span>,</span>
 background-color: null;
 font-style: inherit;">size =</span> square_size_inches <span class="sc" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+font-style: inherit;">/</span><span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">2</span>,</span>
 <span id="cb6-23">      <span class="at" style="color: #657422;
@@ -399,8 +399,13 @@ background-color: null;
 font-style: inherit;">+</span></span>
 <span id="cb6-25">    <span class="fu" style="color: #4758AB;
 background-color: null;
+font-style: inherit;">theme_void</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb6-26">    <span class="fu" style="color: #4758AB;
+background-color: null;
 font-style: inherit;">theme</span>(</span>
-<span id="cb6-26">      <span class="at" style="color: #657422;
+<span id="cb6-27">      <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">plot.background =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -412,8 +417,8 @@ font-style: inherit;">"transparent"</span>, <span class="at" style="color: #6574
 background-color: null;
 font-style: inherit;">colour =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
-font-style: inherit;">NA_character_</span>),</span>
-<span id="cb6-27">      <span class="at" style="color: #657422;
+font-style: inherit;">NA</span>),</span>
+<span id="cb6-28">      <span class="at" style="color: #657422;
 background-color: null;
 font-style: inherit;">panel.background =</span> <span class="fu" style="color: #4758AB;
 background-color: null;
@@ -425,13 +430,8 @@ font-style: inherit;">"transparent"</span>, <span class="at" style="color: #6574
 background-color: null;
 font-style: inherit;">colour =</span> <span class="cn" style="color: #8f5902;
 background-color: null;
-font-style: inherit;">NA_character_</span>)</span>
-<span id="cb6-28">    ) <span class="sc" style="color: #5E5E5E;
-background-color: null;
-font-style: inherit;">+</span></span>
-<span id="cb6-29">    <span class="fu" style="color: #4758AB;
-background-color: null;
-font-style: inherit;">theme_void</span>()</span>
+font-style: inherit;">NA</span>)</span>
+<span id="cb6-29">    )</span>
 <span id="cb6-30"></span>
 <span id="cb6-31">    <span class="fu" style="color: #4758AB;
 background-color: null;
