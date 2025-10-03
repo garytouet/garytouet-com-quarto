@@ -170,7 +170,7 @@ create_icon <- function(square_size_inches) {
       aes(
         x = 0,
         y = -square_size_inches / 5,
-        label = "T",
+        label = "GT",
         family = "Inter",
         fontface = "bold"
       ),
@@ -178,11 +178,12 @@ create_icon <- function(square_size_inches) {
       size = square_size_inches /2,
       size.unit = 'in'
     ) +
-    theme_void() +
-    theme(
-      plot.background = element_rect(fill=my_blue, colour = NA),
-      panel.background = element_rect(fill=my_blue, colour = NA),
-    )
+    theme_void() 
+    #+
+    #theme(
+    #  plot.background = element_rect(fill=my_blue, #colour = NA),
+    #  panel.background = element_rect(fill=my_blue, #colour = NA),
+    #)
 
     return(p)
   }
@@ -199,7 +200,7 @@ create_and_save_icon <- function(filename, size_pixels, dpi = 320) {
     width = size_pixels,
     height = size_pixels,
     units = 'px',
-    bg = "transparent"
+    bg = my_blue
   )
 }
 ```
