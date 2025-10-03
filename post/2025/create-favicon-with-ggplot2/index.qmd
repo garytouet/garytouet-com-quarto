@@ -84,6 +84,7 @@ Now, I will 1) add the text, position it, and then 2) remove all plot elements l
     size = square_size / 2,
     size.unit = 'in'
   ) +
+  theme(rect = element_rect(fill = "transparent")) +
   theme_void()
 )
 ```
@@ -169,7 +170,7 @@ create_icon <- function(square_size_inches) {
       aes(
         x = 0,
         y = -square_size_inches / 5,
-        label = "GT",
+        label = "ST",
         family = "Inter",
         fontface = "bold"
       ),
@@ -177,6 +178,7 @@ create_icon <- function(square_size_inches) {
       size = square_size_inches / 2,
       size.unit = 'in'
     ) +
+    theme(rect = element_rect(fill = "transparent")) +
     theme_void()
 
     return(p)
