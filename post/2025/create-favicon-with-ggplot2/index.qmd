@@ -84,7 +84,6 @@ Now, I will 1) add the text, position it, and then 2) remove all plot elements l
     size = square_size / 2,
     size.unit = 'in'
   ) +
-  theme(rect = element_rect(fill = "transparent")) +
   theme_void()
 )
 ```
@@ -126,8 +125,7 @@ ggsave(
   dpi = 'retina', #retina = 320, according to documentation
   width = 96,
   height = 96,
-  units = 'px',
-  bg = "transparent"
+  units = 'px'
 )
 ```
 
@@ -195,7 +193,7 @@ create_and_save_icon <- function(filename, size_pixels, dpi = 320) {
     width = size_pixels,
     height = size_pixels,
     units = 'px',
-    bg = my_blue #fills in any outline in the output png
+    bg = my_blue #otherwise white outline in png
   )
 }
 ```
