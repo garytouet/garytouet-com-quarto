@@ -64,6 +64,7 @@ format:
           <link rel="icon" href="/icons/favicon_96x96.png" sizes="96x96">
           <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
           <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+          <script defer src="https://cloud.umami.is/script.js" data-website-id="2191915a-328c-4ca4-8921-31b446ba513b"></script>
 
 execute:
   freeze: auto
