@@ -262,6 +262,12 @@ img {
     max-width: 85%;
 }
 
+@include media-breakpoint-down(sm) {
+  .testimonial-item {
+    max-width: 100%;
+  }
+}
+
 /* Odd items (1st, 3rd, 5th...) align left */
 .testimonial-item:nth-child(odd) {
     align-self: flex-start;
