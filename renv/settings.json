@@ -1,6 +1,8 @@
 {
   "bioconductor.version": null,
-  "external.libraries": [],
+  "external.libraries": [
+    "/Library/Frameworks/R.framework/Versions/4.5-arm64/Resources/library"
+  ],
   "ignored.packages": [],
   "package.dependency.fields": [
     "Imports",
