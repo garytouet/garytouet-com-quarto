@@ -6,14 +6,14 @@ listing:
   - id: testimonials
     contents: testimonials/testimonials.yml
     template: testimonials/testimonials.ejs
-  - id: latest-posts
-    contents: post
-    template: posts-listing.ejs
-    sort: "date desc"
-    date-format: iso
-    max-items: 10
-    template-params: 
-      seeAllPosts: true
+  #- id: latest-posts
+  #  contents: post
+  #  template: posts-listing.ejs
+  #  sort: "date desc"
+  #  date-format: iso
+  #  max-items: 10
+  #  template-params: 
+  #    seeAllPosts: true
 ---
 
 
@@ -30,9 +30,9 @@ print(years_of_experience)
 
 ::: {.font-size-lg}
 
-I’m a freelance analytics lead and product manager with `r years_of_experience ` years of experience.
+I'm a freelance product manager of data & AI products or analytics leader.
 
-This is the corner of the internet where I share my thoughts, my projects and what I learn.
+I work primarily with large international companies in digital transformation.
 
 You can read more about me and the services I offer below.
 
@@ -45,78 +45,51 @@ I am currently <span class="availability-status available animated"><span class=
 :::
 
 ::: {.g-col-12 .g-col-sm-4}
-![C'est moi](/profile-photo-square.jpg)
+![C'est moi :)](/profile-photo-square.jpg)
 :::
 
 :::
 
 
-## About me
+## What I can do for you
 
-I combine hands-on know-how and leadership experience in analytics and product development. In other words, I’m an analyst with product development experience or a product manager with strong analytical skills.
+### Interim leadership
 
-I can lead projects or teams to deliver work that moves the needle. I can also directly contribute thanks to years of experience as a product analyst:
+_Step in temporarily (3–12 months) to accelerate your digital transformation or bridge gaps._
 
-- find patterns and insights in millions of records of customer behaviour data,
-- prepare and visualise data using SQL, R or Python,
-- launch, monitor and analyse a/b tests,
-- equip teams with KPIs, dashboards and curated datasets.
+- Product manager for your data & AI product(s)
+- Data leadership for your projects and teams
 
-I am comfortable working as a bridge between business leaders and technical teams. I can translate business questions into data problems and data insights back into business decisions.
+### Project-based collaboration
 
-The bulk of my experience deals with extracting insights from quantitative data sources. Nonetheless, I also have experience with qualitative data. I have carried-out small scale user interviews and usability tests for products I managed as well as survey analyses.
+_Join your team to deliver specific outcomes, from strategy to execution._
 
-I acquired this breadth of skills mostly during my 8-year tenure at Zalando (European e-commerce scale-up). I got to grow alongside a company that was scaling from startup energy to enterprise sophistication. Most notably, I was part of the first cohort of product analysts in the company. I had the chance to work in teams at different stages of the product development process, always building the customer-facing web and app experiences. I ended writing documents that establish best practices for analytics during product development, I participated in the creation of the group’s data strategy and I later guided others into growing into these roles as a team lead.
-
-Finally, I feel very comfortable in international environments. I find it easier to work in English than in my native French. I am also at-ease working in multidisciplinary teams (designers, engineers, product managers, etc.)
-
-### Working with me
-
-My approach is heavily influenced by Amazon's working backwards model: start with what you're trying to achieve, then figure out how to get there.
-
-I bring a calm and organised approach to projects. I believe in finishing what we started first and in having transparent prioritisation mechanisms to keep things manageable. In addition, I approach ambiguity with serenity. Data combined with product management methods are great to reduce uncertainty and gain clarity.
-
-I am open to feedback and I take it to heart to improve whenever given the chance.
-
-I am used to cultures where we surface and discuss problems in an honest and dispassionate manner. I strive to leave my ego out of the equation and focus on what's best for the company.
-
-Experience has taught me to be realistic about what data can and cannot do. I focus on insights that can actually influence decisions. I prefer to work in iterations. Incremental improvements beat grand plans that never ship.
-
-I'm comfortable working in large corporate environments and understand how to navigate complex organizational structures effectively. Whether it's a fast-growing scale-up or a digital transformation initiative within a traditional company, I know how to work within existing processes while getting things done.
-
-### What I can do for you
-
-_Strategic leadership:_
-
-- Product management for your data projects
-- Lead or principal product analyst roles
-- Help develop analytics practices within your product organisation
-- Accompany you in generating actionable insights from customer behaviour data
-
-_Hands-on support:_
-
-- Exploratory data analysis and insight generation
-- KPI definition and reporting frameworks
-- A/B testing and experimentation programs
-- ETL, automation, and data pipeline work
-
-While most of my experience comes from e-commerce, I'm interested in working with all types of online services, websites, and apps. Good analytics principles translate across industries.
-
-### Contact
-
-Whether you're looking for help with a specific project or just want to chat about analytics/product management, feel free to reach out via [LinkedIn](https://www.linkedin.com/in/garytouet/), [Mastodon](https://mastodon.social/@garytouet), or [email](mailto:hello@garytouet.com).
+- Build strong foundations in preparation for AI and ML use cases
+- Structure your teams and data architecture to generate insights faster
+- Support with:
+  - Exploratory data analysis and insight generation
+  - KPI definition and reporting frameworks
+  - A/B testing and experimentation programs
+  - ETL, automation, and data pipeline work
 
 
-## Testimonials
+## Advantages of working with me
 
-Quotes from my most recent clients and former employer.
+1. 10+ years of experience in data and analytics, with a track record of delivering impact in large corporate environments. I’ve worked with international companies in digital transformation like Henkel and Sodexo, and a pure-player scale-up like Zalando.
+1. Proven ability to navigate complexity: I’ve mitigated risks in high-stakes product launches (millions of euros at risk), worked on cross-market features with millions of users, uncovered insights from terabytes of user behavior data.
+1. Customer-focused and methodical: I bring battled-tested approaches developed during high-growth years at Zalando. I contributed to Zalando’s group data strategy and produced several documents who made their way into the company’s product development best practices.
+1. Hands-on leadership: I can lead teams and projects, but I’m also happy to roll up my sleeves and execute when needed. I keep my coding skills fresh (SQL, Python, R) so I can automate and analyse on my own.
+1. Solo freelancer: more affordable than consulting firms and we will build a more personal collaboration.
+
+## What clients say about me
 
 ::: {#testimonials}
 :::
 
 More references [available](https://www.linkedin.com/in/garytouet/details/recommendations/) on LinkedIn.
 
-## Latest posts
+## Want to work with me?
 
-::: {#latest-posts}
-:::
+<a class="btn btn-primary" href="mailto:garytouet@icloud.com" role="button">Email me</a>
+
+Feel free to reach out via [LinkedIn](https://www.linkedin.com/in/garytouet/) or [Mastodon](https://mastodon.social/@garytouet) too.
