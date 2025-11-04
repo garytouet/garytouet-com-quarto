@@ -1,0 +1,20 @@
+---
+title: "Anil Dash captures my thoughts on today's discourse regarding AI"
+linkurl: https://www.anildash.com/2025/10/17/the-majority-ai-view/
+date: 2025.11.04
+categories: ['link', 'ai']
+---
+
+Anil Dash (emphasis is his):
+
+> Most people who actually have technical roles within the tech industry, like engineers, product managers, and others who actually make the technologies we all use, are fluent in the latest technologies like LLMs. They aren't the big, loud billionaires that usually get treated as the spokespeople for all of tech.
+>
+> And what they all share is an extraordinary degree of consistency in their feelings about AI, which can be pretty succinctly summed up:
+>
+> **Technologies like LLMs have utility, but the absurd way they've been over-hyped, the fact they're being forced on everyone, and the insistence on ignoring the many valid critiques about them make it very difficult to focus on legitimate uses where they might add value.**
+
+Definitely agree with him. It was refreshing to read.
+
+These days, I spend more time than usual on LinkedIn and I follow the Tech news more consistently. I often question my own judgment and my own sanity while reading.
+
+The amount of blind embrace for this technology in the mainstream's discourse is astounding in my opinion. I'm looking forward to the next stage of the [hype cycle](https://en.wikipedia.org/wiki/Gartner_hype_cycle), when reality sets in and expectations lower, to have more interesting discussions.
