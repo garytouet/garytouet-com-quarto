@@ -4,42 +4,7 @@
     "href": "posts.html",
     "title": "Posts",
     "section": "",
-    "text": "Title\nDate\n\n\n\n\nCreating the favicon for this website with `ggplot2`\nWe will use the package to create an image and export it in several sizes. It is not as straightforward as I thought.\nRwebsite\n2025-09-25\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Hi, I’m Gary!",
-    "section": "",
-    "text": "I’m a freelance product manager of data & AI products or analytics leader.\nI work primarily with large international companies in digital transformation.\nYou can read more about me and the services I offer below.\nI am currently available for work and based in Berlin, Germany.\n\n\n\n\n\n\n\nC’est moi :)"
-  },
-  {
-    "objectID": "index.html#what-i-can-do-for-you",
-    "href": "index.html#what-i-can-do-for-you",
-    "title": "Hi, I’m Gary!",
-    "section": "What I can do for you",
-    "text": "What I can do for you\n\nInterim leadership\nStep in temporarily (3–12 months) to accelerate your digital transformation or bridge gaps.\n\nProduct manager for your data & AI product(s)\nData leadership for your projects and teams\n\n\n\nProject-based collaboration\nJoin your team to deliver specific outcomes, from strategy to execution.\n\nBuild strong foundations in preparation for AI and ML use cases\nStructure your teams and data architecture to generate insights faster\nSupport with:\n\nExploratory data analysis and insight generation\nKPI definition and reporting frameworks\nA/B testing and experimentation programs\nETL, automation, and data pipeline work"
-  },
-  {
-    "objectID": "index.html#advantages-of-working-with-me",
-    "href": "index.html#advantages-of-working-with-me",
-    "title": "Hi, I’m Gary!",
-    "section": "Advantages of working with me",
-    "text": "Advantages of working with me\n\n10+ years of experience in data and analytics, with a track record of delivering impact in large corporate environments. I’ve worked with international companies in digital transformation like Henkel and Sodexo, and a pure-player scale-up like Zalando.\nProven ability to navigate complexity: I’ve mitigated risks in high-stakes product launches (millions of euros at risk), worked on cross-market features with millions of users, uncovered insights from terabytes of user behavior data.\nCustomer-focused and methodical: I bring battled-tested approaches developed during high-growth years at Zalando. I contributed to Zalando’s group data strategy and produced several documents who made their way into the company’s product development best practices.\nHands-on leadership: I can lead teams and projects, but I’m also happy to roll up my sleeves and execute when needed. I keep my coding skills fresh (SQL, Python, R) so I can automate and analyse on my own.\nSolo freelancer: more affordable than consulting firms and we will build a more personal collaboration."
-  },
-  {
-    "objectID": "index.html#what-clients-say-about-me",
-    "href": "index.html#what-clients-say-about-me",
-    "title": "Hi, I’m Gary!",
-    "section": "What clients say about me",
-    "text": "What clients say about me\n\n\n\n  \n    \n    \n        \n    \n        \n            \n                \n                    \n                        I worked with Gary on an data and analytics product, aiming at helping users to take better decisions to manage the profitability. As a product manager, Gary created a very valuable relationship both with the team and his business sponsors, listening to the needs and ensuring that the product was driven to provide as much value as possible to the organization. His dual skills technical / product helped him to navigate between user discovery, hypothesis checks, and impact driving. I would recommended Gary for any data analytics oriented products.\n                    \n                \n            \n            \n                Kevin Albrand • \n                Head of data - Excellence opérationnelle • \n                Sodexo\n            \n        \n    \n  \n    \n    \n        \n    \n        \n            \n                \n                    \n                        Gary is super structured and diligent, he deep-dived in many new topics and worked on shaping a cohesive strategy for the business cluster, we were shaping analytics standards and ways-of-working for. He is very collaborative and pursues what he has at hand carefully. He has been in the space of data driven product development for many years now and can definitely bring a strong perspective and a lot of experience to his future projects, and accelerate success.\n                    \n                \n            \n            \n                Dr. Arman Nassirtoussi • \n                Head of Product (AI, Data, Analytics | Personalisation) • \n                Henkel\n            \n        \n    \n  \n    \n    \n        \n    \n        \n            \n                \n                    \n                        Gary rapidly proved himself a trusted ally on whom I could depend. His resolve was unyielding throughout, and I can testify to his composed, pragmatic approach and resilience.\n                    \n                        Possessing thorough knowledge in his field, Gary also comprehends its strategic role within the broader organisation. His ability to express himself, articulate his ideas clearly, and propel the team with his solutions was highly commendable.\n                    \n                        Gary is someone who persistently sets the standard, displays empathy, and shows respect. He welcomes feedback, self-reflects, and evolves.\n                    \n                        I unreservedly endorse Gary, confident that he will continue to excel in his career. I recommend him wholeheartedly for any opportunities that come his way.\n                    \n                \n            \n            \n                Rob Manzano • \n                Director, Product Insights • \n                Zalando\n            \n        \n    \n\n\nNo matching items\n\nMore references available on LinkedIn."
-  },
-  {
-    "objectID": "index.html#want-to-work-with-me",
-    "href": "index.html#want-to-work-with-me",
-    "title": "Hi, I’m Gary!",
-    "section": "Want to work with me?",
-    "text": "Want to work with me?\nEmail me\nFeel free to reach out via LinkedIn or Mastodon too."
+    "text": "Title\nDate\n\n\n\n\n\n\n \n\nAnil Dash captures my thoughts on today's discourse regarding AI\n\nlinkai\n2025-11-04\n\n\nCreating the favicon for this website with `ggplot2`\nWe will use the package to create an image and export it in several sizes. It is not as straightforward as I thought.\nRwebsite\n2025-09-25\n\n\n\nNo matching items"
   },
   {
     "objectID": "post/2025/create-favicon-with-ggplot2/index.html",
@@ -89,5 +54,47 @@
     "title": "Creating the favicon for this website with ggplot2",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nMost complete article that I could find: RealFaviconGenerator’s Understanding favicon elements.↩︎\nquarto preview would throw a segfault error that I was not able to resolve.↩︎"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hi, I’m Gary!",
+    "section": "",
+    "text": "I’m a freelance product manager of data & AI products or analytics leader.\nI work primarily with large international companies in digital transformation.\nYou can read more about me and the services I offer below.\nI am currently available for work and based in Berlin, Germany.\n\n\n\n\n\n\n\nC’est moi :)"
+  },
+  {
+    "objectID": "index.html#what-i-can-do-for-you",
+    "href": "index.html#what-i-can-do-for-you",
+    "title": "Hi, I’m Gary!",
+    "section": "What I can do for you",
+    "text": "What I can do for you\n\nInterim leadership\nStep in temporarily (3–12 months) to accelerate your digital transformation or bridge gaps.\n\nProduct manager for your data & AI product(s)\nData leadership for your projects and teams\n\n\n\nProject-based collaboration\nJoin your team to deliver specific outcomes, from strategy to execution.\n\nBuild strong foundations in preparation for AI and ML use cases\nStructure your teams and data architecture to generate insights faster\nSupport with:\n\nExploratory data analysis and insight generation\nKPI definition and reporting frameworks\nA/B testing and experimentation programs\nETL, automation, and data pipeline work"
+  },
+  {
+    "objectID": "index.html#advantages-of-working-with-me",
+    "href": "index.html#advantages-of-working-with-me",
+    "title": "Hi, I’m Gary!",
+    "section": "Advantages of working with me",
+    "text": "Advantages of working with me\n\n10+ years of experience in data and analytics, with a track record of delivering impact in large corporate environments. I’ve worked with international companies in digital transformation like Henkel and Sodexo, and a pure-player scale-up like Zalando.\nProven ability to navigate complexity: I’ve mitigated risks in high-stakes product launches (millions of euros at risk), worked on cross-market features with millions of users, uncovered insights from terabytes of user behavior data.\nCustomer-focused and methodical: I bring battled-tested approaches developed during high-growth years at Zalando. I contributed to Zalando’s group data strategy and produced several documents who made their way into the company’s product development best practices.\nHands-on leadership: I can lead teams and projects, but I’m also happy to roll up my sleeves and execute when needed. I keep my coding skills fresh (SQL, Python, R) so I can automate and analyse on my own.\nSolo freelancer: more affordable than consulting firms and we will build a more personal collaboration."
+  },
+  {
+    "objectID": "index.html#what-clients-say-about-me",
+    "href": "index.html#what-clients-say-about-me",
+    "title": "Hi, I’m Gary!",
+    "section": "What clients say about me",
+    "text": "What clients say about me\n\n\n\n  \n    \n    \n        \n    \n        \n            \n                \n                    \n                        I worked with Gary on an data and analytics product, aiming at helping users to take better decisions to manage the profitability. As a product manager, Gary created a very valuable relationship both with the team and his business sponsors, listening to the needs and ensuring that the product was driven to provide as much value as possible to the organization. His dual skills technical / product helped him to navigate between user discovery, hypothesis checks, and impact driving. I would recommended Gary for any data analytics oriented products.\n                    \n                \n            \n            \n                Kevin Albrand • \n                Head of data - Excellence opérationnelle • \n                Sodexo\n            \n        \n    \n  \n    \n    \n        \n    \n        \n            \n                \n                    \n                        Gary is super structured and diligent, he deep-dived in many new topics and worked on shaping a cohesive strategy for the business cluster, we were shaping analytics standards and ways-of-working for. He is very collaborative and pursues what he has at hand carefully. He has been in the space of data driven product development for many years now and can definitely bring a strong perspective and a lot of experience to his future projects, and accelerate success.\n                    \n                \n            \n            \n                Dr. Arman Nassirtoussi • \n                Head of Product (AI, Data, Analytics | Personalisation) • \n                Henkel\n            \n        \n    \n  \n    \n    \n        \n    \n        \n            \n                \n                    \n                        Gary rapidly proved himself a trusted ally on whom I could depend. His resolve was unyielding throughout, and I can testify to his composed, pragmatic approach and resilience.\n                    \n                        Possessing thorough knowledge in his field, Gary also comprehends its strategic role within the broader organisation. His ability to express himself, articulate his ideas clearly, and propel the team with his solutions was highly commendable.\n                    \n                        Gary is someone who persistently sets the standard, displays empathy, and shows respect. He welcomes feedback, self-reflects, and evolves.\n                    \n                        I unreservedly endorse Gary, confident that he will continue to excel in his career. I recommend him wholeheartedly for any opportunities that come his way.\n                    \n                \n            \n            \n                Rob Manzano • \n                Director, Product Insights • \n                Zalando\n            \n        \n    \n\n\nNo matching items\n\nMore references available on LinkedIn."
+  },
+  {
+    "objectID": "index.html#want-to-work-with-me",
+    "href": "index.html#want-to-work-with-me",
+    "title": "Hi, I’m Gary!",
+    "section": "Want to work with me?",
+    "text": "Want to work with me?\nEmail me\nFeel free to reach out via LinkedIn or Mastodon too."
+  },
+  {
+    "objectID": "post/2025/link-ai-majority-view/index.html",
+    "href": "post/2025/link-ai-majority-view/index.html",
+    "title": "Anil Dash captures my thoughts on today’s discourse regarding AI",
+    "section": "",
+    "text": "Anil Dash (emphasis is his):\n\nMost people who actually have technical roles within the tech industry, like engineers, product managers, and others who actually make the technologies we all use, are fluent in the latest technologies like LLMs. They aren’t the big, loud billionaires that usually get treated as the spokespeople for all of tech.\nAnd what they all share is an extraordinary degree of consistency in their feelings about AI, which can be pretty succinctly summed up:\nTechnologies like LLMs have utility, but the absurd way they’ve been over-hyped, the fact they’re being forced on everyone, and the insistence on ignoring the many valid critiques about them make it very difficult to focus on legitimate uses where they might add value.\n\nDefinitely agree with him. It was refreshing to read.\nThese days, I spend more time than usual on LinkedIn and I follow the Tech news more consistently. I often question my own judgment and my own sanity while reading.\nThe amount of blind embrace for this technology in the mainstream’s discourse is astounding in my opinion. I’m looking forward to the next stage of the hype cycle, when reality sets in and expectations lower, to have more interesting discussions."
   }
 ]
