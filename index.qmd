@@ -30,9 +30,9 @@ print(years_of_experience)
 
 ::: {.font-size-lg}
 
-I'm a freelance product manager of data & AI products or analytics leader.
+I'm a freelance product manager for data & AI products, and a product analytics leader.
 
-I work primarily with large international companies in digital transformation.
+I mostly work with large international companies, which seek to accelerate their digital transformation. I help them build successful products and sophisticate their practices.
 
 You can read more about me and the services I offer below.
 
@@ -66,6 +66,7 @@ _Join your team to deliver specific outcomes, from strategy to execution._
 
 - Build strong foundations in preparation for AI and ML use cases
 - Structure your teams and data architecture to generate insights faster
+- Sophisticate the practice of analytics in your product organisation
 - Support with:
   - Exploratory data analysis and insight generation
   - KPI definition and reporting frameworks
@@ -79,7 +80,7 @@ _Join your team to deliver specific outcomes, from strategy to execution._
 1. Proven ability to navigate complexity: I’ve mitigated risks in high-stakes product launches (millions of euros at risk), worked on cross-market features with millions of users, uncovered insights from terabytes of user behavior data.
 1. Customer-focused and methodical: I bring battled-tested approaches developed during high-growth years at Zalando. I contributed to Zalando’s group data strategy and produced several documents who made their way into the company’s product development best practices.
 1. Hands-on leadership: I can lead teams and projects, but I’m also happy to roll up my sleeves and execute when needed. I keep my coding skills fresh (SQL, Python, R) so I can automate and analyse on my own.
-1. Solo freelancer: more affordable than consulting firms and we will build a more personal collaboration.
+1. Solo freelancer: more affordable than consulting firms and the person you meet is the person you get.
 
 ## What clients say about me
 
@@ -92,4 +93,4 @@ More references [available](https://www.linkedin.com/in/garytouet/details/recomm
 
 <a class="btn btn-primary" href="mailto:garytouet@icloud.com" role="button">Email me</a>
 
-Feel free to reach out via [LinkedIn](https://www.linkedin.com/in/garytouet/) or [Mastodon](https://mastodon.social/@garytouet) too.
+[LinkedIn](https://www.linkedin.com/in/garytouet/) and [Mastodon](https://mastodon.social/@garytouet) work too.

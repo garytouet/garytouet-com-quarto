@@ -14,9 +14,13 @@ $black:    #000 !default;
 
 $blue:      #0063dc !default; //my old blog's blue
 $purple:    #7c3aed !default;
+$mustard:   #FFD447 !default;
+$melon:     #FFBFB7 !default;
+$flame:     #EE5622 !default;
+$baby-powder:#FDFFFC !default;
 
-$primary:   #2E8B8B !default;
-$secondary: $blue !default;
+$primary:   $blue !default;
+$secondary: $mustard !default;
 $tertiary:  $purple !default;
 
 $success:       #0d9c6c !default;
@@ -35,7 +39,7 @@ $code-annotation-higlight-color: $gray-300;
 $body-color:                $gray-700 !default;
 $body-secondary:            theme-dim($body-color, 25%) !default;
 $headings-color:            $gray-900 !default;
-
+$body-bg:                   tint-color($blue, 99%) !default;
 
 $callout-color-note:       $info;
 $callout-color-tip:        $success;
@@ -86,7 +90,7 @@ $line-height-lg:              2 !default;
 $content-padding-top: 6rem !default;
 
 // Navbar
-$navbar-bg: $white !default;
+$navbar-bg: $body-bg !default;
 $navbar-fg: $dark !default;
 $navbar-brand-font-size: 1.5rem !default;
 
@@ -112,7 +116,7 @@ main.content > section:first-of-type > h2:nth-child(1) {
 
 //Navbar
 .navbar {
-  border-bottom: solid 2px $gray-100;
+  border-bottom: solid 2px $gray-200;
 } 
 .navbar-title {
   font-weight: 700;
@@ -299,7 +303,7 @@ img {
 }
 
 .message-bubble {
-    background: $gray-100;
+    background: $gray-200;
     padding: 10px 20px;
     border-radius: 20px;
     position: relative;
@@ -322,7 +326,7 @@ img {
     width: 0;
     height: 0;
     border: 10px solid transparent;
-    border-right-color: $gray-100;
+    border-right-color: $gray-200;
     border-left: 0;
     border-bottom: 0;
 }
@@ -340,7 +344,7 @@ img {
     width: 0;
     height: 0;
     border: 10px solid transparent;
-    border-left-color: $gray-100;
+    border-left-color: $gray-200;
     border-right: 0;
     border-bottom: 0;
 }
