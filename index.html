@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f5cf755850bf70d5f03dd31b3bd969a8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b4425b08604f85304171837450486269.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,9 +80,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-company','listing-person_name','listing-person_initials','listing-person_image','listing-person_job_title','listing-message',{ data: ['index'] },{ data: ['categories'] }],
+      valueNames: ['listing-company_name','listing-company_logo','listing-person_name','listing-person_initials','listing-person_image','listing-person_job_title','listing-message',{ data: ['index'] },{ data: ['categories'] }],
       
-      searchColumns: ["listing-company","listing-person_name","listing-person_initials","listing-person_image","listing-person_job_title","listing-message"],
+      searchColumns: ["listing-company_name","listing-company_logo","listing-person_name","listing-person_initials","listing-person_image","listing-person_job_title","listing-message"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -251,79 +251,83 @@ window.Quarto = {
 <li>Solo freelancer: more affordable than consulting firms and the person you meet is the person you get.</li>
 </ol>
 </section>
-<section id="what-clients-say-about-me" class="level2">
-<h2 class="anchored" data-anchor-id="what-clients-say-about-me">What clients say about me</h2>
+<section id="what-companies-say-about-me" class="level2">
+<h2 class="anchored" data-anchor-id="what-companies-say-about-me">What companies say about me</h2>
 <div id="listing-testimonials" class="quarto-listing quarto-listing-container-custom">
 
 <ul class="testimonials-list">
   
     <li class="testimonial-item">
-    
-        <div class="profile-pic"><img src="testimonials/ka.jpeg"></div>
-    
-        <div class="message-content">
-            <div class="message-bubble">
-                <div class="message-text">
-                    
-                        <p>I worked with Gary on an data and analytics product, aiming at helping users to take better decisions to manage the profitability. As a product manager, Gary created a very valuable relationship both with the team and his business sponsors, listening to the needs and ensuring that the product was driven to provide as much value as possible to the organization. His dual skills technical / product helped him to navigate between user discovery, hypothesis checks, and impact driving. I would recommended Gary for any data analytics oriented products.</p>
-                    
-                </div>
+        <div class="testimonial-header">
+            
+                <div class="profile-pic"><img src="testimonials/ka.jpeg"></div>
+            
+
+            <div class="client-info">
+                <div class="client-name">Kevin Albrand</div>
+                <div class="client-title">Head of data - Excellence opérationnelle</div>
             </div>
-            <div class="message-meta">
-                <span class="person-name">Kevin Albrand</span> • 
-                <span class="job-title">Head of data - Excellence opérationnelle</span> • 
-                <span class="company">Sodexo</span>
-            </div>
+            
+            <img class="company-logo" src="testimonials/sodexo-logo.svg" alt="Sodexo">
+            
+        </div>
+        <div class="testimonial-text">
+            
+                <p>I worked with Gary on an data and analytics product, aiming at helping users to take better decisions to manage the profitability. As a product manager, Gary created a very valuable relationship both with the team and his business sponsors, listening to the needs and ensuring that the product was driven to provide as much value as possible to the organization. His dual skills technical / product helped him to navigate between user discovery, hypothesis checks, and impact driving. I would recommended Gary for any data analytics oriented products.</p>
+            
         </div>
     </li>
   
     <li class="testimonial-item">
-    
-        <div class="profile-pic"><img src="testimonials/an.jpeg"></div>
-    
-        <div class="message-content">
-            <div class="message-bubble">
-                <div class="message-text">
-                    
-                        <p>Gary is super structured and diligent, he deep-dived in many new topics and worked on shaping a cohesive strategy for the business cluster, we were shaping analytics standards and ways-of-working for. He is very collaborative and pursues what he has at hand carefully. He has been in the space of data driven product development for many years now and can definitely bring a strong perspective and a lot of experience to his future projects, and accelerate success.</p>
-                    
-                </div>
+        <div class="testimonial-header">
+            
+                <div class="profile-pic"><img src="testimonials/an.jpeg"></div>
+            
+
+            <div class="client-info">
+                <div class="client-name">Dr. Arman Nassirtoussi</div>
+                <div class="client-title">Head of Product (AI, Data, Analytics | Personalisation)</div>
             </div>
-            <div class="message-meta">
-                <span class="person-name">Dr. Arman Nassirtoussi</span> • 
-                <span class="job-title">Head of Product (AI, Data, Analytics | Personalisation)</span> • 
-                <span class="company">Henkel</span>
-            </div>
+            
+            <img class="company-logo" src="testimonials/henkel-logo.svg" alt="Henkel">
+            
+        </div>
+        <div class="testimonial-text">
+            
+                <p>Gary is super structured and diligent, he deep-dived in many new topics and worked on shaping a cohesive strategy for the business cluster, we were shaping analytics standards and ways-of-working for. He is very collaborative and pursues what he has at hand carefully. He has been in the space of data driven product development for many years now and can definitely bring a strong perspective and a lot of experience to his future projects, and accelerate success.</p>
+            
         </div>
     </li>
   
     <li class="testimonial-item">
-    
-        <div class="profile-pic"><img src="testimonials/rm.jpeg"></div>
-    
-        <div class="message-content">
-            <div class="message-bubble">
-                <div class="message-text">
-                    
-                        <p>Gary rapidly proved himself a trusted ally on whom I could depend. His resolve was unyielding throughout, and I can testify to his composed, pragmatic approach and resilience.</p>
-                    
-                        <p>Possessing thorough knowledge in his field, Gary also comprehends its strategic role within the broader organisation. His ability to express himself, articulate his ideas clearly, and propel the team with his solutions was highly commendable.</p>
-                    
-                        <p>Gary is someone who persistently sets the standard, displays empathy, and shows respect. He welcomes feedback, self-reflects, and evolves.</p>
-                    
-                        <p>I unreservedly endorse Gary, confident that he will continue to excel in his career. I recommend him wholeheartedly for any opportunities that come his way.</p>
-                    
-                </div>
+        <div class="testimonial-header">
+            
+                <div class="profile-pic"><img src="testimonials/rm.jpeg"></div>
+            
+
+            <div class="client-info">
+                <div class="client-name">Rob Manzano</div>
+                <div class="client-title">Director, Product Insights</div>
             </div>
-            <div class="message-meta">
-                <span class="person-name">Rob Manzano</span> • 
-                <span class="job-title">Director, Product Insights</span> • 
-                <span class="company">Zalando</span>
-            </div>
+            
+            <img class="company-logo" src="testimonials/zalando-logo.svg" alt="Zalando">
+            
+        </div>
+        <div class="testimonial-text">
+            
+                <p>Gary rapidly proved himself a trusted ally on whom I could depend. His resolve was unyielding throughout, and I can testify to his composed, pragmatic approach and resilience.</p>
+            
+                <p>Possessing thorough knowledge in his field, Gary also comprehends its strategic role within the broader organisation. His ability to express himself, articulate his ideas clearly, and propel the team with his solutions was highly commendable.</p>
+            
+                <p>Gary is someone who persistently sets the standard, displays empathy, and shows respect. He welcomes feedback, self-reflects, and evolves.</p>
+            
+                <p>I unreservedly endorse Gary, confident that he will continue to excel in his career. I recommend him wholeheartedly for any opportunities that come his way.</p>
+            
         </div>
     </li>
 
 </ul>
+
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
 <p>More references <a href="https://www.linkedin.com/in/garytouet/details/recommendations/">available</a> on LinkedIn.</p>
