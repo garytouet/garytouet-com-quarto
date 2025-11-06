@@ -304,8 +304,8 @@ img {
 }
 
 .company-logo {
-    width: 7rem;
-    height: 3rem;
+    max-width: 7rem;
+    max-height: 3rem;
     flex-shrink: 0;
 }
 
@@ -315,6 +315,15 @@ img {
 
 .testimonial-text > p:last-child {
   margin-bottom: 0px;
+}
+
+@include media-breakpoint-down(sm) {
+  .company-logo {
+    width: 20%;
+  }
+  .testimonial-item {
+    padding: 1rem;
+  }
 }
 
 // Tables
