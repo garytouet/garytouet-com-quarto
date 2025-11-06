@@ -1,5 +1,5 @@
 ---
-title: "Anil Dash captures my thoughts on today's discourse regarding AI"
+title: "Anil Dash on today's discourse regarding AI"
 linkurl: https://www.anildash.com/2025/10/17/the-majority-ai-view/
 date: 2025.11.04
 categories: ['link', 'ai']
