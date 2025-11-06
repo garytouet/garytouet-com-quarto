@@ -82,7 +82,7 @@ _Join your team to deliver specific outcomes, from strategy to execution._
 1. Hands-on leadership: I can lead teams and projects, but I’m also happy to roll up my sleeves and execute when needed. I keep my coding skills fresh (SQL, Python, R) so I can automate and analyse on my own.
 1. Solo freelancer: more affordable than consulting firms and the person you meet is the person you get.
 
-## What clients say about me
+## What companies say about me
 
 ::: {#testimonials}
 :::

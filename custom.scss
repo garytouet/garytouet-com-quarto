@@ -249,6 +249,7 @@ img {
     }
 }
 
+
  // Styling testimonials on homepage
 .testimonials-list {
     list-style: none;
@@ -256,37 +257,28 @@ img {
     flex-direction: column;
     gap: 2rem;
     padding-inline-start: 0;
-    padding-top: 1.5rem;
+    padding-top: 1rem;
 }
 
 .testimonial-item {
+    border-radius: $border-radius;
+    border: 1px solid $gray-200;
+    background: $white;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
-    max-width: 85%;
-}
-
-@include media-breakpoint-down(sm) {
-  .testimonial-item {
-    max-width: 100%;
-  }
-}
-
-/* Odd items (1st, 3rd, 5th...) align left */
-.testimonial-item:nth-child(odd) {
-    align-self: flex-start;
-    flex-direction: row;
-}
-
-/* Even items (2nd, 4th, 6th...) align right */
-.testimonial-item:nth-child(even) {
-    align-self: flex-end;
-    flex-direction: row-reverse;
+    margin-bottom: 1rem;
 }
 
 .profile-pic, .profile-pic > img {
-    width: 45px;
-    height: 45px;
+    width: 3rem;
+    height: 3rem;
     border-radius: 50%;
     background: $gray-300;
     display: flex;
@@ -295,85 +287,34 @@ img {
     font-weight: 700;
     color: $white;
     font-size: 0.9rem;
+    flex-shrink: 0;
 }
 
-.message-content {
-    flex: 1;
-    font-size: 0.9rem;
+.client-info {
+  flex: 1;
 }
 
-.message-bubble {
-    background: $gray-200;
-    padding: 10px 20px;
-    border-radius: 20px;
-    position: relative;
+.client-name {
+  font-weight: $font-weight-medium;
 }
 
-.message-text > p:last-child {
+.client-title {
+  color: tint-color($body-color, 20%);
+  font-style: italic;
+}
+
+.company-logo {
+    width: 7rem;
+    height: 3rem;
+    flex-shrink: 0;
+}
+
+.testimonial-text {
+    padding-left: 4rem;
+}
+
+.testimonial-text > p:last-child {
   margin-bottom: 0px;
-}
-
-/* Left bubbles (odd items) */
-.testimonial-item:nth-child(odd) .message-bubble {
-    margin-left: 0;
-}
-
-.testimonial-item:nth-child(odd) .message-bubble::before {
-    content: '';
-    position: absolute;
-    left: -8px;
-    top: 12px;
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-right-color: $gray-200;
-    border-left: 0;
-    border-bottom: 0;
-}
-
-/* Right bubbles (even items) */
-.testimonial-item:nth-child(even) .message-bubble {
-    margin-right: 0;
-}
-
-.testimonial-item:nth-child(even) .message-bubble::before {
-    content: '';
-    position: absolute;
-    right: -8px;
-    top: 12px;
-    width: 0;
-    height: 0;
-    border: 10px solid transparent;
-    border-left-color: $gray-200;
-    border-right: 0;
-    border-bottom: 0;
-}
-
-.message-meta {
-    font-size: 0.85rem;
-    color: $body-secondary;
-    margin-top: 5px;
-}
-
-.testimonial-item:nth-child(odd) .message-meta {
-    text-align: left;
-}
-
-.testimonial-item:nth-child(even) .message-meta {
-    text-align: right;
-}
-
-.person-name {
-    font-weight: 600;
-    color: shade-color($body-color, 10%);
-}
-
-.job-title {
-    font-style: italic;
-}
-
-.company {
-    color: $tertiary;
 }
 
 // Tables
