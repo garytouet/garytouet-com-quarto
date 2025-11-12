@@ -7,3 +7,4 @@ text for website-2.pages
 .env
 .venv
 __pycache__/
+/env/
