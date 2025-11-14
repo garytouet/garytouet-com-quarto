@@ -8,3 +8,5 @@ text for website-2.pages
 .venv
 __pycache__/
 /env/
+.continue/
+*.m4a
