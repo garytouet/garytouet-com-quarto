@@ -11,7 +11,704 @@
 <description>Freelance Lead Data Analyst &amp; Product Manager</description>
 <language>en</language>
 <generator>quarto-1.8.26</generator>
-<lastBuildDate>Tue, 04 Nov 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 14 Nov 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Analysing the sound of my fridge</title>
+  <link>https://garytouet.com/post/2025/fridge-sound-analysis/</link>
+  <description><![CDATA[ 
+
+
+
+
+<section id="backstory" class="level2">
+<h2 class="anchored" data-anchor-id="backstory">Backstory</h2>
+<p>This is a fun little project that I wanted to try for a bit now. You see, my fridge at home is very old. It has always been noisy, but I’ve been able to ignore it for many years.</p>
+<p>However, lately, something changed. It feels like the compressor runs louder and more frequently than before (too high of a frequency according to my nerves).</p>
+<p>I wanted to quantify two things:</p>
+<ol type="1">
+<li>How long the compressor runs for each time,</li>
+<li>How long between each compressor run.</li>
+</ol>
+<p>I tried timing it manually, but I ran into issues and I didn’t trust my measurements to be accurate. It’s tedious to stay alert to a fridge’s background hum while at home. 😃</p>
+<p>I wanted something more scientific and decided to use my iPad and the <em>Voice Memos</em> app to record the sound. I had the vague idea that with the sound waves and timestamps I could reach my goals.</p>
+<p>To make this easy, I wanted to record for rather long periods of time and to have clean recordings. So I left the iPad record while I was away for most of the day.</p>
+<p>My first idea was to do my analysis with the <em>naked</em> eye, but later I decided that it would be more fun to find a programmatic way to do it. I wanted to put my recently-acquired Mistral AI subscription to the test.</p>
+</section>
+<section id="mistral-ai" class="level2">
+<h2 class="anchored" data-anchor-id="mistral-ai">Mistral AI</h2>
+<p>The company and its models are often mentioned as <a href="https://madebuy.eu/european/ai-chatbots/">European alternatives to US firms and their models</a>. I wanted to give it a go and get familiar with it. In addition, Mistral and I are both born in France. These were enough reasons for me to sign up to the <em>Pro</em> tier and to start experimenting.</p>
+<p>My setup was:</p>
+<ul>
+<li>Local machine (Macbook Air M3)</li>
+<li>Working in Python inside Visual Studio Code</li>
+<li>Using <em>Codestral</em> within VS Code itself <sup>1</sup></li>
+</ul>
+<p><em>Codestral</em> is Mistral AI’s <code>generative AI model explicitly designed for code generation tasks</code>.</p>
+<p>I went into this with prior Python coding knowledge, but I had never done any audio processing with it. So I gave the LLM a broad description of what I wanted to achieve. I didn’t recommend packages, or specific methods. I only described what I had and what I wanted to achieve very broadly.</p>
+<p>Initial prompt:</p>
+<blockquote class="blockquote">
+<p>I have a file “.m4a” which is a recording of my fridge at home. I want to analyse the sound inside of this file to identify each time the fridge’s compressor runs. The sound is very distinctive and I know that in this file there are two compressor runs which lasts very long times. What should I do in Python?</p>
+</blockquote>
+<p>I’ll cut the story short, it disappointed me for the task at hand:</p>
+<ol type="1">
+<li>I spent a few hours re-prompting, giving more precise instructions, explicitly asking for things and I never managed to get to something useful. The script was producing code that worked. All the packages used were safe and well-known. It was “analysing” my audio file and producing good data visualisations, but it couldn’t identify the compressor runs properly.</li>
+<li>The code produced was very slow to run. It took between 5 and 10 mins each time. This made debugging and iterating very slow.</li>
+<li>Finally, in a different session, I tried prompting Mistral on the web. I supposed that my configuration in VS Code might be faulty. At first, it gave me interesting results, but I still stumbled in the last mile and couldn’t get to something useful.</li>
+</ol>
+<blockquote class="blockquote">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://garytouet.com/post/2025/fridge-sound-analysis/output-codestral.png" class="img-fluid figure-img"></p>
+<figcaption>Last analysis generated before I gave up. The dashed red line is supposed to be a threshold used for detection. However, it does not seem to matter since data below the threshold is highlighted as <em>compressor run</em>…</figcaption>
+</figure>
+</div>
+</blockquote>
+</section>
+<section id="claude-to-the-rescue" class="level2">
+<h2 class="anchored" data-anchor-id="claude-to-the-rescue">Claude to the rescue!</h2>
+<p>Frustrated, I decided to copy and paste my initial prompt in Claude’s web UI. I am not a paying subscriber so I am using <code>Claude Sonnet 4.5</code> on the free tier.</p>
+<p>And… To my surprise, it worked in 7 iterations. 🥲</p>
+<ol type="1">
+<li><p>The very first script that it generated was much faster than the one from Codestral: less than ten seconds vs.&nbsp;several minutes before.</p></li>
+<li><p>Its first attempt produced a graph that didn’t show which sections of the audio were identified as compressor runs. After I asked for it, it produced code that generated this graph. It was very easy to go from there to a finished analysis.</p>
+<blockquote class="blockquote">
+<p><img src="https://garytouet.com/post/2025/fridge-sound-analysis/output-claude-first-attempt.png" class="img-fluid"></p>
+</blockquote></li>
+<li><p>It produced parameters that I could manually tune. It explained to me what these parameters were doing with example values to illustrate. For example:</p>
+<blockquote class="blockquote">
+<p>Lower (e.g., 60): More sensitive, catches quieter compressor runs but may have false positives</p>
+<p>Higher (e.g., 80-90): Only catches louder/clearer runs, fewer false positives</p>
+</blockquote></li>
+<li><p>After my 7th iteration, I had this output (pretty clean!):</p>
+<blockquote class="blockquote">
+<p><img src="https://garytouet.com/post/2025/fridge-sound-analysis/output-claude-end.png" class="img-fluid"></p>
+<p>Total segments above threshold: 11</p>
+<p>Segments after filtering (≥900s): 2</p>
+<p>Detected 2 compressor run(s):</p>
+<ul>
+<li>Run 1: 18.07min - 49.33min (duration: 31.27min)</li>
+<li>Run 2: 132.93min - 164.40min (duration: 31.47min)</li>
+</ul>
+Time between runs:
+<ul>
+<li>Between Run 1 and Run 2: 83.60min</li>
+</ul>
+</blockquote></li>
+</ol>
+<p>The code generated by Claude was better because:</p>
+<ol type="1">
+<li>The detection method worked much better from the get-go. And the code generated ran fast from the start too.</li>
+<li>It used parameters whose values were based on my audio file. For example, the detection threshold was the nth percentile of a metric computed on the audio data itself. Manually tuning this percentile threshold was intuitive too.</li>
+<li>It even proactively handled an edge case: what if the recording stops before the end of a compressor run.</li>
+<li>I have the feeling that Claude was more responsive to my input and request for change too. Maybe this has to do with a difference in the length of the context windows (6 times longer for Claude Sonnet 4.5 vs.&nbsp;Codestral in my use case)<sup>2</sup>.</li>
+</ol>
+<p>In any case, this provided me with good findings and lessons learned for future projects, especially if I want to persevere with Mistral.</p>
+</section>
+<section id="back-to-the-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="back-to-the-analysis">Back to the analysis</h2>
+<p>I pointed the final script (code generated by Claude with my manual parameter-tuning) to a recording that lasts eight hours and thirty minutes:</p>
+<div id="f19f1f71" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> librosa</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb1-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb1-4"></span>
+<span id="cb1-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 1. Load the audio file</span></span>
+<span id="cb1-6">audio, sr <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> librosa.load(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"audio/fridge-1-clean.m4a"</span>, sr<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>)</span>
+<span id="cb1-7"></span>
+<span id="cb1-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 2. Calculate RMS energy over time windows</span></span>
+<span id="cb1-9">frame_length <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> sr <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Adjust this</span></span>
+<span id="cb1-10">hop_length <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> sr <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Adjust this</span></span>
+<span id="cb1-11">rms <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> librosa.feature.rms(y<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>audio, frame_length<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>frame_length, hop_length<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>hop_length)[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]</span>
+<span id="cb1-12"></span>
+<span id="cb1-13"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 3. Detect high-energy periods (compressor running)</span></span>
+<span id="cb1-14">threshold <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.percentile(rms, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">65</span>)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Adjust this</span></span>
+<span id="cb1-15">is_running <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> rms <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> threshold</span>
+<span id="cb1-16"></span>
+<span id="cb1-17"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 4. Get time values</span></span>
+<span id="cb1-18">times <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> librosa.frames_to_time(np.arange(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(rms)), sr<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>sr, hop_length<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>hop_length)</span>
+<span id="cb1-19"></span>
+<span id="cb1-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 5. Extract running segments</span></span>
+<span id="cb1-21">running_segments <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb1-22">start <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span></span>
+<span id="cb1-23"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i, running <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(is_running):</span>
+<span id="cb1-24">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> running <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">and</span> start <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">is</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>:</span>
+<span id="cb1-25">        start <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> i</span>
+<span id="cb1-26">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">elif</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">not</span> running <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">and</span> start <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">is</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">not</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>:</span>
+<span id="cb1-27">        running_segments.append((times[start], times[i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]))</span>
+<span id="cb1-28">        start <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span></span>
+<span id="cb1-29"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> start <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">is</span> <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">not</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>:  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Handle case where recording ends while running</span></span>
+<span id="cb1-30">    running_segments.append((times[start], times[<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]))</span>
+<span id="cb1-31"></span>
+<span id="cb1-32"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 6. FILTER BY MINIMUM DURATION</span></span>
+<span id="cb1-33">min_duration <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">900</span>  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># seconds - adjust this based on your compressor</span></span>
+<span id="cb1-34">running_segments_filtered <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [</span>
+<span id="cb1-35">    (start, end) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> start, end <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> running_segments <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> (end <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> start) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> min_duration</span>
+<span id="cb1-36">]</span>
+<span id="cb1-37"></span>
+<span id="cb1-38"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 7. Create mask for filtered segments only</span></span>
+<span id="cb1-39">is_running_filtered <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.zeros_like(is_running, dtype<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">bool</span>)</span>
+<span id="cb1-40"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> start_time, end_time <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> running_segments_filtered:</span>
+<span id="cb1-41">    mask <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (times <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;=</span> start_time) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> (times <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&lt;=</span> end_time)</span>
+<span id="cb1-42">    is_running_filtered <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">|=</span> mask</span>
+<span id="cb1-43"></span>
+<span id="cb1-44"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 8. Visualize with highlighted compressor runs</span></span>
+<span id="cb1-45">plt.figure(figsize<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">9</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>))</span>
+<span id="cb1-46"></span>
+<span id="cb1-47"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot the RMS energy in minutes</span></span>
+<span id="cb1-48">times_minutes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> times <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">60</span></span>
+<span id="cb1-49">plt.plot(times_minutes, rms, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"blue"</span>, linewidth<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"RMS Energy"</span>)</span>
+<span id="cb1-50"></span>
+<span id="cb1-51"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Highlight filtered compressor running periods</span></span>
+<span id="cb1-52">plt.fill_between(</span>
+<span id="cb1-53">    times_minutes,</span>
+<span id="cb1-54">    <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,</span>
+<span id="cb1-55">    rms,</span>
+<span id="cb1-56">    where<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>is_running_filtered,</span>
+<span id="cb1-57">    color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"red"</span>,</span>
+<span id="cb1-58">    alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>,</span>
+<span id="cb1-59">    label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Compressor Running"</span>,</span>
+<span id="cb1-60">)</span>
+<span id="cb1-61"></span>
+<span id="cb1-62">plt.axhline(threshold, color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"orange"</span>, linestyle<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"--"</span>, linewidth<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, label<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Threshold"</span>)</span>
+<span id="cb1-63">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Time (minutes)"</span>)</span>
+<span id="cb1-64">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"RMS Energy"</span>)</span>
+<span id="cb1-65">plt.title(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Fridge Compressor Activity Detection (min duration: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>min_duration<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">s)"</span>)</span>
+<span id="cb1-66">plt.legend()</span>
+<span id="cb1-67">plt.grid(<span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>, alpha<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3</span>)</span>
+<span id="cb1-68">plt.tight_layout()</span>
+<span id="cb1-69">plt.show()</span>
+<span id="cb1-70"></span>
+<span id="cb1-71"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 9. Print detection summary</span></span>
+<span id="cb1-72"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Total segments above threshold: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(running_segments)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb1-73"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Segments after filtering (≥</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>min_duration<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">s): </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(running_segments_filtered)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb1-74"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Detected </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(running_segments_filtered)<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> compressor run(s):"</span>)</span>
+<span id="cb1-75"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i, (start_time, end_time) <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">enumerate</span>(running_segments_filtered, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>):</span>
+<span id="cb1-76">    duration_minutes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (end_time <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> start_time) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">60</span></span>
+<span id="cb1-77">    start_minutes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> start_time <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">60</span></span>
+<span id="cb1-78">    end_minutes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> end_time <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">60</span></span>
+<span id="cb1-79">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(</span>
+<span id="cb1-80">        <span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"  Run </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>i<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>start_minutes<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">min - </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>end_minutes<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">min (duration: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>duration_minutes<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">min)"</span></span>
+<span id="cb1-81">    )</span>
+<span id="cb1-82"></span>
+<span id="cb1-83"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># 10. Calculate and print time between runs</span></span>
+<span id="cb1-84"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(running_segments_filtered) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&gt;</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>:</span>
+<span id="cb1-85">    <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"</span><span class="ch" style="color: #20794D;
+background-color: null;
+font-style: inherit;">\n</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">Time between runs:"</span>)</span>
+<span id="cb1-86">    <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> i <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">len</span>(running_segments_filtered) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>):</span>
+<span id="cb1-87">        end_of_current <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> running_segments_filtered[i][<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb1-88">        start_of_next <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> running_segments_filtered[i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>][<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]</span>
+<span id="cb1-89">        gap_minutes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (start_of_next <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> end_of_current) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">60</span></span>
+<span id="cb1-90">        <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"  Between Run </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> and Run </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>i <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">: </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>gap_minutes<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">min"</span>)</span></code></pre></div></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://garytouet.com/post/2025/fridge-sound-analysis/index_files/figure-html/cell-2-output-1.png" width="854" height="278" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Total segments above threshold: 267
+Segments after filtering (≥900s): 4
+
+Detected 4 compressor run(s):
+  Run 1: 67.60min - 103.00min (duration: 35.40min)
+  Run 2: 186.40min - 222.13min (duration: 35.73min)
+  Run 3: 307.53min - 341.60min (duration: 34.07min)
+  Run 4: 427.20min - 460.67min (duration: 33.47min)
+
+Time between runs:
+  Between Run 1 and Run 2: 83.40min
+  Between Run 2 and Run 3: 85.40min
+  Between Run 3 and Run 4: 85.60min</code></pre>
+</div>
+</div>
+<p>The compressor runs are easily identifiable in the plot and, as the red zones show, the detection mechanism works very well at identifying them.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>What we were all dying to know is now revealed to us. The compressor in my fridge runs for roughly 33-35 minutes each time and it runs every 83-85 minutes.</p>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>This is not natively supported and needs to be configured via Continue.dev’s extension (<a href="https://docs.mistral.ai/capabilities/code_generation?tab=codestral-integrations#explorer-tabs-integrations">documentation</a>).↩︎</p></li>
+<li id="fn2"><p>Mistral’s documentation mentions <a href="https://mistral.ai/fr/news/codestral">32k for Codestral</a>. And Anthropic gives an example where <a href="https://docs.claude.com/en/docs/build-with-claude/context-windows#context-awareness-in-claude-sonnet-4-5-and-haiku-4-5">200k tokens are the size of the <em>standard</em> window</a>, which would correspond to my free tier.↩︎</p></li>
+</ol>
+</section></div> ]]></description>
+  <category>python</category>
+  <category>ai assisted coding</category>
+  <category>fun project</category>
+  <guid>https://garytouet.com/post/2025/fridge-sound-analysis/</guid>
+  <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Anil Dash on today’s discourse regarding AI</title>
   <link>https://garytouet.com/post/2025/link-ai-majority-view/</link>
