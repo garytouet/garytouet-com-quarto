@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-11-04">
+<meta name="description" content="A mix of my own writing and links to what I find interesting.">
 
-<title>Anil Dash on today’s discourse regarding AI – Gary Touet</title>
+<title>Blog – Gary Touet</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,24 +24,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-e4b92be6a1d7afef8bf71b9e04b1edf5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e4b92be6a1d7afef8bf71b9e04b1edf5.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -69,15 +71,73 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-project','listing-website','listing-format','listing-execute','listing-language','listing-freeze','listing-title-block-banner','listing-title','listing-subtitle','listing-date','listing-categories','listing-path','listing-outputHref','listing-date-modified','listing-author','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-linkurl',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      
+      searchColumns: ["listing-project","listing-website","listing-format","listing-execute","listing-language","listing-freeze","listing-title-block-banner","listing-title","listing-subtitle","listing-date","listing-categories","listing-path","listing-outputHref","listing-date-modified","listing-author","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-linkurl"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 <link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="../../../icons/favicon_96x96.png" sizes="96x96">
-<link rel="icon" href="../../../icons/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="../../../icons/apple-touch-icon.png">
+<link rel="icon" href="./icons/favicon_96x96.png" sizes="96x96">
+<link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
 <script defer="" src="https://cloud.umami.is/script.js" data-website-id="2191915a-328c-4ca4-8921-31b446ba513b"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-</head>
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="alternate" type="application/rss+xml" title="Gary Touet" href="blog.xml" data-external="1"></head>
 
 <body class="nav-fixed quarto-light">
 
@@ -86,18 +146,18 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="../../../index.html">
+    <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Gary Touet</span>
     </a>
   </div>
           <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../index.html"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../posts.html"> 
-<span class="menu-text">Posts</span></a>
+    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+<span class="menu-text">Blog</span></a>
   </li>  
 </ul>
           <div class="quarto-navbar-tools">
@@ -110,33 +170,28 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="YWk=">ai <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YWklMjBhc3Npc3RlZCUyMGNvZGluZw==">ai assisted coding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZnVuJTIwcHJvamVjdA==">fun project <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGluaw==">link <span class="quarto-category-count">(1)</span></div><div class="category" data-category="cHl0aG9u">python <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="d2Vic2l0ZQ==">website <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-        <h1 class="title"><a href="https://www.anildash.com/2025/10/17/the-majority-ai-view/" alt="Anil" dash="" on="" today’s="" discourse="" regarding="" ai="">Anil Dash on today’s discourse regarding AI</a></h1>
+        <h1 class="title">Blog</h1>
     
-  <div class="quarto-categories">
-    <div class="quarto-category">link</div>
-    <div class="quarto-category">ai</div>
-  </div>
-  </div>
+</div>
 
+<div>
+  <div class="description">
+    A mix of my own writing and links to what I find interesting.
+  </div>
+</div>
 
 
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">2025-11-04</p>
-    </div>
-  </div>
   
     
   </div>
@@ -146,19 +201,49 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Anil Dash (emphasis is his):</p>
-<blockquote class="blockquote">
-<p>Most people who actually have technical roles within the tech industry, like engineers, product managers, and others who actually make the technologies we all use, are fluent in the latest technologies like LLMs. They aren’t the big, loud billionaires that usually get treated as the spokespeople for all of tech.</p>
-<p>And what they all share is an extraordinary degree of consistency in their feelings about AI, which can be pretty succinctly summed up:</p>
-<p><strong>Technologies like LLMs have utility, but the absurd way they’ve been over-hyped, the fact they’re being forced on everyone, and the insistence on ignoring the many valid critiques about them make it very difficult to focus on legitimate uses where they might add value.</strong></p>
-</blockquote>
-<p>Definitely agree with him. It was refreshing to read.</p>
-<p>These days, I spend more time than usual on LinkedIn and I follow the Tech news more consistently. I often question my own judgment and my own sanity while reading.</p>
-<p>The amount of blind embrace for this technology in the mainstream’s discourse is astounding in my opinion. I’m looking forward to the next stage of the <a href="https://en.wikipedia.org/wiki/Gartner_hype_cycle">hype cycle</a>, when reality sets in and expectations lower, to have more interesting discussions.</p>
 
 
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-custom" id="listing-listing">
+<table class="listing-posts caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Title</th>
+<th data-quarto-table-cell-role="th">Date</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr class="odd" data-index="0" data-categories="cHl0aG9uJTJDYWklMjBhc3Npc3RlZCUyMGNvZGluZyUyQ2Z1biUyMHByb2plY3Q=" data-listing-date-sort="1763078400000" data-listing-file-modified-sort="1763397511408" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1603">
+<td><p><a href="./post/2025/fridge-sound-analysis/index.html" class="listing-title post">Analysing the sound of my fridge</a></p>
+<p>An excuse to try AI assisted coding with Mistral AI's model.</p>
+<span class="listing-posts-category pill">python</span><wbr><span class="listing-posts-category pill">ai assisted coding</span><wbr><span class="listing-posts-category pill">fun project</span></td>
+<td><span class="listing-date">2025-11-14</span></td>
+</tr>
+<tr class="even" data-index="1" data-categories="bGluayUyQ2Fp" data-listing-date-sort="1762214400000" data-listing-file-modified-sort="1763397511407" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="198">
+<td><p>
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewbox="0 0 16 16">
+<path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"></path> <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"></path>
+</svg>
+<a href="./link/2025/11/04/anil-dash-ai-majority-view/index.html" class="listing-title linkpost">Anil Dash on today's discourse regarding AI</a>
+</p>
+<span class="listing-posts-category pill">link</span><wbr><span class="listing-posts-category pill">ai</span></td>
+<td><span class="listing-date">2025-11-04</span></td>
+</tr>
+<tr class="odd" data-index="2" data-categories="UiUyQ3dlYnNpdGU=" data-listing-date-sort="1758758400000" data-listing-file-modified-sort="1763397511408" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1165">
+<td><p><a href="./post/2025/create-favicon-with-ggplot2/index.html" class="listing-title post">Creating the favicon for this website with `ggplot2`</a></p>
+<p>We will use the package to create an image and export it in several sizes. It is not as straightforward as I thought.</p>
+<span class="listing-posts-category pill">R</span><wbr><span class="listing-posts-category pill">website</span></td>
+<td><span class="listing-date">2025-09-25</span></td>
+</tr>
+</tbody>
+</table>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -597,7 +682,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </li>  
     <li class="nav-item compact">
-    <a class="nav-link" href="../../../posts.xml">
+    <a class="nav-link" href="./posts.xml">
       <i class="bi bi-rss" role="img">
 </i> 
     </a>
@@ -610,5 +695,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

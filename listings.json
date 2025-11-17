@@ -1,14 +1,14 @@
 [
   {
-    "listing": "/posts.html",
-    "items": [
-      "/post/2025/fridge-sound-analysis/index.html",
-      "/post/2025/link-ai-majority-view/index.html",
-      "/post/2025/create-favicon-with-ggplot2/index.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": []
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/post/2025/fridge-sound-analysis/index.html",
+      "/link/2025/11/04/anil-dash-ai-majority-view/index.html",
+      "/post/2025/create-favicon-with-ggplot2/index.html"
+    ]
   }
 ]

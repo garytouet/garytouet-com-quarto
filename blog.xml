@@ -6,9 +6,9 @@
       version="2.0">
 <channel>
 <title>Gary Touet</title>
-<link>https://garytouet.com/posts.html</link>
-<atom:link href="https://garytouet.com/posts.xml" rel="self" type="application/rss+xml"/>
-<description>Freelance Lead Data Analyst &amp; Product Manager</description>
+<link>https://garytouet.com/blog.html</link>
+<atom:link href="https://garytouet.com/blog.xml" rel="self" type="application/rss+xml"/>
+<description>A mix of my own writing and links to what I find interesting.</description>
 <language>en</language>
 <generator>quarto-1.8.26</generator>
 <lastBuildDate>Fri, 14 Nov 2025 00:00:00 GMT</lastBuildDate>
@@ -711,7 +711,7 @@ Time between runs:
 </item>
 <item>
   <title>Anil Dash on today’s discourse regarding AI</title>
-  <link>https://garytouet.com/post/2025/link-ai-majority-view/</link>
+  <link>https://garytouet.com/link/2025/11/04/anil-dash-ai-majority-view/</link>
   <description><![CDATA[ 
 
 
@@ -732,7 +732,7 @@ Time between runs:
  ]]></description>
   <category>link</category>
   <category>ai</category>
-  <guid>https://garytouet.com/post/2025/link-ai-majority-view/</guid>
+  <guid>https://garytouet.com/link/2025/11/04/anil-dash-ai-majority-view/</guid>
   <pubDate>Tue, 04 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
