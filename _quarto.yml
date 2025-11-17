@@ -1,13 +1,13 @@
 project:
   type: website
-  title: "Gary Touet - Freelance Lead Data Analyst & Product Manager"
+  title: "Gary Touet - Freelancer in product management, data & AI"
   preview:
     port: 4200
     browser: true
 
 website:
   title: "Gary Touet"
-  description: "Freelance Lead Data Analyst & Product Manager"
+  description: "Freelancer in product management, data & AI"
   site-url: "https://garytouet.com"
   navbar:
     collapse: false
@@ -15,8 +15,8 @@ website:
     right:
       - href: index.qmd
         text: Home
-      - href: posts.qmd
-        text: Posts
+      - href: blog.qmd
+        text: Blog
   #announcement:
     #icon: info-circle
     #dismissable: false

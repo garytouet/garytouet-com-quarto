@@ -2,7 +2,9 @@
 title: "404 error – Page not found"
 toc: false
 listing:
-    contents: post
+    contents:
+        - post
+        - link
     template: posts-listing.ejs
     sort: "date desc"
     date-format: iso

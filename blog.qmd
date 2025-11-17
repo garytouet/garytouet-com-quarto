@@ -1,8 +1,11 @@
 ---
-title: "Posts"
-pagetitle: "Posts"
+title: "Blog"
+#pagetitle: "Blog"
+description: "A mix of my own writing and links to what I find interesting."
 listing: 
-  contents: post
+  contents: 
+    - post
+    - link
   template: posts-listing.ejs
   sort: "date desc"
   date-format: iso
