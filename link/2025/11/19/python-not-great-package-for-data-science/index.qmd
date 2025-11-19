@@ -1,6 +1,6 @@
 ---
 title: " 'Python is not a great language for data science' "
-subtitle: "I am used to reading _Python vs. R_ posts, but this time I can relate to the differences mentioned."
+subtitle: "I am used to reading Python vs. R posts, but this time I can relate to the differences mentioned."
 linkurl: "https://blog.genesmindsmachines.com/p/python-is-not-a-great-language-for-2e0"
 date: 2025.11.19
 categories: ['link','python','R']
