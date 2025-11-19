@@ -11,7 +11,46 @@
 <description>A mix of my own writing and links to what I find interesting.</description>
 <language>en</language>
 <generator>quarto-1.8.26</generator>
-<lastBuildDate>Fri, 14 Nov 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Wed, 19 Nov 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>‘Python is not a great language for data science’</title>
+  <link>https://garytouet.com/link/2025/11/19/python-not-great-package-for-data-science/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Here, I link to the second post from Claus Wilke in his series “<em>Python is not a great language for data science.</em>”</p>
+<p>I have read various posts about the differences between R and Python over the years and the details are usually too obscure for me. The inner workings of these languages are dissected in a way that I cannot relate to.</p>
+<p>In this case, I did relate to it. I can recommend the article to anyone in data science who has to evolve between R and Python. Claus described issues I’ve encountered without fully understanding them.</p>
+<p>The points that caught my attention are:</p>
+<ul>
+<li><a href="https://blog.genesmindsmachines.com/i/178823064/call-by-reference-semantics">Call-by-reference semantics</a>: the fact that calling a function on a data object will modify the object passed as argument, even when no assignment to a new variable is done.</li>
+<li><a href="https://blog.genesmindsmachines.com/i/178823064/lack-of-built-in-missing-values">Lack of built-in missing values</a>: different data analysis libraries treat missing values differently and make assumptions which are not obvious</li>
+<li><a href="https://blog.genesmindsmachines.com/i/178823064/lack-of-non-standard-evaluation">Lack of non-standard evaluation</a>: <code>mutate()</code> and <code>arrange()</code>in the tidyverse make common data science tasks so much easier to do and read. The syntax is cleaner too.</li>
+</ul>
+<p>Finally, don’t get me wrong, I am not ditching Python at all. I enjoy using it. It’s good to put words on frustrations and misunderstandings I’ve had in the past.</p>
+<hr>
+<p>In addition, in Claus’ <a href="https://blog.genesmindsmachines.com/p/python-is-not-a-great-language-for">first post</a> from the series, another topic hit close to home:</p>
+<blockquote class="blockquote">
+<p>So here is a typical experience I commonly have with students who use Python. A student comes to my office and shows me some result. I say “This is great, but could you quickly plot the data in this other way?” or “Could you quickly calculate this quantity I just made up and let me know what it looks like when you plot it?” or similar. Usually, the request I make is for something that I know I could do in R in just a few minutes. Examples include converting boxplots into violins or vice versa, turning a line plot into a heatmap, plotting a density estimate instead of a histogram, performing a computation on ranked data values instead of raw data values, and so on. Without fail, from the students that use Python, the response is: “This will take me a bit. Let me sit down at my desk and figure it out and then I’ll be back.” Now let me be absolutely clear: These are strong students. The issue is not that my students don’t know their tools. It very much seems to me to be a problem of the tools themselves. They appear to be sufficiently cumbersome or confusing that requests that I think should be trivial frequently are not.</p>
+</blockquote>
+<p>This happened to me too. At first, I thought the problem was coming from me. I am used to R’s <em>ggplot2</em> library for data visualisation and I felt really slow in Python.</p>
+<p>In a footnote, Claus Wilke notes that students who use <em>plotnine</em> do not have this problem. This matches with my own experience. <em>Plotnine</em> is a port of <em>ggplot2</em> in Python. And it is now my first choice.</p>
+<p>At first, I tried to learn <em>matplotlib</em> and I quickly realised that this was a no-go for me (simple plots were hard to build, commands hard to remember for me). Then, I saw many people recommend <em>seaborn</em>, which is based on <em>matplotlib</em>. It is better and more intuitive for me, but I still find working with it to be hard. I struggle especially when it comes to facets.</p>
+<p>Let’s say you plot aggregated data over several countries. And you want to see if there are differences between countries. In <em>ggplot2</em>, you don’t need to change much in your current code. One line of code allows you to facet by the dimension <code>country</code> and it’s easy to facet by two dimensions if needed.</p>
+<p>In <em>seaborn</em>, some plotting functions support something similar, but not all of them do, which complicates things. Otherwise, you need to create a <code>FacetGrid</code> object, which is a slightly different way of building a plot. And then, on top of that, adding a plot title is done differently when the plot has facets.</p>
+<p>All of this requires to memorise different commands for different use cases. And it’s a big slow down for me. So I relate to the example given above and I would also recommend <em>plotnine</em>. My only gripe is that is updated on a different schedule than R’s <em>ggplot2</em> and both can be sometimes out of sync. It only happened to me once though that something that I knew was possible in <em>ggplot2</em> was not in <em>plotnine</em>.</p>
+
+
+
+ ]]></description>
+  <category>link</category>
+  <category>python</category>
+  <category>R</category>
+  <guid>https://garytouet.com/link/2025/11/19/python-not-great-package-for-data-science/</guid>
+  <pubDate>Wed, 19 Nov 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Analysing the sound of my fridge</title>
   <link>https://garytouet.com/post/2025/fridge-sound-analysis/</link>
