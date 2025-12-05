@@ -11,7 +11,43 @@
 <description>A mix of my own writing and links to what I find interesting.</description>
 <language>en</language>
 <generator>quarto-1.8.26</generator>
-<lastBuildDate>Wed, 19 Nov 2025 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Fri, 05 Dec 2025 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>My selection of posit::conf(2025) talks to watch on YouTube</title>
+  <link>https://garytouet.com/post/2025/posit-conf-2025-my-selection-of-youtube-talks/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Posit is the company behind RStudio and many widely-used R packages (such as <em>ggplot2</em>, the <em>tidyverse</em>). They also develop tools for other languages like Python (including their new data science IDE called <a href="https://positron.posit.co"><em>Positron</em></a>, and <em>plotnine</em>, their port of <em>ggplot2</em> to Python). In short, they create a lot of useful tools for the data science community.</p>
+<p>Every year, they organise a conference, and they just released the recordings of this year’s talks on <a href="https://www.youtube.com/playlist?list=PL9HYL-VRX0oTixlfDPCS5RW_F1pccERRe">YouTube</a>.</p>
+<p>Here are my recommended talks (in no particular order):</p>
+<ul>
+<li><p><a href="https://www.youtube.com/watch?v=pMVYl9fx1EE">How I got unstuck with Python (Julia Silge, Posit)</a></p>
+<p>As I mentioned in a previous post, I started learning Python after R and <a href="../../../../link/2025/11/19/python-not-great-package-for-data-science/index.qmd">found some key differences between the two languages challenging</a>. Finding the right tools was also challenging. Julia Silge highlights <em>pyenv</em> as a turning point for her and it was for me too.</p>
+<p>On macOS, Python isn’t pre-installed. Instead, it comes with the Command Line Tools, which must be installed separately. This made me feel uncomfortable. I didn’t like messing with the system’s python version (installing and uninstalling libraries). Also, the version was quite old (2.x) when I set up my local environment. Then I discovered <em>pyenv</em> and the concept made sense : it’s possible to install separate Python versions and to create isolated virtual environments. That’s what I chose, and still use today. Though maybe not much longer.</p>
+<p>Julia Silge has moved to using <em>uv</em>. I have read so many good things about it. It is next on my list.</p></li>
+<li><p><a href="https://www.youtube.com/watch?v=Lo4vewuapI8">From messy to meaningful data: LLM-powered classification in R (Dylan Pieper)</a></p>
+<p>The talk covers more, but it served as a good introduction to the <a href="https://ellmer.tidyverse.org"><em>ellmer</em> package</a> for me: how to interact with LLMs and get structured output in R. I also enjoyed the rest of the talk, especially the speaker’s use of traditional ML models as benchmark against the LLM.</p></li>
+<li><p><a href="https://www.youtube.com/watch?v=D3UAslMqEZc">Posit and the modern data stack: Using Posit, Snowflake, and Databricks (James Blair)</a></p>
+<p>Here, the title is a bit misleading. The talk focuses on something more exciting: a Positron feature called <em>Positron Assistant</em>, which provides LLM-assisted coding and data analysis.</p>
+<p>So far, these assistants required data to be available locally, which is a very unlikely scenario when working with enterprise data sources (data volumes are too large, downloading data is a privacy and security no-go).</p>
+<p>In the demo, James Blair shows how the assistant can work with the data available in Databricks or Snowflake. You need to set the connection up first and then it will work off of the table names, table schemas and a small sample of data. It then produces code that will run on the Databricks cluster for example.</p>
+<p>This feels like a nice step forward. It looks like the integration required a collaboration between Posit, Databricks and Snowflake. I’m still unclear about what enterprises need to do to implement this, and what metadata must be provided if any. Nevertheless, it’s an interesting development. Of course, the performance of these LLMs in this scenario remains to be seen.</p></li>
+<li><p><a href="https://www.youtube.com/watch?v=u9ev3mvC-p0">Expanding Quarto’s Capabilities with Lua (Christophe Dervieux, Posit)</a></p>
+<p>I built my website using <a href="https://quarto.org">Quarto</a>. During the process, I encountered limitations and came across mentions of Lua filters and Quarto extensions. I decided to explore these more advanced topics later. My main goal was simply to get the site online.</p>
+<p>Christophe Dervieux’s talk was a great introduction for me. While I’m not yet confident enough to develop with Lua filters, I now understand their role. It was helpful to see the pipeline that transforms <code>.qmd</code> documents into HTML, and where Lua filters come into play.</p></li>
+</ul>
+
+
+
+ ]]></description>
+  <category>R</category>
+  <category>python</category>
+  <guid>https://garytouet.com/post/2025/posit-conf-2025-my-selection-of-youtube-talks/</guid>
+  <pubDate>Fri, 05 Dec 2025 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>‘Python is not a great language for data science’</title>
   <link>https://garytouet.com/link/2025/11/19/python-not-great-package-for-data-science/</link>
