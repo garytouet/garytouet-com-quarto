@@ -30,7 +30,7 @@ print(years_of_experience)
 
 ::: {.font-size-lg}
 
-I'm a freelance product manager for data & AI products, and a product analytics leader.
+I'm a freelance product manager for data & AI products, and a lead product analyst.
 
 I mostly work with large international companies, which seek to accelerate their digital transformation. I help them build successful products and sophisticate their practices.
 
