@@ -238,6 +238,79 @@
   <pubDate>Thu, 29 Jan 2026 00:00:00 GMT</pubDate>
 </item>
 <item>
+  <title>‘What’s new in pandas 3’</title>
+  <link>https://garytouet.com/link/2026/01/29/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Two highlights for me:</p>
+<section id="the-annoying-settingwithcopywarning" class="level3">
+<h3 class="anchored" data-anchor-id="the-annoying-settingwithcopywarning">The annoying <code>SettingWithCopyWarning</code></h3>
+<p>I encourage you to read Marc Garcia’s blog post, because he gives an example that triggers this warning message. I was puzzled by it more than once and opted for the recommended:</p>
+<blockquote class="blockquote">
+<p>Try using .loc[row_indexer,col_indexer] = value instead</p>
+</blockquote>
+<p>And</p>
+<blockquote class="blockquote">
+<p>Consistently copy after every operation using df = df.copy().</p>
+</blockquote>
+<p>I am glad to see that this will not be needed anymore in pandas 3. Hell yeah!</p>
+<blockquote class="blockquote">
+<p>After countless hours of work that began well before pandas 3, copy‑on‑write is now fully implemented. The warning is gone, and all the .copy() calls in pandas code can be safely avoided after moving to pandas 3.</p>
+</blockquote>
+</section>
+<section id="method-chaining" class="level3">
+<h3 class="anchored" data-anchor-id="method-chaining">Method chaining</h3>
+<p>This additional syntax gets me closer to what I’m used to in R.</p>
+<blockquote class="blockquote">
+<p>[…] Other libraries such as Polars and PySpark address this more cleanly using a col() expression API.</p>
+<p>pandas 3 introduces the same mechanism:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">(</span>
+<span id="cb1-2">  pandas.read_parquet(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"rooms.parquet"</span>)</span>
+<span id="cb1-3">         [(pandas.col(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"property_type"</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"hotel"</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">&amp;</span> (pandas.col(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"country"</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"us"</span>)]</span>
+<span id="cb1-4">         .assign(max_people<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>pandas.col(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"max_people"</span>) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> pandas.col. (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"max_children"</span>))</span>
+<span id="cb1-5">)</span></code></pre></div></div>
+<p>This is a significant step forward, making pandas code much more readable, in particular when using method chaining.</p>
+</blockquote>
+<p>I like how just 3 lines let me read a local file, filter rows, and add a new column. No intermediary dataframes required.</p>
+<p>The new <code>pandas.col()</code> lets us refer to column names directly, without prefixing the dataframe name. It’s not my favourite, but I’ll take the simplification. In R’s tidyverse, you just use the column name. No need for a dataframe prefix or extra function. It’s cleaner and more intuitive.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>link</category>
+  <category>python</category>
+  <guid>https://garytouet.com/link/2026/01/29/</guid>
+  <pubDate>Thu, 29 Jan 2026 00:00:00 GMT</pubDate>
+</item>
+<item>
   <title>My selection of posit::conf(2025) talks to watch on YouTube</title>
   <link>https://garytouet.com/post/2025/posit-conf-2025-my-selection-of-youtube-talks/</link>
   <description><![CDATA[ 

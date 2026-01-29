@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="A mix of my own writing and links to what I find interesting.">
+<meta name="dcterms.date" content="2026-01-29">
 
-<title>Blog – Gary Touet</title>
+<title>‘What’s new in pandas 3’ – Gary Touet</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,29 +21,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-listing/list.min.js"></script>
-<script src="site_libs/quarto-listing/quarto-listing.js"></script>
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0e3d732c10718f0ac15ff239bbf21b6e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-0e3d732c10718f0ac15ff239bbf21b6e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -71,73 +104,15 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-project','listing-website','listing-format','listing-execute','listing-language','listing-freeze','listing-title-block-banner','listing-title','listing-subtitle','listing-date','listing-categories','listing-path','listing-outputHref','listing-date-modified','listing-author','listing-description','listing-filename','listing-file-modified','listing-reading-time','listing-word-count','listing-linkurl',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
-      
-      searchColumns: ["listing-project","listing-website","listing-format","listing-execute","listing-language","listing-freeze","listing-title-block-banner","listing-title","listing-subtitle","listing-date","listing-categories","listing-path","listing-outputHref","listing-date-modified","listing-author","listing-description","listing-filename","listing-file-modified","listing-reading-time","listing-word-count","listing-linkurl"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
 <style>html{ scroll-behavior: smooth; }</style>
 <link rel="icon" href="favicon.ico" sizes="32x32">
-<link rel="icon" href="./icons/favicon_96x96.png" sizes="96x96">
-<link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="icon" href="../../../../icons/favicon_96x96.png" sizes="96x96">
+<link rel="icon" href="../../../../icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../../icons/apple-touch-icon.png">
 <script defer="" src="https://cloud.umami.is/script.js" data-website-id="2191915a-328c-4ca4-8921-31b446ba513b"></script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="alternate" type="application/rss+xml" title="Gary Touet" href="blog.xml" data-external="1"></head>
+</head>
 
 <body class="nav-fixed quarto-light">
 
@@ -146,17 +121,17 @@ window.Quarto = {
     <nav class="navbar navbar-expand " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../../../index.html">
     <span class="navbar-title">Gary Touet</span>
     </a>
   </div>
           <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../../../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./blog.html" aria-current="page"> 
+    <a class="nav-link" href="../../../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
 </ul>
@@ -171,27 +146,40 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(7)</span></div><div class="category" data-category="YWk=">ai <span class="quarto-category-count">(1)</span></div><div class="category" data-category="YWklMjBhc3Npc3RlZCUyMGNvZGluZw==">ai assisted coding <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Ym9va3M=">books <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZGF0YSUyMGVuZ2luZWVyaW5n">data engineering <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ZnVuJTIwcHJvamVjdA==">fun project <span class="quarto-category-count">(1)</span></div><div class="category" data-category="bGluaw==">link <span class="quarto-category-count">(3)</span></div><div class="category" data-category="cHl0aG9u">python <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(3)</span></div><div class="category" data-category="d2Vic2l0ZQ==">website <span class="quarto-category-count">(1)</span></div></div></div>
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-annoying-settingwithcopywarning" id="toc-the-annoying-settingwithcopywarning" class="nav-link active" data-scroll-target="#the-annoying-settingwithcopywarning">The annoying <code>SettingWithCopyWarning</code></a></li>
+  <li><a href="#method-chaining" id="toc-method-chaining" class="nav-link" data-scroll-target="#method-chaining">Method chaining</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-        <h1 class="title">Blog</h1>
+        <h1 class="title"><a href="https://datapythonista.me/blog/whats-new-in-pandas-3" alt="‘What’s" new="" in="" pandas="" 3’="">‘What’s new in pandas 3’</a></h1>
     
-</div>
-
-<div>
-  <div class="description">
-    A mix of my own writing and links to what I find interesting.
+<p class="subtitle lead">Pandas core developer Marc Garcia breaks down the most significant updates</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">link</div>
+    <div class="quarto-category">python</div>
   </div>
-</div>
+  </div>
+
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026-01-29</p>
+    </div>
+  </div>
   
     
   </div>
@@ -201,83 +189,42 @@ window.Quarto = {
 </header>
 
 
+<p>Two highlights for me:</p>
+<section id="the-annoying-settingwithcopywarning" class="level3">
+<h3 class="anchored" data-anchor-id="the-annoying-settingwithcopywarning">The annoying <code>SettingWithCopyWarning</code></h3>
+<p>I encourage you to read Marc Garcia’s blog post, because he gives an example that triggers this warning message. I was puzzled by it more than once and opted for the recommended:</p>
+<blockquote class="blockquote">
+<p>Try using .loc[row_indexer,col_indexer] = value instead</p>
+</blockquote>
+<p>And</p>
+<blockquote class="blockquote">
+<p>Consistently copy after every operation using df = df.copy().</p>
+</blockquote>
+<p>I am glad to see that this will not be needed anymore in pandas 3. Hell yeah!</p>
+<blockquote class="blockquote">
+<p>After countless hours of work that began well before pandas 3, copy‑on‑write is now fully implemented. The warning is gone, and all the .copy() calls in pandas code can be safely avoided after moving to pandas 3.</p>
+</blockquote>
+</section>
+<section id="method-chaining" class="level3">
+<h3 class="anchored" data-anchor-id="method-chaining">Method chaining</h3>
+<p>This additional syntax gets me closer to what I’m used to in R.</p>
+<blockquote class="blockquote">
+<p>[…] Other libraries such as Polars and PySpark address this more cleanly using a col() expression API.</p>
+<p>pandas 3 introduces the same mechanism:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  pandas.read_parquet(<span class="st">"rooms.parquet"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>         [(pandas.col(<span class="st">"property_type"</span>) <span class="op">==</span> <span class="st">"hotel"</span>) <span class="op">&amp;</span> (pandas.col(<span class="st">"country"</span>) <span class="op">==</span> <span class="st">"us"</span>)]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>         .assign(max_people<span class="op">=</span>pandas.col(<span class="st">"max_people"</span>) <span class="op">+</span> pandas.col. (<span class="st">"max_children"</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is a significant step forward, making pandas code much more readable, in particular when using method chaining.</p>
+</blockquote>
+<p>I like how just 3 lines let me read a local file, filter rows, and add a new column. No intermediary dataframes required.</p>
+<p>The new <code>pandas.col()</code> lets us refer to column names directly, without prefixing the dataframe name. It’s not my favourite, but I’ll take the simplification. In R’s tidyverse, you just use the column name. No need for a dataframe prefix or extra function. It’s cleaner and more intuitive.</p>
 
 
+</section>
 
-
-<div class="quarto-listing quarto-listing-container-custom" id="listing-listing">
-<table class="listing-posts caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th">Title</th>
-<th data-quarto-table-cell-role="th">Date</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr class="odd" data-index="0" data-categories="ZGF0YSUyMGVuZ2luZWVyaW5nJTJDYm9va3M=" data-listing-date-sort="1769644800000" data-listing-file-modified-sort="1769707784329" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="17" data-listing-word-count-sort="3246">
-<td><p><a href="./post/2026/data-warehouse-toolkit-definitive-guide-to-dimensional-modelling/index.html" class="listing-title post">Reading: 'The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling' by Ralph Kimball and Margy Ross</a></p>
-<p>My notes and perspective on this classic of data engineering</p>
-<span class="listing-posts-category pill">data engineering</span><wbr><span class="listing-posts-category pill">books</span></td>
-<td><span class="listing-date">2026-01-29</span></td>
-</tr>
-<tr class="even" data-index="1" data-categories="bGluayUyQ3B5dGhvbg==" data-listing-date-sort="1769644800000" data-listing-file-modified-sort="1769707784326" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="262">
-<td><p>
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewbox="0 0 16 16">
-<path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"></path> <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"></path>
-</svg>
-<a href="./link/2026/01/29/index.html" class="listing-title linkpost">'What's new in pandas 3'</a>
-</p>
-<p>Pandas core developer Marc Garcia breaks down the most significant updates</p>
-<span class="listing-posts-category pill">link</span><wbr><span class="listing-posts-category pill">python</span></td>
-<td><span class="listing-date">2026-01-29</span></td>
-</tr>
-<tr class="odd" data-index="2" data-categories="UiUyQ3B5dGhvbg==" data-listing-date-sort="1764892800000" data-listing-file-modified-sort="1769707784329" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="609">
-<td><p><a href="./post/2025/posit-conf-2025-my-selection-of-youtube-talks/index.html" class="listing-title post">My selection of posit::conf(2025) talks to watch on YouTube</a></p>
-<p>Four talks that I recommend among the 100+ videos available</p>
-<span class="listing-posts-category pill">R</span><wbr><span class="listing-posts-category pill">python</span></td>
-<td><span class="listing-date">2025-12-05</span></td>
-</tr>
-<tr class="even" data-index="3" data-categories="bGluayUyQ3B5dGhvbiUyQ1I=" data-listing-date-sort="1763510400000" data-listing-file-modified-sort="1769707784326" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="748">
-<td><p>
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewbox="0 0 16 16">
-<path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"></path> <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"></path>
-</svg>
-<a href="./link/2025/11/19/python-not-great-package-for-data-science/index.html" class="listing-title linkpost">'Python is not a great language for data science'</a>
-</p>
-<p>I am used to reading Python vs. R posts, but this time I can relate to the differences mentioned.</p>
-<span class="listing-posts-category pill">link</span><wbr><span class="listing-posts-category pill">python</span><wbr><span class="listing-posts-category pill">R</span></td>
-<td><span class="listing-date">2025-11-19</span></td>
-</tr>
-<tr class="odd" data-index="4" data-categories="cHl0aG9uJTJDYWklMjBhc3Npc3RlZCUyMGNvZGluZyUyQ2Z1biUyMHByb2plY3Q=" data-listing-date-sort="1763078400000" data-listing-file-modified-sort="1769707784327" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1603">
-<td><p><a href="./post/2025/fridge-sound-analysis/index.html" class="listing-title post">Analysing the sound of my fridge</a></p>
-<p>An excuse to try AI assisted coding with Mistral AI's model.</p>
-<span class="listing-posts-category pill">python</span><wbr><span class="listing-posts-category pill">ai assisted coding</span><wbr><span class="listing-posts-category pill">fun project</span></td>
-<td><span class="listing-date">2025-11-14</span></td>
-</tr>
-<tr class="even" data-index="5" data-categories="bGluayUyQ2Fp" data-listing-date-sort="1762214400000" data-listing-file-modified-sort="1769707784326" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="198">
-<td><p>
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewbox="0 0 16 16">
-<path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1 1 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4 4 0 0 1-.128-1.287z"></path> <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243z"></path>
-</svg>
-<a href="./link/2025/11/04/anil-dash-ai-majority-view/index.html" class="listing-title linkpost">Anil Dash on today's discourse regarding AI</a>
-</p>
-<span class="listing-posts-category pill">link</span><wbr><span class="listing-posts-category pill">ai</span></td>
-<td><span class="listing-date">2025-11-04</span></td>
-</tr>
-<tr class="odd" data-index="6" data-categories="UiUyQ3dlYnNpdGU=" data-listing-date-sort="1758758400000" data-listing-file-modified-sort="1769707784327" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="6" data-listing-word-count-sort="1165">
-<td><p><a href="./post/2025/create-favicon-with-ggplot2/index.html" class="listing-title post">Creating the favicon for this website with `ggplot2`</a></p>
-<p>We will use the package to create an image and export it in several sizes. It is not as straightforward as I thought.</p>
-<span class="listing-posts-category pill">R</span><wbr><span class="listing-posts-category pill">website</span></td>
-<td><span class="listing-date">2025-09-25</span></td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -716,7 +663,7 @@ window.Quarto = {
     </a>
   </li>  
     <li class="nav-item compact">
-    <a class="nav-link" href="./posts.xml">
+    <a class="nav-link" href="../../../../posts.xml">
       <i class="bi bi-rss" role="img">
 </i> 
     </a>
@@ -729,5 +676,5 @@ window.Quarto = {
 
 
 
-<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+<script src="../../../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
