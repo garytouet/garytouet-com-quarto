@@ -1,0 +1,48 @@
+---
+title: "'What's new in pandas 3'"
+subtitle: "Pandas core developer Marc Garcia breaks down the most significant updates"
+date: 2026.01.29
+linkurl: https://datapythonista.me/blog/whats-new-in-pandas-3
+categories: [link, 'python']
+---
+
+Two highlights for me:
+
+### The annoying `SettingWithCopyWarning`
+
+I encourage you to read Marc Garcia's blog post, because he gives an example that triggers this warning message. I was puzzled by it more than once and opted for the recommended: 
+
+> Try using .loc[row_indexer,col_indexer] = value instead
+
+And
+
+> Consistently copy after every operation using df = df.copy().
+
+I am glad to see that this will not be needed anymore in pandas 3. Hell yeah!
+
+> After countless hours of work that began well before pandas 3, copy‑on‑write is now fully implemented. The warning is gone, and all the .copy() calls in pandas code can be safely avoided after moving to pandas 3.
+
+
+
+### Method chaining
+
+This additional syntax gets me closer to what I'm used to in R.
+
+> […] Other libraries such as Polars and PySpark address this more cleanly using a col() expression API.
+> 
+> pandas 3 introduces the same mechanism:
+> 
+> 
+>```python
+>(
+>   pandas.read_parquet("rooms.parquet")
+>          [(pandas.col("property_type") == "hotel") & (pandas.col("country") == "us")]
+>          .assign(max_people=pandas.col("max_people") + pandas.col. ("max_children"))
+>)
+>```
+>
+> This is a significant step forward, making pandas code much more readable, in particular when using method chaining.
+
+I like how just 3 lines let me read a local file, filter rows, and add a new column. No intermediary dataframes required.
+
+The new `pandas.col()` lets us refer to column names directly, without prefixing the dataframe name. It's not my favourite, but I'll take the simplification. In R's tidyverse, you just use the column name. No need for a dataframe prefix or extra function. It's cleaner and more intuitive.

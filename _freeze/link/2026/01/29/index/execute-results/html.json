@@ -1,0 +1,12 @@
+{
+  "hash": "75f439fe17168fb9e226ba2157174fa8",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"'What's new in pandas 3'\"\nsubtitle: \"Pandas core developer Marc Garcia breaks down the most significant updates\"\ndate: 2026.01.29\nlinkurl: https://datapythonista.me/blog/whats-new-in-pandas-3\ncategories: [link, 'python']\n---\n\nI will highlight two changes that matter to me.\n\n#### The annoying `SettingWithCopyWarning`\n\nI encourage you to read Marc Garcia's blog post, because he gives an example that triggers this warning message. I was puzzled by it more than once and opted for the recommended: \n\n> Try using .loc[row_indexer,col_indexer] = value instead\n\nAnd\n\n> Consistently copy after every operation using df = df.copy().\n\nI am glad to see that this will not be needed anymore in pandas 3. Hell yes!\n\n> After countless hours of work that began well before pandas 3, copy‑on‑write is now fully implemented. The warning is gone, and all the .copy() calls in pandas code can be safely avoided after moving to pandas 3.\n\n#### Method chaining\n\nThis additional syntax gets me closer to what I'm used to in R.\n\n> Other libraries such as Polars and PySpark address this more cleanly using a col() expression API.\n> \n> pandas 3 introduces the same mechanism:\n> \n> ```{python}\n>(\n>    pandas.read_parquet(\"rooms.parquet\")\n>          [(pandas.col(\"property_type\") == \"hotel\") & (pandas.col(\"country\") == \"us\")]\n>          .assign(max_people=pandas.col(\"max_people\") + pandas.col(\"max_children\"))\n>)\n> ```\n> This is a significant step forward, making pandas code much more readable, in particular when using method chaining.\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
