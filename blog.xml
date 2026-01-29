@@ -11,7 +11,7 @@
 <description>A mix of my own writing and links to what I find interesting.</description>
 <language>en</language>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Wed, 28 Jan 2026 23:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 29 Jan 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Reading: ‘The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling’ by Ralph Kimball and Margy Ross</title>
   <link>https://garytouet.com/post/2026/data-warehouse-toolkit-definitive-guide-to-dimensional-modelling/</link>
@@ -235,7 +235,7 @@
   <category>data engineering</category>
   <category>books</category>
   <guid>https://garytouet.com/post/2026/data-warehouse-toolkit-definitive-guide-to-dimensional-modelling/</guid>
-  <pubDate>Wed, 28 Jan 2026 23:00:00 GMT</pubDate>
+  <pubDate>Thu, 29 Jan 2026 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>My selection of posit::conf(2025) talks to watch on YouTube</title>
@@ -271,7 +271,7 @@
   <category>R</category>
   <category>python</category>
   <guid>https://garytouet.com/post/2025/posit-conf-2025-my-selection-of-youtube-talks/</guid>
-  <pubDate>Thu, 04 Dec 2025 23:00:00 GMT</pubDate>
+  <pubDate>Fri, 05 Dec 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>‘Python is not a great language for data science’</title>
@@ -310,7 +310,7 @@
   <category>python</category>
   <category>R</category>
   <guid>https://garytouet.com/link/2025/11/19/python-not-great-package-for-data-science/</guid>
-  <pubDate>Tue, 18 Nov 2025 23:00:00 GMT</pubDate>
+  <pubDate>Wed, 19 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Analysing the sound of my fridge</title>
@@ -1007,7 +1007,7 @@ Time between runs:
   <category>ai assisted coding</category>
   <category>fun project</category>
   <guid>https://garytouet.com/post/2025/fridge-sound-analysis/</guid>
-  <pubDate>Thu, 13 Nov 2025 23:00:00 GMT</pubDate>
+  <pubDate>Fri, 14 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Anil Dash on today’s discourse regarding AI</title>
@@ -1033,7 +1033,7 @@ Time between runs:
   <category>link</category>
   <category>ai</category>
   <guid>https://garytouet.com/link/2025/11/04/anil-dash-ai-majority-view/</guid>
-  <pubDate>Mon, 03 Nov 2025 23:00:00 GMT</pubDate>
+  <pubDate>Tue, 04 Nov 2025 00:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Creating the favicon for this website with ggplot2</title>
@@ -1612,7 +1612,7 @@ font-style: inherit;">dev.off</span>())</span></code></pre></div></div>
   <category>R</category>
   <category>website</category>
   <guid>https://garytouet.com/post/2025/create-favicon-with-ggplot2/</guid>
-  <pubDate>Wed, 24 Sep 2025 22:00:00 GMT</pubDate>
+  <pubDate>Thu, 25 Sep 2025 00:00:00 GMT</pubDate>
 </item>
 </channel>
 </rss>
