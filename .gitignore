@@ -11,3 +11,4 @@ __pycache__/
 .continue/
 *.m4a
 *.code-workspace
+**/*.quarto_ipynb
