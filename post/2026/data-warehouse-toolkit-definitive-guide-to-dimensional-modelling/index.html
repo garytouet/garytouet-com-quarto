@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2026-01-29">
+
+<title>Reading: ‘The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling’ by Ralph Kimball and Margy Ross – Gary Touet</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-e153f3ffe9808750cc3d26ea0413e402.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="../../../icons/favicon_96x96.png" sizes="96x96">
+<link rel="icon" href="../../../icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../../../icons/apple-touch-icon.png">
+<script defer="" src="https://cloud.umami.is/script.js" data-website-id="2191915a-328c-4ca4-8921-31b446ba513b"></script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Gary Touet</span>
+    </a>
+  </div>
+          <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#most-salient-sectionsconcepts-for-me" id="toc-most-salient-sectionsconcepts-for-me" class="nav-link active" data-scroll-target="#most-salient-sectionsconcepts-for-me">Most salient sections/concepts for me</a>
+  <ul class="collapse">
+  <li><a href="#the-four-key-decisions-when-designing-a-dimensional-model" id="toc-the-four-key-decisions-when-designing-a-dimensional-model" class="nav-link" data-scroll-target="#the-four-key-decisions-when-designing-a-dimensional-model">The four key decisions when designing a dimensional model</a></li>
+  <li><a href="#business-participation" id="toc-business-participation" class="nav-link" data-scroll-target="#business-participation">Business participation</a></li>
+  <li><a href="#the-three-fundamental-types-of-fact-tables" id="toc-the-three-fundamental-types-of-fact-tables" class="nav-link" data-scroll-target="#the-three-fundamental-types-of-fact-tables">The three fundamental types of fact tables</a></li>
+  <li><a href="#scds-slowly-changing-dimensions" id="toc-scds-slowly-changing-dimensions" class="nav-link" data-scroll-target="#scds-slowly-changing-dimensions">SCDs: Slowly Changing Dimensions</a></li>
+  <li><a href="#case-study-on-clickstream-data" id="toc-case-study-on-clickstream-data" class="nav-link" data-scroll-target="#case-study-on-clickstream-data">Case study on Clickstream data</a></li>
+  <li><a href="#audit-dimensions-and-error-event-schema" id="toc-audit-dimensions-and-error-event-schema" class="nav-link" data-scroll-target="#audit-dimensions-and-error-event-schema">Audit dimensions and error event schema</a></li>
+  <li><a href="#conformed-dimensions" id="toc-conformed-dimensions" class="nav-link" data-scroll-target="#conformed-dimensions">Conformed dimensions</a></li>
+  </ul></li>
+  <li><a href="#reflections" id="toc-reflections" class="nav-link" data-scroll-target="#reflections">Reflections</a>
+  <ul class="collapse">
+  <li><a href="#data-as-a-product" id="toc-data-as-a-product" class="nav-link" data-scroll-target="#data-as-a-product">Data as a Product</a></li>
+  <li><a href="#vocabulary" id="toc-vocabulary" class="nav-link" data-scroll-target="#vocabulary">Vocabulary</a></li>
+  <li><a href="#user-experience-improvements" id="toc-user-experience-improvements" class="nav-link" data-scroll-target="#user-experience-improvements">User experience improvements</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+        <h1 class="title">Reading: ‘The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling’ by Ralph Kimball and Margy Ross</h1>
+    
+<p class="subtitle lead">My notes and perspective on this classic of data engineering</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">data engineering</div>
+    <div class="quarto-category">books</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2026-01-29</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>A Lead Data Engineer recommended this book while we collaborated on a business intelligence project. Our product depended on a data warehouse built by our team. As his Product Manager counterpart, we frequently discussed changes affecting the warehouse. He often cited best practices from this book, a standard in the industry.</p>
+<p>While I could discuss the pros and cons of data modeling choices with him, I lacked the vocabulary and deeper conceptual knowledge to match his expertise. Throughout my career, I have worked extensively with data warehouses and handled light data engineering projects myself, but I never built a full dimensional model.</p>
+<p>Understanding these concepts and techniques seemed valuable. Online, this book is often called <em>the</em> guide to data modelling and data warehousing, a classic for all data engineers. Naturally curious, I decided to give it a go.</p>
+<p>I read the book cover to cover and didn’t skip any section. At 23 hours (per my Kindle), it is a long read. But, it’s also dense and practical.</p>
+<p>In the following sections, I will highlight what stuck with me (the ideas I intend to remember) and reflect on how they connect to my own work experience. Several parts of the book brought back memories from past companies.</p>
+<section id="most-salient-sectionsconcepts-for-me" class="level2">
+<h2 class="anchored" data-anchor-id="most-salient-sectionsconcepts-for-me">Most salient sections/concepts for me</h2>
+<section id="the-four-key-decisions-when-designing-a-dimensional-model" class="level3">
+<h3 class="anchored" data-anchor-id="the-four-key-decisions-when-designing-a-dimensional-model">The four key decisions when designing a dimensional model</h3>
+<p><strong>1. Select the business process</strong></p>
+<p>The advice is: start by modeling a business process. KPIs, metrics, reports can then be built on this fondation. Do not design your dimensional model based on the KPIs and reports available.</p>
+<p>Excerpt from the book:</p>
+<blockquote class="blockquote">
+<p>Business processes are the operational activities performed by your organization, such as taking an order, processing an insurance claim, registering students for a class, or snapshotting every account each month.</p>
+</blockquote>
+<p><strong>2. Declare the grain</strong></p>
+<p>The grain defines the level of detail for the dataset i.e.&nbsp;what a single fact table row represents.</p>
+<p>Choose the lowest possible grain (<em>atomic grain</em>) from the source systems. This approach offers the most flexibility. Users can then aggregate and manipulate the data as they wish.</p>
+<p><strong>3. Identify the dimensions</strong></p>
+<p>Dimensions provide the context for a business process event. For example, when a sale happens, the context dimensions are date, product, store, payment method, promotion.</p>
+<p>In reports, dimensions serve as descriptive attributes (typically text labels). They are also used to filter the facts and to form groups during aggregation.</p>
+<p><strong>4. Identify the facts</strong></p>
+<p>Facts are the numeric measurements tied to a business event. All facts for a single event are stored in one table, which includes foreign keys. These keys link each fact row to its associated dimensions (the context information).</p>
+<p>From the book:</p>
+<blockquote class="blockquote">
+<p>Facts are the measurements that result from a business process event and are almost always numeric. A single fact table row has a one-to-one relationship to a measurement event as described by the fact table’s grain. Thus a fact table corresponds to a physical observable event, and not to the demands of a particular report. Within a fact table, only facts consistent with the declared grain are allowed. For example, in a retail sales transaction, the quantity of a product sold and its extended price are good facts, whereas the store manager’s salary is disallowed.</p>
+</blockquote>
+</section>
+<section id="business-participation" class="level3">
+<h3 class="anchored" data-anchor-id="business-participation">Business participation</h3>
+<p>The authors emphasise that strong business buy-in is essential for project success. This makes sense, but two points stood out to me. They were not obvious at first and I found them particularly valuable:</p>
+<ol type="1">
+<li><p>Staff the project with business team members, who are also responsible for its success. Give them responsibilities and ask them to gather requirements, feedback, validate certain decisions and spread the word in the organisation.</p></li>
+<li><p>Establish a data stewardship/governance program beforehand, with identifiable data stewards. As the book states:</p>
+<blockquote class="blockquote">
+<p>Data stewardship or governance programs should focus first on the major dimensions. Depending on the industry, the list might include date, customer, product, employee, facility, provider, student, faculty, account, and so on. Thinking about the central nouns used to describe the business translates into a list of data governance efforts to be led by subject matter experts from the business community. Establishing data governance responsibilities for these nouns is the key to eventually deploying dimensions that deliver consistency and address the business’s needs for analytic filtering, grouping, and labeling. Robust dimensions translate into robust DW/BI systems.</p>
+</blockquote></li>
+</ol>
+</section>
+<section id="the-three-fundamental-types-of-fact-tables" class="level3">
+<h3 class="anchored" data-anchor-id="the-three-fundamental-types-of-fact-tables">The three fundamental types of fact tables</h3>
+<ol type="1">
+<li><p><strong>Transaction fact tables:</strong> these are the most common in my experience. Each row represents a single measurement at a specific time and place. It can be an event or one line item inside an event. Rows only exist if an activity occurred. The word <em>transaction</em> is confusing here, because it suggests a table with sales data. In practice, they are not limited to measuring sales.</p></li>
+<li><p><strong>Periodic snapshot fact tables:</strong> these tables summarise measurement events over a fixed period (a day, week, month, …). The grain is determined by the period selected. Unlike transaction tables, rows exist even if no activity took place. For example, I have used these to analyse the daily availability of inventory. A daily snapshot for each product and country was created with its availability status and its quantity.</p></li>
+<li><p><strong>Accumulating snapshot fact tables:</strong> these tables represent the advancement of processes that have a clear start, standard intermediate steps and a clear end. Each row updates whenever the process reaches a new step, recording the data and relevant measurements. This structure simplifies calculating the time duration between various steps.</p>
+<p>Illustration from the book:</p>
+<blockquote class="blockquote">
+<p><img src="screenshot-accumulating-snapsghot-fact-table-example.png" class="img-fluid" style="width:75.0%"></p>
+</blockquote></li>
+</ol>
+<p>Variations and adaptations of these fact tables:</p>
+<ol type="1">
+<li>Factless fact tables</li>
+<li>Aggregate fact tables or OLAP cubes</li>
+<li>Consolidated fact tables</li>
+</ol>
+</section>
+<section id="scds-slowly-changing-dimensions" class="level3">
+<h3 class="anchored" data-anchor-id="scds-slowly-changing-dimensions">SCDs: Slowly Changing Dimensions</h3>
+<p>Describing these techniques succinctly is challenging. My notes below will make sense if you’ve read the chapters. Otherwise, the explanations may seem abstract.</p>
+<p>This section taught me the most about dimensional design, associated trade-offs and opened my mind to technical complexity. I’ll admit: some SCD types took me multiple attempts to grasp. The book’s case studies were helpful for clarifying these concepts.</p>
+<p>These techniques address a fundamental challenge: how to manage attribute changes in dimensions over time. For example, let’s imagine that a company updates its product categorisation system. A product previously in <em>Sports</em> is now in <em>Streetwear</em>. How should the dimension table reflect this change?</p>
+<p>Five core types:</p>
+<ul>
+<li><strong>Type 0</strong>: retain the original
+<ul>
+<li>consequence: facts can only be associated with the attribute’s original value</li>
+</ul></li>
+<li><strong>Type 1</strong>: overwrite
+<ul>
+<li>consequence: facts can only be associated with the attribute’s current value</li>
+</ul></li>
+<li><strong>Type 2</strong>: add new row
+<ul>
+<li>introduce a new surrogate key</li>
+<li>introduce “row effective date” and “row expiration date” columns</li>
+<li>optional: add a “current row indicator” column</li>
+<li>consequence: facts are associated with the attribute’s value in effect when the fact happened</li>
+</ul></li>
+<li><strong>Type 3</strong>: add new attribute
+<ul>
+<li>replace current attribute value in the target column</li>
+<li>add a new column: “prior {attribute name}” which stores the attribute value</li>
+<li>consequence: facts can be associated with the current and prior attribute value</li>
+</ul></li>
+<li><strong>Type 4</strong>: add mini-dimension
+<ul>
+<li>useful for large dimension tables (lots of rows) where Type 2 changes are frequent (which adds many rows)</li>
+<li>move frequently changing attributes to a separate dimension (seems to be frequent for customer demographics dimensions). Leave stable attributes in the original table.</li>
+<li>create one row in the mini-dimension for each combination of attribute values. Alternatively, add rows only for existing combinations and update as new ones appear.</li>
+<li>consider creating value bands for continuous attributes (convert salary to salary bands, for example)</li>
+<li>finally, insert a foreign key to the mini-dimension in the <em>fact</em> table. It captures a snapshot of the combination of attributes (for example: the customer demographics profile) at transaction time.</li>
+</ul></li>
+</ul>
+<p>3 hybrid types:</p>
+<ul>
+<li><strong>Type 5</strong>: mini-dimension and type 1 outrigger
+<ul>
+<li>this builds on Type 4 by adding a foreign key to the mini-dimension in the large <em>dimension</em> table (outrigger)</li>
+<li>example: in a large customer dimension with a mini-dimension for demographic attributes, each time the demographic profile is updated the foreign key in the customer dimension gets updated (Type 1 change)</li>
+<li>the fact table provides the demographic profile at transaction time, while the customer dimension reflects the current profile</li>
+</ul></li>
+<li><strong>Type 6</strong>: add Type 1 attributes to Type 2 dimension
+<ul>
+<li>note: the name is confusing. It feels like a more advanced Type 3 SCD to me</li>
+<li>Example: with two columns, “historic department name” and “current department name” (similar to a Type 3 setup)</li>
+<li>when the department name changes:
+<ul>
+<li>apply Type 2: create a new row with “row effective date”, “row expiration date” and “current row indicator” columns with the correct dates/timestamps</li>
+<li>apply Type 1: update the “current department name” value</li>
+</ul></li>
+<li>facts join with the row active at transaction time, which also include the current attribute value</li>
+</ul></li>
+<li><strong>Type 7</strong>: dual Type 1 and Type 2 dimensions
+<ul>
+<li>the fact table includes two foreign keys:
+<ol type="1">
+<li>one links to a dimension table managed according to Type 6</li>
+<li>one links to a view of this dimension table showing only current values</li>
+</ol></li>
+<li>Benefit: when the fact table is queried, a choice is available. Use the historical values to filter and group by, or use the latest status</li>
+</ul></li>
+</ul>
+</section>
+<section id="case-study-on-clickstream-data" class="level3">
+<h3 class="anchored" data-anchor-id="case-study-on-clickstream-data">Case study on Clickstream data</h3>
+<p>Most of my analyst experience is in e-commerce, where Google Analytics clickstream data was the primary data source.</p>
+<p>I was curious to see how the authors recommended integrating this data into the data warehouse, for the following reasons:</p>
+<ol type="1">
+<li>Google Analytics’ raw data, once exported to BigQuery, is heavily nested, with a schema that takes time to master. Expecting analysts from other parts of the company or other disciplines to use is not realistic. The learning curve is too steep</li>
+<li>At Zalando, clickstream data resided outside the data warehouse in a separate system (BigQuery). Joining it with the data warehouse was costly due to time-consuming data transfers.</li>
+</ol>
+<p>The authors outline a solution in their case study, using these building blocks:</p>
+<ul>
+<li>New dimensions: Page, Event, Session, Referrer. I’d also include User</li>
+<li>Two fact tables: one at the <em>Session</em> grain and one at the <em>Page</em> grain. The <em>Page</em> fact table is a novel idea for me. In theory, it could track event counts per page or measurements like loading times. In practice, it would be challenging to maintain due to frequent changes in web and app experiences</li>
+<li>Aggregate clickstream fact tables: create tables at different grains (session, month, entry page, etc.) to summarise facts</li>
+</ul>
+<p>From experience, aggregate fact tables strike me as the most practical and valuable approach. This makes for much smaller tables to query (raw clickstream data is very large). Key user behaviour facts become easily accessible. And these tables can be intelligently augmented with new attributes (for example: a flag for sessions with cart abandonment, likelihood score of being a bot).</p>
+</section>
+<section id="audit-dimensions-and-error-event-schema" class="level3">
+<h3 class="anchored" data-anchor-id="audit-dimensions-and-error-event-schema">Audit dimensions and error event schema</h3>
+<p>I wish I had these for debugging in the past or to investigate sudden changes in metrics.</p>
+<p>I saw audit dimensions in action in a previous freelance project. For example, it let us trace suspicious numbers back to the exact ingested file. It allowed us to answer questions from business stakeholders with precision. Excerpt from the book with more details:</p>
+<blockquote class="blockquote">
+<p>When a fact table row is created in the ETL back room, it is helpful to create an audit dimension containing the ETL processing metadata known at the time. A simple audit dimension row could contain one or more basic indicators of data quality, perhaps derived from examining an error event schema that records data quality violations encountered while processing the data. Other useful audit dimension attributes could include environment variables describing the versions of ETL code used to create the fact rows or the ETL process execution time stamps. These environment variables are especially useful for compliance and auditing purposes because they enable BI tools to drill down to determine which rows were created with what versions of the ETL software.</p>
+</blockquote>
+<p>Error datasets:</p>
+<blockquote class="blockquote">
+<p>The error event schema is a centralized dimensional schema whose purpose is to record every error event thrown by a quality screen anywhere in the ETL pipeline.</p>
+</blockquote>
+<p>I have never encountered such error tables. But, as a data warehouse user, I would appreciate this transparency.</p>
+</section>
+<section id="conformed-dimensions" class="level3">
+<h3 class="anchored" data-anchor-id="conformed-dimensions">Conformed dimensions</h3>
+<p>From the book:</p>
+<blockquote class="blockquote">
+<p>Dimension tables <em>conform</em> when attributes in separate dimension tables have the same column names and domain contents. Information from separate fact tables can be combined in a single report by using conformed dimension attributes that are associated with each fact table.</p>
+<p>[…]</p>
+<p><em>Conformed dimensions</em>, defined once in collaboration with the business’s data governance representatives, are reused across fact tables; they deliver both analytic consistency and reduced future development costs because the wheel is not repeatedly re-created.</p>
+<p>[…]</p>
+<p>Without shared, conformed dimensions, a dimensional model becomes a standalone application. Isolated stovepipe data sets that cannot be tied together are the bane of the DW/BI movement as they perpetuate incompatible views of the enterprise. If you have any hope of building a robust and integrated DW/BI environment, you must commit to the enterprise bus architecture. When dimensional models have been designed with conformed dimensions, they can be readily combined and used together.</p>
+</blockquote>
+<p>Conformed dimensions are a clear advantage of dimensional models and are essential to their success. However, the effort required to achieve this conformity is easy to underestimate. Agreeing across departments on consistant names, values and definitions for business concepts is challenging. This is especially true when systems have evolved organically in different parts of the organisation or come from multiple vendors.</p>
+</section>
+</section>
+<section id="reflections" class="level2">
+<h2 class="anchored" data-anchor-id="reflections">Reflections</h2>
+<section id="data-as-a-product" class="level3">
+<h3 class="anchored" data-anchor-id="data-as-a-product">Data as a Product</h3>
+<p>The book does not describe it in these terms. However, it is clear that the authors advocate for the application of the product management method to the design of the data warehouse. They suggest a close relationship with the end users, understanding their needs and designing the dimensional model in accordance. They urge readers to consider the value to the business when making decisions. In many of their design guidelines, they emphasise ease of use for business teams. They recommend design solutions that engineers might view as suboptimal or overly complex in service of user experience. This is obviously how it should be.</p>
+<p>It made me think of a principle that a former employer added to their group data strategy: “<em>data as a product</em>”. The goal was to change the company’s thinking on this subject. This principle especially targeted data-producing teams, encouraging them to treat data as part of their product surface area. One-sided schema changes, poor documentation, unreported incidents, data-quality all impacted downstream users (analysts, data scientists, consumers of internal reports). These problems slowed us down.</p>
+<p>I believe this was the right approach, and I was pleased to see the book echo this idea.</p>
+</section>
+<section id="vocabulary" class="level3">
+<h3 class="anchored" data-anchor-id="vocabulary">Vocabulary</h3>
+<p>I had never encountered the terms used in this book to describe tables, techniques, columns, etc. I knew about fact tables and dimension tables. However, I had never heard of <em>outrigger dimensions</em>, didn’t know that fact tables had different names like <em>accumulating snapshot fact table</em>. When I saw the word <em>grain</em>, I immediately understood what it described, but I don’t think I ever heard this term. I definitely used the word <em>level</em> myself (at the user <em>level</em>, at the hit <em>level</em>) and I had discussions where <em>granularity</em> came up.</p>
+<p>In a past project, without being aware of it at the time, I asked our central data engineering teams to improve an <em>outrigger dimension</em> for product certificates. I asked for the slow-changing dimension to go from <em>Type 1 overwrite</em> to <em>Type 2 add new row</em>. But we never discussed the change in those terms. We talked about “making the historical relationship between products and certificates available for analysis”. We wanted to <em>historicise</em> the table. This word was difficult to pronounce correctly in meetings.</p>
+<p>Why didn’t we use this vocabulary?</p>
+<ul>
+<li>Could these terms be confined to data engineering circles and left behind when other disciplines are involved?</li>
+<li>Are these words in books, but rarely found in the field?</li>
+<li>This is a book written by authors from the USA and my work experience is in Germany and France with lots of native and non-native english speakers. Could it be the reason?</li>
+</ul>
+</section>
+<section id="user-experience-improvements" class="level3">
+<h3 class="anchored" data-anchor-id="user-experience-improvements">User experience improvements</h3>
+<p>As a long-time user, I was very happy to read the following advice. The points will improve your end users’ life and save them from making mistakes:</p>
+<ul>
+<li><p>Provide human-understandable labels in addition to the technical codes and abbreviations. Quoting from the book:</p>
+<blockquote class="blockquote">
+<p>Cryptic abbreviations, true/false flags, and operational indicators should be supplemented in dimension tables with full text words that have meaning when independently viewed. Operational codes with embedded meaning within the code value should be broken down with each part of the code expanded into its own separate descriptive dimension attribute.</p>
+</blockquote></li>
+<li><p>Similarly, the book describes three different ways to handle <em>Null</em> values that make a ton of sense:</p>
+<ol type="1">
+<li>In dimension tables, the authors recommend substituting <em>Unknown</em> or <em>Not Applicable</em> in place of the null value. This applies when a dimension row is incomplete or when some attributes don’t apply to all rows.</li>
+<li>Foreign key columns should never include nulls. Otherwise, <em>referential integrity</em> is broken i.e.&nbsp;all fact rows should be associated with all the corresponding dimensions.</li>
+<li>In fact tables, numeric measurements can be left null because calculations like sums and averages will correctly handle it. Replacing null with a 0 would bias the average, for example.</li>
+</ol></li>
+<li><p>Provide a <em>Date</em> dimension so that users can easily filter or group by date-related attributes. I like an easy way to access weekend vs.&nbsp;weekdays , the full name for days (Monday, Tuesday, …), months (January, February, …) or even quarters (2026 Q1, 2026 Q2, …) with a simple join. Even better if public holidays can be accessed or if dates important to the business can be retrieved. I have parsed and formatted dates countless times in SQL or Python, just to extract details like month names.</p></li>
+<li><p>Finally, in the last chapter of the book, the authors focus on the implications that big data has on data warehouses and ETL systems. While doing so, they write “Add value to data as soon as possible”:</p>
+<blockquote class="blockquote">
+<p>You should apply filtering, cleansing, pruning, conforming, matching, joining, and diagnosing at the earliest touch points possible. […] Conforming takes the active step of placing highly administered enterprise attributes into major entities such as customer, product, and date. The existence of these conformed attributes allows high value joins to be made across separate application domains. A shorter name for this step is “integration!” Diagnosing allows many interesting attributes to be added to data, including special confidence tags and textual identifiers representing behavior clusters identified by a data mining professional.</p>
+</blockquote>
+<p>In my experience, data science teams often extract data from the warehouse, create insights in silos, and rarely return those insights to the warehouse. As a result, teams often duplicate work in silos or get stuck because they cannot reproduce time-intensive research or advanced data science. I appreciate the idea of enriching data as early as possible, especially by integrating results from company-wide data mining activities.</p></li>
+</ul>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/garytouet\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Powered by <a href="https://quarto.org">Quarto</a></p>
+</div>   
+    <div class="nav-footer-center">
+<p>© 2025 Gary Touet</p>
+</div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://mastodon.social/@garytouet">
+      <i class="bi bi-mastodon" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://www.linkedin.com/in/garytouet/">
+      <i class="bi bi-linkedin" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/garytouet">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="mailto:hello@garytouet.com">
+      <i class="bi bi-envelope-at" role="img">
+</i> 
+    </a>
+  </li>  
+    <li class="nav-item compact">
+    <a class="nav-link" href="../../../posts.xml">
+      <i class="bi bi-rss" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+<script src="../../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
