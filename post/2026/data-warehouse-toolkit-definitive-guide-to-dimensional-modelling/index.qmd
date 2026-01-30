@@ -19,35 +19,33 @@ In the following sections, I will highlight what stuck with me (the ideas I inte
 
 ### The four key decisions when designing a dimensional model
 
-**1. Select the business process**
+1. **Select the business process**
+    
+    The advice is: start by modeling a business process. KPIs, metrics, reports can then be built on this fondation. Do not design your dimensional model based on the KPIs and reports available.  
 
-The advice is: start by modeling a business process. KPIs, metrics, reports can then be built on this fondation. Do not design your dimensional model based on the KPIs and reports available.  
+    Excerpt from the book:
 
-Excerpt from the book:
+    > Business processes are the operational activities performed by your organization, such as taking an order, processing an insurance claim, registering students for a class, or snapshotting every account each month.
 
-> Business processes are the operational activities performed by your organization, such as taking an order, processing an insurance claim, registering students for a class, or snapshotting every account each month.
+1. **Declare the grain**
+    
+    The grain defines the level of detail for the dataset i.e. what a single fact table row represents. 
 
-
-**2. Declare the grain**
-
-The grain defines the level of detail for the dataset i.e. what a single fact table row represents. 
-
-Choose the lowest possible grain (_atomic grain_) from the source systems. This approach offers the most flexibility. Users can then aggregate and manipulate the data as they wish.
+    Choose the lowest possible grain (_atomic grain_) from the source systems. This approach offers the most flexibility. Users can then aggregate and manipulate the data as they wish.
   
+1. **Identify the dimensions**
 
-**3. Identify the dimensions**
+    Dimensions provide the context for a business process event. For example, when a sale happens, the context dimensions are date, product, store, payment method, promotion.
 
-Dimensions provide the context for a business process event. For example, when a sale happens, the context dimensions are date, product, store, payment method, promotion.
+    In reports, dimensions serve as descriptive attributes (typically text labels). They are also used to filter the facts and to form groups during aggregation.
 
-In reports, dimensions serve as descriptive attributes (typically text labels). They are also used to filter the facts and to form groups during aggregation.
+1. **Identify the facts**
 
-**4. Identify the facts**
+    Facts are the numeric measurements tied to a business event. All facts for a single event are stored in one table, which includes foreign keys. These keys link each fact row to its associated dimensions (the context information).
 
-Facts are the numeric measurements tied to a business event. All facts for a single event are stored in one table, which includes foreign keys. These keys link each fact row to its associated dimensions (the context information).
+    From the book:
 
-From the book:
-
-> Facts are the measurements that result from a business process event and are almost always numeric. A single fact table row has a one-to-one relationship to a measurement event as described by the fact table's grain. Thus a fact table corresponds to a physical observable event, and not to the demands of a particular report. Within a fact table, only facts consistent with the declared grain are allowed. For example, in a retail sales transaction, the quantity of a product sold and its extended price are good facts, whereas the store manager's salary is disallowed.
+    > Facts are the measurements that result from a business process event and are almost always numeric. A single fact table row has a one-to-one relationship to a measurement event as described by the fact table's grain. Thus a fact table corresponds to a physical observable event, and not to the demands of a particular report. Within a fact table, only facts consistent with the declared grain are allowed. For example, in a retail sales transaction, the quantity of a product sold and its extended price are good facts, whereas the store manager's salary is disallowed.
 
 ### Business participation
 
