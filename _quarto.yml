@@ -7,7 +7,7 @@ project:
 
 website:
   title: "Gary Touet"
-  description: "Freelancer in product management, data & AI"
+  description: "Lead Product Analyst & Product Manager | Freelance/interim"
   site-url: "https://garytouet.com"
   navbar:
     collapse: false
@@ -39,6 +39,7 @@ website:
         href: mailto:hello@garytouet.com
       - icon: rss
         href: posts.xml
+  open-graph: true
 format:
   html:
     template-partials:
