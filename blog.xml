@@ -14,6 +14,7 @@
 <lastBuildDate>Thu, 29 Jan 2026 00:00:00 GMT</lastBuildDate>
 <item>
   <title>Reading: ‘The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling’ by Ralph Kimball and Margy Ross</title>
+  <dc:creator>Gary Touet</dc:creator>
   <link>https://garytouet.com/post/2026/data-warehouse-toolkit-definitive-guide-to-dimensional-modelling/</link>
   <description><![CDATA[ 
 
@@ -239,6 +240,7 @@
 </item>
 <item>
   <title>‘What’s new in pandas 3’</title>
+  <dc:creator>Gary Touet</dc:creator>
   <link>https://garytouet.com/link/2026/01/29/</link>
   <description><![CDATA[ 
 
@@ -312,6 +314,7 @@ font-style: inherit;">"max_children"</span>))</span>
 </item>
 <item>
   <title>My selection of posit::conf(2025) talks to watch on YouTube</title>
+  <dc:creator>Gary Touet</dc:creator>
   <link>https://garytouet.com/post/2025/posit-conf-2025-my-selection-of-youtube-talks/</link>
   <description><![CDATA[ 
 
@@ -348,6 +351,7 @@ font-style: inherit;">"max_children"</span>))</span>
 </item>
 <item>
   <title>‘Python is not a great language for data science’</title>
+  <dc:creator>Gary Touet</dc:creator>
   <link>https://garytouet.com/link/2025/11/19/python-not-great-package-for-data-science/</link>
   <description><![CDATA[ 
 
@@ -387,6 +391,7 @@ font-style: inherit;">"max_children"</span>))</span>
 </item>
 <item>
   <title>Analysing the sound of my fridge</title>
+  <dc:creator>Gary Touet</dc:creator>
   <link>https://garytouet.com/post/2025/fridge-sound-analysis/</link>
   <description><![CDATA[ 
 
@@ -1084,6 +1089,7 @@ Time between runs:
 </item>
 <item>
   <title>Anil Dash on today’s discourse regarding AI</title>
+  <dc:creator>Gary Touet</dc:creator>
   <link>https://garytouet.com/link/2025/11/04/anil-dash-ai-majority-view/</link>
   <description><![CDATA[ 
 
@@ -1110,6 +1116,7 @@ Time between runs:
 </item>
 <item>
   <title>Creating the favicon for this website with ggplot2</title>
+  <dc:creator>Gary Touet</dc:creator>
   <link>https://garytouet.com/post/2025/create-favicon-with-ggplot2/</link>
   <description><![CDATA[ 
 
