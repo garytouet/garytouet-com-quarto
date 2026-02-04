@@ -5,12 +5,6 @@ date: 2025.09.25
 categories: ['R', 'website']
 ---
 
-```{r}
-#| echo: false
-#| results: 'hide'
-renv::use(lockfile = "renv.lock")
-```
-
 ## Favicon – what is it? 
 
 Quoting from [Mozilla's documentation](https://developer.mozilla.org/en-US/docs/Glossary/Favicon):
@@ -68,7 +62,7 @@ my_blue <- "#0063dc"
   ))
 ```
 
-Now, I will 1) add the text, position it, and then 2) remove all plot elements like grid lines, axes, etc.
+Now, I will 1) add the text, position it, 2) remove all plot elements like grid lines and axes, 3) remove the padding that ggplot adds to the sides of the plot.
 
 ```{r}
 (p <- p +
@@ -84,7 +78,9 @@ Now, I will 1) add the text, position it, and then 2) remove all plot elements l
     size = square_size / 2,
     size.unit = 'in'
   ) +
-  theme_void()
+  theme_void() +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous(expand = c(0, 0))
 )
 ```
 
@@ -176,7 +172,9 @@ create_icon <- function(square_size_inches) {
       size = square_size_inches /2,
       size.unit = 'in'
     ) +
-    theme_void()
+    theme_void() +
+    scale_x_continuous(expand = c(0, 0)) +
+    scale_y_continuous(expand = c(0, 0))
 
     return(p)
   }
