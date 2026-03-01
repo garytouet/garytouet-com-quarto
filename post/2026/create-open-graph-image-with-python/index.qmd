@@ -33,7 +33,7 @@ from PIL import Image, ImageDraw, ImageFont
 from cairosvg import svg2png
 ```
 
-For most of this project, we’ll use the [_pillow_ library](https://pypi.org/project/pillow/). To work with `.svg` graphical elements (not natively supported by pillow), we’ll also use _cairosvg_.
+For most of this project, we’ll use the [_pillow_ library](https://pypi.org/project/pillow/). To work with `.svg` graphical elements (not natively supported by pillow), we’ll also use [_cairosvg_](https://pypi.org/project/CairoSVG/).
 
 ### Design variables
 
@@ -81,7 +81,7 @@ og
 
 ### Text elements
 
-Let's start with the simplest text elements. The _domain name followed by an icon_ and _mix of emojis and text_ will be addressed later.
+Let's start with the simplest text elements. The more complicated cases (combinations of text and graphics) will be addressed later.
 
 ```{python}
 # | label: text
@@ -107,7 +107,7 @@ og
 1. Define the title font using a font file path and size.
 2. The font file includes two adjustable parameters: `Optical size` and `Weight`. Optical size adjusts letter shapes and spacing for different text sizes, while weight controls text thickness (from thin to bold).
 3. Create this once before drawing on the image.
-4. The drawing command places the text at specified coordinates, assigns a font and color, and sets the `language` to English using language. Some fonts include language-specific settings.
+4. The drawing command places the text at specified coordinates, assigns a font and color, and sets the language to English. Some fonts include language-specific settings.
 
 Apply the same process to the remaining text elements:
 
@@ -144,7 +144,7 @@ og
 ```
 
 1. This line stores the length of the text `Lead Product Analyst & Product Manager` for positioning the subsequent text segment, ` | Freelance`.
-2. The calculation is performed here.
+2. This is where the position of the subsequent segment is calculated.
 
 ### Text and Graphic Combinations
 
@@ -172,9 +172,9 @@ draw.text(
 og
 ```
 
-To place the `.svg` icon after the domain name, we need to measure the text length for accurate icon positioning.
+To place the `.svg` icon after the domain name, we need to measure the length of the text preceding it.
 
-Here, _cairosvg_ is used: the `svg2png` function resizes the `.svg` icon, converts it to `.png`, and places the result on the canvas.
+Also, we need _cairosvg_ to handle the `.svg` file. The `svg2png` function resizes the `.svg` icon and converts it to `.png`. We can then place it on the canvas.
 
 ```{python}
 # | label: place-icon-for-domain-name
