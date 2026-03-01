@@ -11,7 +11,861 @@
 <description>A mix of my own writing and links to what I find interesting.</description>
 <language>en</language>
 <generator>quarto-1.8.27</generator>
-<lastBuildDate>Thu, 29 Jan 2026 00:00:00 GMT</lastBuildDate>
+<lastBuildDate>Thu, 26 Feb 2026 00:00:00 GMT</lastBuildDate>
+<item>
+  <title>Creating the Open Graph image for this website with python</title>
+  <link>https://garytouet.com/post/2026/create-open-graph-image-with-python/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Open Graph images are used by social media platforms like LinkedIn and Facebook to preview websites when URLs are shared. My site lacked one, so I decided to create it.</p>
+<p>I already <a href="../../../post/2025/create-favicon-with-ggplot2/index.html">created the favicon</a> with <em>ggplot2</em>. In the same vein, I thought it could be fun to create the Open Graph image programmatically.</p>
+<p>This turned into a much bigger project than I expected. I’ll share the twists and turns at the end of this post. First, let’s see how the Open Graph image can be created in Python.</p>
+<p>This is the reference image:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/open-graph-image.png" class="img-fluid figure-img"></p>
+<figcaption>Open Graph image</figcaption>
+</figure>
+</div>
+<section id="step-by-step-creation-of-the-image" class="level2">
+<h2 class="anchored" data-anchor-id="step-by-step-creation-of-the-image">Step-by-step creation of the image</h2>
+<section id="imports" class="level3">
+<h3 class="anchored" data-anchor-id="imports">Imports</h3>
+<div id="imports" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> PIL <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> Image, ImageDraw, ImageFont</span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> cairosvg <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> svg2png</span></code></pre></div></div>
+</div>
+<p>For most of this project, we’ll use the <a href="https://pypi.org/project/pillow/"><em>pillow</em> library</a>. To work with <code>.svg</code> graphical elements (not natively supported by pillow), we’ll also use <em>cairosvg</em>.</p>
+</section>
+<section id="design-variables" class="level3">
+<h3 class="anchored" data-anchor-id="design-variables">Design variables</h3>
+<p>Below, I define style variables (colours, fonts, text sizes, layout options, etc.) for easy reference later in the code.</p>
+<div id="design-variables" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2" style="background: #f1f3f5;"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-2-1">background_color <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#FCFDFF"</span></span>
+<span id="annotated-cell-2-2">title_color <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#212529"</span></span>
+<span id="annotated-cell-2-3">primary_text_color <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#495057"</span></span>
+<span id="annotated-cell-2-4">secondary_text_color <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"#869099"</span></span>
+<span id="annotated-cell-2-5"></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-6" class="code-annotation-target">base_text_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">16</span></span>
+<span id="annotated-cell-2-7">small_text_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> base_text_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span></span>
+<span id="annotated-cell-2-8">body_text_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> base_text_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.6</span></span>
+<span id="annotated-cell-2-9">title_text_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> base_text_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span></span>
+<span id="annotated-cell-2-10"></span>
+<span id="annotated-cell-2-11">font_path <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/font/InterVariable.ttf"</span></span>
+<span id="annotated-cell-2-12">italics_font_path <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/font/InterVariable-Italic.ttf"</span></span>
+<span id="annotated-cell-2-13"></span>
+<span id="annotated-cell-2-14">left_margin <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">120</span></span>
+<span id="annotated-cell-2-15">radius <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">18</span></span>
+<span id="annotated-cell-2-16"></span>
+<span id="annotated-cell-2-17">dpi <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">320</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="6" data-code-annotation="1">This approach is inspired by CSS’s <code>rem</code> unit. All measurements in the code are multiples of this base unit, which simplifies scaling and adjustments.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="blank-canvas" class="level3">
+<h3 class="anchored" data-anchor-id="blank-canvas">Blank canvas</h3>
+<p>The code generates a simple rectangle matching the website’s background color, using the <a href="https://www.ogimage.gallery/libary/the-ultimate-guide-to-og-image-dimensions-2024-update#:~:text=Standard%20Size:%201200x630%20pixels">recommended dimensions for OG images</a>.</p>
+<div id="cell-blank-canvas" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># OG image standard size</span></span>
+<span id="cb2-2">width_px <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1200</span></span>
+<span id="cb2-3">height_px <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">630</span></span>
+<span id="cb2-4"></span>
+<span id="cb2-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create base image</span></span>
+<span id="cb2-6">og <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Image.new(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"RGBA"</span>, (width_px, height_px), color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>background_color)</span>
+<span id="cb2-7">draw <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageDraw.Draw(og)</span>
+<span id="cb2-8">og</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+<figure class="figure">
+<p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/blank-canvas-output-1.png" id="blank-canvas" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="text-elements" class="level3">
+<h3 class="anchored" data-anchor-id="text-elements">Text elements</h3>
+<p>Let’s start with the simplest text elements. The <em>domain name followed by an icon</em> and <em>mix of emojis and text</em> will be addressed later.</p>
+<div id="text" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">title <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Gary Touet"</span></span>
+<span id="cb3-2">sub1 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Lead Product Analyst &amp; Product Manager"</span></span>
+<span id="cb3-3">sub2 <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" | Freelance"</span></span>
+<span id="cb3-4">descr <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Personal website &amp; blog"</span></span></code></pre></div></div>
+</div>
+<p>First, the title.</p>
+<div id="cell-draw-title" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-5" style="background: #f1f3f5;"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-5-1" class="code-annotation-target">title_font <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageFont.truetype(font_path, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>title_text_size)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-5-2" class="code-annotation-target">title_font.set_variation_by_axes([<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">32.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">600.0</span>])</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-5-3" class="code-annotation-target">draw <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageDraw.Draw(og)</span>
+<span id="annotated-cell-5-4">draw.text(</span>
+<span id="annotated-cell-5-5">    (left_margin, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">225</span>), title, font<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>title_font, fill<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>title_color, language<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"en"</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-5-6" class="code-annotation-target">)</span>
+<span id="annotated-cell-5-7">og</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="1" data-code-annotation="1">Define the title font using a font file path and size.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="2" data-code-annotation="2">The font file includes two adjustable parameters: <code>Optical size</code> and <code>Weight</code>. Optical size adjusts letter shapes and spacing for different text sizes, while weight controls text thickness (from thin to bold).</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="3" data-code-annotation="3">Create this once before drawing on the image.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="6" data-code-annotation="4">The drawing command places the text at specified coordinates, assigns a font and color, and sets the <code>language</code> to English using language. Some fonts include language-specific settings.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<div>
+<figure class="figure">
+<p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/draw-title-output-1.png" id="draw-title" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Apply the same process to the remaining text elements:</p>
+<div id="cell-draw-subtitle-description" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-6" style="background: #f1f3f5;"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-6-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">## sub1</span></span>
+<span id="annotated-cell-6-2">sub1_font <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageFont.truetype(font_path, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>body_text_size)</span>
+<span id="annotated-cell-6-3">sub1_font.set_variation_by_axes([<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">500.0</span>])</span>
+<span id="annotated-cell-6-4">draw.text(</span>
+<span id="annotated-cell-6-5">    (left_margin, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">360</span>), sub1, font<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>sub1_font, fill<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>primary_text_color, language<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"en"</span></span>
+<span id="annotated-cell-6-6">)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-6-7" class="code-annotation-target">sub1_length <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> draw.textlength(sub1, font<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>sub1_font)</span>
+<span id="annotated-cell-6-8"></span>
+<span id="annotated-cell-6-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">## sub2</span></span>
+<span id="annotated-cell-6-10">sub2_font <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageFont.truetype(font_path, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>body_text_size)</span>
+<span id="annotated-cell-6-11">sub2_font.set_variation_by_axes([<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300.0</span>])</span>
+<span id="annotated-cell-6-12">draw.text(</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-6-13" class="code-annotation-target">    (left_margin <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> sub1_length, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">360</span>),</span>
+<span id="annotated-cell-6-14">    sub2,</span>
+<span id="annotated-cell-6-15">    font<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>sub2_font,</span>
+<span id="annotated-cell-6-16">    fill<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>secondary_text_color,</span>
+<span id="annotated-cell-6-17">    language<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"en"</span>,</span>
+<span id="annotated-cell-6-18">)</span>
+<span id="annotated-cell-6-19"></span>
+<span id="annotated-cell-6-20"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">## descr</span></span>
+<span id="annotated-cell-6-21">descr_font <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageFont.truetype(italics_font_path, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>body_text_size)</span>
+<span id="annotated-cell-6-22">descr_font.set_variation_by_axes([<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300.0</span>])</span>
+<span id="annotated-cell-6-23">draw.text(</span>
+<span id="annotated-cell-6-24">    (left_margin, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">400</span>), descr, font<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>descr_font, fill<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>secondary_text_color, language<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"en"</span></span>
+<span id="annotated-cell-6-25">)</span>
+<span id="annotated-cell-6-26"></span>
+<span id="annotated-cell-6-27">og</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="7" data-code-annotation="1">This line stores the length of the text <code>Lead Product Analyst &amp; Product Manager</code> for positioning the subsequent text segment, <code>| Freelance</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="13" data-code-annotation="2">The calculation is performed here.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<div>
+<figure class="figure">
+<p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/draw-subtitle-description-output-1.png" id="draw-subtitle-description" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="text-and-graphic-combinations" class="level3">
+<h3 class="anchored" data-anchor-id="text-and-graphic-combinations">Text and Graphic Combinations</h3>
+<p>This section covers two complex cases:</p>
+<ol type="1">
+<li>Domain name with icon</li>
+<li>Emoji and text combinations</li>
+</ol>
+<p>First, render the domain name as plain text.</p>
+<div id="cell-domain-name" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">url <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"garytouet.com"</span></span>
+<span id="cb4-2"></span>
+<span id="cb4-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">## font</span></span>
+<span id="cb4-4">url_font <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageFont.truetype(font_path, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>small_text_size)</span>
+<span id="cb4-5">url_font.set_variation_by_axes([<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300.0</span>])</span>
+<span id="cb4-6">draw.text(</span>
+<span id="cb4-7">    (left_margin, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">190</span>),</span>
+<span id="cb4-8">    url,</span>
+<span id="cb4-9">    font<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>url_font,</span>
+<span id="cb4-10">    fill<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>secondary_text_color,</span>
+<span id="cb4-11">    language<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"en"</span>,</span>
+<span id="cb4-12">)</span>
+<span id="cb4-13"></span>
+<span id="cb4-14">og</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<div>
+<figure class="figure">
+<p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/domain-name-output-1.png" id="domain-name" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To place the <code>.svg</code> icon after the domain name, we need to measure the text length for accurate icon positioning.</p>
+<p>Here, <em>cairosvg</em> is used: the <code>svg2png</code> function resizes the <code>.svg</code> icon, converts it to <code>.png</code>, and places the result on the canvas.</p>
+<div id="cell-place-icon-for-domain-name" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">svg <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> svg2png(</span>
+<span id="cb5-2">    url<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"icons/box-arrow-up-right.svg"</span>,</span>
+<span id="cb5-3">    output_width<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>small_text_size,</span>
+<span id="cb5-4">    output_height<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>small_text_size,</span>
+<span id="cb5-5">    dpi<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>dpi,</span>
+<span id="cb5-6">    write_to<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/tmp/link_icon.png"</span>,</span>
+<span id="cb5-7">)</span>
+<span id="cb5-8"></span>
+<span id="cb5-9">png <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Image.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">open</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/tmp/link_icon.png"</span>)</span>
+<span id="cb5-10"></span>
+<span id="cb5-11">length_url <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span>(</span>
+<span id="cb5-12">    draw.textlength(url, font<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>url_font) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> base_text_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span></span>
+<span id="cb5-13">)  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># length of the text + a bit of space</span></span>
+<span id="cb5-14"></span>
+<span id="cb5-15">og.paste(png, (left_margin <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> length_url, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">191</span>), mask<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>png)</span>
+<span id="cb5-16"></span>
+<span id="cb5-17">og</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<div>
+<figure class="figure">
+<p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/place-icon-for-domain-name-output-1.png" id="place-icon-for-domain-name" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Next, let’s handle the combination of emoji and text at the bottom of the image. Emojis are part of a macOS font and should be rendered as such.</p>
+<div id="cell-emojis-text" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-9" style="background: #f1f3f5;"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-9-1">emoji_font <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageFont.truetype(</span>
+<span id="annotated-cell-9-2">    <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/System/Library/Fonts/Apple Color Emoji.ttc"</span>, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-9-3" class="code-annotation-target">)</span>
+<span id="annotated-cell-9-4">text_font <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageFont.truetype(font_path, size<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>small_text_size)</span>
+<span id="annotated-cell-9-5">text_font.set_variation_by_axes([<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">14.0</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">300.0</span>])</span>
+<span id="annotated-cell-9-6"></span>
+<span id="annotated-cell-9-7">segments <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [</span>
+<span id="annotated-cell-9-8">    (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"🇫🇷"</span>, emoji_font),</span>
+<span id="annotated-cell-9-9">    (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"-&gt;"</span>, text_font),</span>
+<span id="annotated-cell-9-10">    (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"🇩🇪"</span>, emoji_font),</span>
+<span id="annotated-cell-9-11">    (<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">" Berlin"</span>, text_font),</span>
+<span id="annotated-cell-9-12">]  <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># the text is broken down into several segments so that the corresponding emoji font can be used for the flags</span></span>
+<span id="annotated-cell-9-13"></span>
+<span id="annotated-cell-9-14"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Starting position</span></span>
+<span id="annotated-cell-9-15">x, y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (left_margin, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">570</span>)</span>
+<span id="annotated-cell-9-16"></span>
+<span id="annotated-cell-9-17"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> text, font <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> segments:</span>
+<span id="annotated-cell-9-18">    draw.text(</span>
+<span id="annotated-cell-9-19">        (x, y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> (base_text_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.06</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> font <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> emoji_font <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> y),</span>
+<span id="annotated-cell-9-20">        text,</span>
+<span id="annotated-cell-9-21">        font<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>font,</span>
+<span id="annotated-cell-9-22">        embedded_color<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span> <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> font <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> emoji_font <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">else</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">None</span>,</span>
+<span id="annotated-cell-9-23">        fill<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>secondary_text_color,</span>
+<span id="annotated-cell-9-24">    )</span>
+<span id="annotated-cell-9-25">    x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> draw.textlength(text, font<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>font) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span> (base_text_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.12</span>)</span>
+<span id="annotated-cell-9-26"></span>
+<span id="annotated-cell-9-27">og</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="3" data-code-annotation="1">Limitation: The minimum emoji font size is 20, which is slightly larger than ideal but acceptable to me.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<div>
+<figure class="figure">
+<p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/emojis-text-output-1.png" id="emojis-text" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="blue-gt-icon" class="level3">
+<h3 class="anchored" data-anchor-id="blue-gt-icon">Blue GT icon</h3>
+<p>This involves manipulating another <code>.svg</code> icon.</p>
+<div id="cell-GT-icon" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">svg <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> svg2png(</span>
+<span id="cb6-2">    url<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"icons/gt-icon.svg"</span>,</span>
+<span id="cb6-3">    output_width<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">680</span>,</span>
+<span id="cb6-4">    output_height<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">680</span>,</span>
+<span id="cb6-5">    dpi<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>dpi,</span>
+<span id="cb6-6">    write_to<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/tmp/resized_icon.png"</span>,</span>
+<span id="cb6-7">)</span>
+<span id="cb6-8">png <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Image.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">open</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/tmp/resized_icon.png"</span>).convert(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"RGBA"</span>)</span>
+<span id="cb6-9"></span>
+<span id="cb6-10"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create a mask with rounded corners</span></span>
+<span id="cb6-11">mask <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> Image.new(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"L"</span>, png.size, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span>
+<span id="cb6-12">draw <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageDraw.Draw(mask)</span>
+<span id="cb6-13">draw.rounded_rectangle([(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>), mask.size], radius<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>radius, fill<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">255</span>)</span>
+<span id="cb6-14">png.putalpha(mask)</span>
+<span id="cb6-15"></span>
+<span id="cb6-16"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Resize the icon to half its original size to fight aliasing</span></span>
+<span id="cb6-17">png <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> png.resize(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">tuple</span>(<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">int</span>(s <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>) <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> s <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> png.size), resample<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>Image.LANCZOS)</span>
+<span id="cb6-18"></span>
+<span id="cb6-19"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Paste the icon on the canvas in its new size with the rounded corners mask</span></span>
+<span id="cb6-20">og.paste(im<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>png, box<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">940</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">370</span>), mask<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>png)</span>
+<span id="cb6-21"></span>
+<span id="cb6-22">og</span></code></pre></div></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+<figure class="figure">
+<p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/gt-icon-output-1.png" id="gt-icon" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This code block performs several operations:</p>
+<ol type="1">
+<li><strong>Add rounded corners to the icon:</strong> to do this, create a rounded-corner mask and apply it to the image (similar to Photoshop). In the end, <a href="https://note.nkmk.me/en/python-pillow-composite/">this article</a>, especially the section <em>Create mask image by drawing</em>, pointed me in the right direction. Then, this <a href="https://note.nkmk.me/en/python-pillow-putalpha/">second article</a> about <code>putalpha()</code> made me understand how to apply a transparent mask to an image. Finally, with my LLM of choice, I managed to craft the solution above.</li>
+<li><strong>Smoothen corners:</strong> The rounded corners initially appeared pixelated (aliasing). Since Pillow lacks a direct anti-aliasing method, a <a href="https://stackoverflow.com/questions/14350645/is-there-an-antialiasing-method-for-python-pil">StackOverflow suggestion</a> recommended rendering the image at a higher resolution and resizing it with <code>resample=Image.LANCZOS</code>. I opted for scaling the original icon to twice the desired size before resizing and resampling.</li>
+</ol>
+</section>
+<section id="end-result" class="level3">
+<h3 class="anchored" data-anchor-id="end-result">End result</h3>
+<p>Let’s compare the final output to the reference image. The programmatically generated image (using <em>pillow</em>) includes a dot in the top right corner.</p>
+<div id="save-image-to-disk" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Add a dot in the top right corner for the image created with pillow</span></span>
+<span id="cb7-2">draw <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> ImageDraw.Draw(og)</span>
+<span id="cb7-3">draw.circle((width_px <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>), radius <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, fill<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>title_color)</span>
+<span id="cb7-4"></span>
+<span id="cb7-5"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Save the end result to disk</span></span>
+<span id="cb7-6">og.save(fp<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"open-graph-image-pillow.png"</span>, <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">format</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"png"</span>)</span></code></pre></div></div>
+</div>
+<div id="create-comparison-gif" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># create a gif with both images for comparison</span></span>
+<span id="cb8-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> imageio.v3 <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> imageio</span>
+<span id="cb8-3"></span>
+<span id="cb8-4">filenames <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"open-graph-image.png"</span>, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"open-graph-image-pillow.png"</span>]</span>
+<span id="cb8-5">images <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb8-6"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> filename <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> filenames:</span>
+<span id="cb8-7">    images.append(imageio.imread(filename))</span>
+<span id="cb8-8">imageio.imwrite(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"comparison.gif"</span>, images, <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">format</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"GIF"</span>, fps<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, loop<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>)</span></code></pre></div></div>
+</div>
+<p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/comparison.gif" class="img-fluid"></p>
+</section>
+<section id="conclusion" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion">Conclusion</h3>
+<p>The final output shows subtle but noticeable differences compared to the reference image:</p>
+<ul>
+<li>Font sizes could be adjusted further, though the emojis are already at their minimum size. This is not a critical issue for me.</li>
+<li>The rounded corners appear slightly blurry and less crisp. However, this is not a significant concern.</li>
+<li>The text rendering differs: at small sizes, it appears cramped, and at larger sizes, the kerning seems inconsistent. The reference image’s text is more harmonious and optically balanced, with refined letter spacing. This is a critical issue for me, so I will use the reference version.</li>
+</ul>
+<p>I tried my best to tweak the font rendering done by <em>pillow</em>, but without success. After a bit of research, I concluded that the font rendering implemented in the library is limited and doesn’t take advantage of all the features included in the Inter font, as opposed to the software I used to create my reference image.</p>
+</section>
+</section>
+<section id="twists-and-turns" class="level2">
+<h2 class="anchored" data-anchor-id="twists-and-turns">Twists and turns</h2>
+<p>Let’s reflect on the project’s journey.</p>
+<p>When I started this project, I only had a vague idea of what I wanted to create. This lack of clarity complicated the process, as testing design ideas through code is far more time-consuming than using a dedicated design tool (obviously!). Ultimately, I decided to finalize the design visually before coding. I set out to replicate the design in python, which was still a worthy endeavour.</p>
+<p>My initial idea was to use <em>plotnine</em> (the equivalent of <em>ggplot2</em> in Python). However, I encountered two major obstacles:</p>
+<ol type="1">
+<li><em>plotnine</em> doesn’t have <code>geom_image()</code>, which meant that I had to go one level deeper and use <em>matplotlib</em> to manipulate and add images to my plot. I managed to do it, but suddenly it felt like <em>plotnine</em> was not the tool for the job. Well, it was not from the start given my goal here, but even more so… :)</li>
+<li>My design requires different font weights for different text elements. And I want them to be consistent with the weights used on the rest of this website. I found this step difficult with <code>geom_text()</code> and <code>annotate()</code>, which are not that advanced. Again, I had to resort to <em>matplotlib</em> and its <code>font_manager</code>. And still, it was difficult. I believe I used the right methods and functions. However, I couldn’t see the text change on my plot. After a lot of trial and error, I concluded that I was asking too much of these tools and that I needed something more adapted to the job. This led me to <em>pillow</em>, which enabled me to complete the project successfully.</li>
+</ol>
+
+
+</section>
+
+ ]]></description>
+  <category>python</category>
+  <category>website</category>
+  <guid>https://garytouet.com/post/2026/create-open-graph-image-with-python/</guid>
+  <pubDate>Thu, 26 Feb 2026 00:00:00 GMT</pubDate>
+</item>
 <item>
   <title>Reading: ‘The Data Warehouse Toolkit: The Definitive Guide to Dimensional Modeling’ by Ralph Kimball and Margy Ross</title>
   <link>https://garytouet.com/post/2026/data-warehouse-toolkit-definitive-guide-to-dimensional-modelling/</link>

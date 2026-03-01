@@ -1,39 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://garytouet.com/link/2025/11/04/anil-dash-ai-majority-view/index.html</loc>
-    <lastmod>2026-02-04T11:50:43.310Z</lastmod>
-  </url>
-  <url>
-    <loc>https://garytouet.com/link/2026/01/29/index.html</loc>
-    <lastmod>2026-02-04T11:50:43.310Z</lastmod>
-  </url>
-  <url>
     <loc>https://garytouet.com/post/2025/posit-conf-2025-my-selection-of-youtube-talks/index.html</loc>
-    <lastmod>2026-02-04T11:50:43.312Z</lastmod>
+    <lastmod>2026-03-01T11:14:13.888Z</lastmod>
   </url>
   <url>
     <loc>https://garytouet.com/post/2025/fridge-sound-analysis/index.html</loc>
-    <lastmod>2026-02-04T11:50:43.311Z</lastmod>
-  </url>
-  <url>
-    <loc>https://garytouet.com/index.html</loc>
-    <lastmod>2026-02-04T11:50:43.310Z</lastmod>
+    <lastmod>2026-03-01T11:14:13.888Z</lastmod>
   </url>
   <url>
     <loc>https://garytouet.com/post/2026/data-warehouse-toolkit-definitive-guide-to-dimensional-modelling/index.html</loc>
-    <lastmod>2026-02-04T11:50:43.312Z</lastmod>
+    <lastmod>2026-03-01T11:14:13.899Z</lastmod>
   </url>
   <url>
-    <loc>https://garytouet.com/post/2025/create-favicon-with-ggplot2/index.html</loc>
-    <lastmod>2026-02-04T11:50:43.311Z</lastmod>
+    <loc>https://garytouet.com/link/2025/11/04/anil-dash-ai-majority-view/index.html</loc>
+    <lastmod>2026-03-01T11:14:13.887Z</lastmod>
+  </url>
+  <url>
+    <loc>https://garytouet.com/index.html</loc>
+    <lastmod>2026-03-01T11:14:13.886Z</lastmod>
   </url>
   <url>
     <loc>https://garytouet.com/blog.html</loc>
-    <lastmod>2026-02-04T11:50:43.310Z</lastmod>
+    <lastmod>2026-03-01T11:14:13.886Z</lastmod>
+  </url>
+  <url>
+    <loc>https://garytouet.com/link/2026/01/29/index.html</loc>
+    <lastmod>2026-03-01T11:14:13.887Z</lastmod>
   </url>
   <url>
     <loc>https://garytouet.com/link/2025/11/19/python-not-great-package-for-data-science/index.html</loc>
-    <lastmod>2026-02-04T11:50:43.310Z</lastmod>
+    <lastmod>2026-03-01T11:14:13.887Z</lastmod>
+  </url>
+  <url>
+    <loc>https://garytouet.com/post/2026/create-open-graph-image-with-python/index.html</loc>
+    <lastmod>2026-03-01T11:14:13.899Z</lastmod>
+  </url>
+  <url>
+    <loc>https://garytouet.com/post/2025/create-favicon-with-ggplot2/index.html</loc>
+    <lastmod>2026-03-01T11:14:13.888Z</lastmod>
   </url>
 </urlset>
