@@ -39,7 +39,11 @@ website:
         href: mailto:hello@garytouet.com
       - icon: rss
         href: posts.xml
-  open-graph: true
+  open-graph:
+    image: "assets/open-graph-image.png"
+    image-width: 1200
+    image-height: 630
+    locale : "en_GB"
 format:
   html:
     template-partials:
@@ -62,9 +66,9 @@ format:
     include-in-header:
       - text: |
           <link rel="icon" href="favicon.ico" sizes="32x32">
-          <link rel="icon" href="/icons/favicon_96x96.png" sizes="96x96">
-          <link rel="icon" href="/icons/icon.svg" type="image/svg+xml">
-          <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+          <link rel="icon" href="/assets/favicon_96x96.png" sizes="96x96">
+          <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
+          <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
           <script defer src="https://cloud.umami.is/script.js" data-website-id="2191915a-328c-4ca4-8921-31b446ba513b"></script>
 
 execute:
