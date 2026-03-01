@@ -40,7 +40,7 @@ website:
       - icon: rss
         href: posts.xml
   open-graph:
-    image: "assets/open-graph-image.png"
+    image: "/assets/open-graph-image.png"
     image-width: 1200
     image-height: 630
     locale : "en_GB"
