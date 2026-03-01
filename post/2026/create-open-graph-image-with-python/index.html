@@ -225,7 +225,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image, ImageDraw, ImageFont</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> cairosvg <span class="im">import</span> svg2png</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>For most of this project, we’ll use the <a href="https://pypi.org/project/pillow/"><em>pillow</em> library</a>. To work with <code>.svg</code> graphical elements (not natively supported by pillow), we’ll also use <em>cairosvg</em>.</p>
+<p>For most of this project, we’ll use the <a href="https://pypi.org/project/pillow/"><em>pillow</em> library</a>. To work with <code>.svg</code> graphical elements (not natively supported by pillow), we’ll also use <a href="https://pypi.org/project/CairoSVG/"><em>cairosvg</em></a>.</p>
 </section>
 <section id="design-variables" class="level3">
 <h3 class="anchored" data-anchor-id="design-variables">Design variables</h3>
@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>og <span class="op">=</span> Image.new(<span class="st">"RGBA"</span>, (width_px, height_px), color<span class="op">=</span>background_color)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>draw <span class="op">=</span> ImageDraw.Draw(og)</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>og</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="63">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/blank-canvas-output-1.png" id="blank-canvas" class="img-fluid figure-img"></p>
@@ -281,7 +281,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="text-elements" class="level3">
 <h3 class="anchored" data-anchor-id="text-elements">Text elements</h3>
-<p>Let’s start with the simplest text elements. The <em>domain name followed by an icon</em> and <em>mix of emojis and text</em> will be addressed later.</p>
+<p>Let’s start with the simplest text elements. The more complicated cases (combinations of text and graphics) will be addressed later.</p>
 <div id="text" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> <span class="st">"Gary Touet"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sub1 <span class="op">=</span> <span class="st">"Lead Product Analyst &amp; Product Manager"</span></span>
@@ -313,11 +313,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="6" data-code-annotation="4">The drawing command places the text at specified coordinates, assigns a font and color, and sets the <code>language</code> to English using language. Some fonts include language-specific settings.</span>
+<span data-code-cell="annotated-cell-5" data-code-lines="6" data-code-annotation="4">The drawing command places the text at specified coordinates, assigns a font and color, and sets the language to English. Some fonts include language-specific settings.</span>
 </dd>
 </dl>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="65">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/draw-title-output-1.png" id="draw-title" class="img-fluid figure-img"></p>
@@ -362,11 +362,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 <dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="13" data-code-annotation="2">The calculation is performed here.</span>
+<span data-code-cell="annotated-cell-6" data-code-lines="13" data-code-annotation="2">This is where the position of the subsequent segment is calculated.</span>
 </dd>
 </dl>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="66">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/draw-subtitle-description-output-1.png" id="draw-subtitle-description" class="img-fluid figure-img"></p>
@@ -398,7 +398,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>og</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="67">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/domain-name-output-1.png" id="domain-name" class="img-fluid figure-img"></p>
@@ -406,8 +406,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>To place the <code>.svg</code> icon after the domain name, we need to measure the text length for accurate icon positioning.</p>
-<p>Here, <em>cairosvg</em> is used: the <code>svg2png</code> function resizes the <code>.svg</code> icon, converts it to <code>.png</code>, and places the result on the canvas.</p>
+<p>To place the <code>.svg</code> icon after the domain name, we need to measure the length of the text preceding it.</p>
+<p>Also, we need <em>cairosvg</em> to handle the <code>.svg</code> file. The <code>svg2png</code> function resizes the <code>.svg</code> icon and converts it to <code>.png</code>. We can then place it on the canvas.</p>
 <div id="cell-place-icon-for-domain-name" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>svg <span class="op">=</span> svg2png(</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    url<span class="op">=</span><span class="st">"icons/box-arrow-up-right.svg"</span>,</span>
@@ -426,7 +426,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>og.paste(png, (left_margin <span class="op">+</span> length_url, <span class="dv">191</span>), mask<span class="op">=</span>png)</span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>og</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="68">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/place-icon-for-domain-name-output-1.png" id="place-icon-for-domain-name" class="img-fluid figure-img"></p>
@@ -471,7 +471,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </dd>
 </dl>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="69">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/emojis-text-output-1.png" id="emojis-text" class="img-fluid figure-img"></p>
@@ -506,7 +506,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>og.paste(im<span class="op">=</span>png, box<span class="op">=</span>(<span class="dv">940</span>, <span class="dv">370</span>), mask<span class="op">=</span>png)</span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>og</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="70">
 <div>
 <figure class="figure">
 <p><img src="index_files/figure-html/gt-icon-output-1.png" id="gt-icon" class="img-fluid figure-img"></p>

@@ -46,7 +46,7 @@ font-style: inherit;">from</span> cairosvg <span class="im" style="color: #00769
 background-color: null;
 font-style: inherit;">import</span> svg2png</span></code></pre></div></div>
 </div>
-<p>For most of this project, we’ll use the <a href="https://pypi.org/project/pillow/"><em>pillow</em> library</a>. To work with <code>.svg</code> graphical elements (not natively supported by pillow), we’ll also use <em>cairosvg</em>.</p>
+<p>For most of this project, we’ll use the <a href="https://pypi.org/project/pillow/"><em>pillow</em> library</a>. To work with <code>.svg</code> graphical elements (not natively supported by pillow), we’ll also use <a href="https://pypi.org/project/CairoSVG/"><em>cairosvg</em></a>.</p>
 </section>
 <section id="design-variables" class="level3">
 <h3 class="anchored" data-anchor-id="design-variables">Design variables</h3>
@@ -169,7 +169,7 @@ font-style: inherit;">=</span>background_color)</span>
 background-color: null;
 font-style: inherit;">=</span> ImageDraw.Draw(og)</span>
 <span id="cb2-8">og</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="63">
 <div>
 <figure class="figure">
 <p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/blank-canvas-output-1.png" id="blank-canvas" class="img-fluid figure-img"></p>
@@ -180,7 +180,7 @@ font-style: inherit;">=</span> ImageDraw.Draw(og)</span>
 </section>
 <section id="text-elements" class="level3">
 <h3 class="anchored" data-anchor-id="text-elements">Text elements</h3>
-<p>Let’s start with the simplest text elements. The <em>domain name followed by an icon</em> and <em>mix of emojis and text</em> will be addressed later.</p>
+<p>Let’s start with the simplest text elements. The more complicated cases (combinations of text and graphics) will be addressed later.</p>
 <div id="text" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">title <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -248,11 +248,11 @@ font-style: inherit;">"en"</span></span>
 </dd>
 <dt data-target-cell="annotated-cell-5" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-5" data-code-lines="6" data-code-annotation="4">The drawing command places the text at specified coordinates, assigns a font and color, and sets the <code>language</code> to English using language. Some fonts include language-specific settings.</span>
+<span data-code-cell="annotated-cell-5" data-code-lines="6" data-code-annotation="4">The drawing command places the text at specified coordinates, assigns a font and color, and sets the language to English. Some fonts include language-specific settings.</span>
 </dd>
 </dl>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="65">
 <div>
 <figure class="figure">
 <p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/draw-title-output-1.png" id="draw-title" class="img-fluid figure-img"></p>
@@ -363,11 +363,11 @@ font-style: inherit;">"en"</span></span>
 </dd>
 <dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-6" data-code-lines="13" data-code-annotation="2">The calculation is performed here.</span>
+<span data-code-cell="annotated-cell-6" data-code-lines="13" data-code-annotation="2">This is where the position of the subsequent segment is calculated.</span>
 </dd>
 </dl>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="66">
 <div>
 <figure class="figure">
 <p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/draw-subtitle-description-output-1.png" id="draw-subtitle-description" class="img-fluid figure-img"></p>
@@ -423,7 +423,7 @@ font-style: inherit;">"en"</span>,</span>
 <span id="cb4-12">)</span>
 <span id="cb4-13"></span>
 <span id="cb4-14">og</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="67">
 <div>
 <figure class="figure">
 <p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/domain-name-output-1.png" id="domain-name" class="img-fluid figure-img"></p>
@@ -431,8 +431,8 @@ font-style: inherit;">"en"</span>,</span>
 </div>
 </div>
 </div>
-<p>To place the <code>.svg</code> icon after the domain name, we need to measure the text length for accurate icon positioning.</p>
-<p>Here, <em>cairosvg</em> is used: the <code>svg2png</code> function resizes the <code>.svg</code> icon, converts it to <code>.png</code>, and places the result on the canvas.</p>
+<p>To place the <code>.svg</code> icon after the domain name, we need to measure the length of the text preceding it.</p>
+<p>Also, we need <em>cairosvg</em> to handle the <code>.svg</code> file. The <code>svg2png</code> function resizes the <code>.svg</code> icon and converts it to <code>.png</code>. We can then place it on the canvas.</p>
 <div id="cell-place-icon-for-domain-name" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">svg <span class="op" style="color: #5E5E5E;
 background-color: null;
@@ -493,7 +493,7 @@ background-color: null;
 font-style: inherit;">=</span>png)</span>
 <span id="cb5-16"></span>
 <span id="cb5-17">og</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="68">
 <div>
 <figure class="figure">
 <p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/place-icon-for-domain-name-output-1.png" id="place-icon-for-domain-name" class="img-fluid figure-img"></p>
@@ -620,7 +620,7 @@ font-style: inherit;">0.12</span>)</span>
 </dd>
 </dl>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="69">
 <div>
 <figure class="figure">
 <p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/emojis-text-output-1.png" id="emojis-text" class="img-fluid figure-img"></p>
@@ -735,7 +735,7 @@ background-color: null;
 font-style: inherit;">=</span>png)</span>
 <span id="cb6-21"></span>
 <span id="cb6-22">og</span></code></pre></div></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell-output cell-output-display" data-execution_count="70">
 <div>
 <figure class="figure">
 <p><img src="https://garytouet.com/post/2026/create-open-graph-image-with-python/index_files/figure-html/gt-icon-output-1.png" id="gt-icon" class="img-fluid figure-img"></p>
