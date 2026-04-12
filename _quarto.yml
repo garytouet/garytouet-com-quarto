@@ -70,6 +70,8 @@ format:
           <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
           <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
           <script defer src="https://cloud.umami.is/script.js" data-website-id="2191915a-328c-4ca4-8921-31b446ba513b"></script>
+      - text: |
+          <link rel="me" href="https://mastodon.social/@garytouet">
 
 execute:
   freeze: auto
